@@ -9,7 +9,17 @@ function InstrumentCard({ image, brand, model, onViewMore }) {
   const heading = `${brand} - ${model}`;
   return (
     <Card>
-      <Image src={image} alt={heading} objectFit="contain" h={[200]} w={[MAX_WIDTH]} mb={[4]} />
+      <Image
+        src={image}
+        alt={heading}
+        objectFit="contain"
+        h={[200]}
+        w={[MAX_WIDTH]}
+        mb={[4]}
+        border="1px solid black"
+        borderRadius="full"
+        shadow="lg"
+      />
       <Heading
         as="h3"
         size="md"
