@@ -28,6 +28,7 @@ function InstrumentCard({ image, brand, model, onViewMore }) {
         textOverflow="ellipsis"
         overflow="hidden"
         whiteSpace="nowrap"
+        color="text.primary"
       >
         {heading}
       </Heading>
