@@ -5,7 +5,7 @@ import InstrumentCard from '../InstrumentCard/InstrumentCard';
 
 function InstrumentsList({ instruments }) {
   return (
-    <Flex gap={12} wrap="wrap" justify="space-between">
+    <Flex gap={12} wrap="wrap" justify="start">
       {instruments.map((instrument) => (
         <InstrumentCard {...instrument} />
       ))}
