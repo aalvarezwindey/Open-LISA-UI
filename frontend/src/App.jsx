@@ -1,13 +1,13 @@
-import InstrumentList from './components/InstrumentsList/InstrumentsList';
-import useInstruments from './hooks/useInstruments';
+import { BrowserRouter } from 'react-router-dom';
+import MainRouter from './routing/MainRouter';
 import ThemeProvider from './theme/Provider';
 
 function App() {
-  const { instruments } = useInstruments();
-
   return (
     <ThemeProvider>
-      <InstrumentList instruments={instruments} />
+      <BrowserRouter>
+        <MainRouter />
+      </BrowserRouter>
     </ThemeProvider>
   );
 }
