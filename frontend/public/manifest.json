@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Open LISA",
+  "name": "Open LISA client interface",
   "icons": [
     {
       "src": "favicon.ico",
