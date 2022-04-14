@@ -1,0 +1,11 @@
+{
+  "printWidth": 100,
+  "tabWidth": 2,
+  "trailingComma": "all",
+  "singleQuote": true,
+  "semi": true,
+  "sortingMethod": "alphabetical",
+  "importOrder": ["^react(.*)$", "^[A-Za-z](.*)$", "^@(.*)$", "^[./]", "^[../]"],
+  "importOrderSeparation": false,
+  "importOrderSortSpecifiers": true
+}
