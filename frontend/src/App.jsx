@@ -1,11 +1,13 @@
-import InstrumentCard from './components/InstrumentCard/InstrumentCard';
+import InstrumentList from './components/InstrumentsList/InstrumentsList';
+import useInstruments from './hooks/useInstruments';
 import ThemeProvider from './theme/Provider';
 
 function App() {
+  const { instruments } = useInstruments();
+
   return (
     <ThemeProvider>
-      <InstrumentCard brand="Tektronix" model="1002B" image="/images/tektronix_1002b.webp" />
-      <InstrumentCard brand="Pixelfly" model="PCO QE 120778a" image="/images/pixelfly.jpeg" />
+      <InstrumentList instruments={instruments} />
     </ThemeProvider>
   );
 }
