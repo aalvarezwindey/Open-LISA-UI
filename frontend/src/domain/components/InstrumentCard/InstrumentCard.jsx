@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Box, Button, Heading, Image } from '@chakra-ui/react';
-import Card from '../Card/Card';
+import Card from '../../../components/Card/Card';
 
 const MAX_WIDTH = 200;
 

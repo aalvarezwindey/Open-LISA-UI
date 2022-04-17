@@ -7,18 +7,20 @@ function InstrumentsList({ instruments }) {
   return (
     <Flex gap={12} wrap="wrap" justify="start">
       {instruments.map((instrument) => (
-        <InstrumentCard {...instrument} />
+        <InstrumentCard key={instrument.id} {...instrument} />
       ))}
     </Flex>
   );
 }
 
 InstrumentsList.propTypes = {
-  instruments: PropTypes.arrayOf({
-    brand: PropTypes.string.isRequired,
-    model: PropTypes.string.isRequired,
-    image: PropTypes.string,
-  }),
+  instruments: PropTypes.arrayOf(
+    PropTypes.shape({
+      brand: PropTypes.string.isRequired,
+      model: PropTypes.string.isRequired,
+      image: PropTypes.string,
+    }),
+  ),
 };
 
 export default InstrumentsList;

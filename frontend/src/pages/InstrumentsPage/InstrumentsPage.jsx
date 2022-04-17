@@ -1,19 +1,34 @@
 import React from 'react';
 import { AddIcon } from '@chakra-ui/icons';
-import { Button } from '@chakra-ui/react';
-import InstrumentsList from '../../components/InstrumentsList/InstrumentsList';
+import { Button, useDisclosure } from '@chakra-ui/react';
+import BasicModal from '../../components/BasicModal/BasicModal';
 import PageBody from '../../components/Layout/PageBody/PageBody';
+import InstrumentsList from '../../domain/components/InstrumentsList/InstrumentsList';
 import useInstruments from '../../hooks/useInstruments';
 
 export default function InstrumentsPage() {
   const { instruments } = useInstruments();
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
+  const handleCreateInstrument = () => {
+    alert('intrument created');
+  };
   return (
     <PageBody>
       <InstrumentsList instruments={instruments} />
-      <Button position="fixed" bottom={6} right={6}>
+      <Button position="fixed" bottom={6} right={6} onClick={onOpen}>
         <AddIcon mr={4} />
         Nuevo instrumento
       </Button>
+      <BasicModal
+        title="Nuevo instrumento"
+        onClose={onClose}
+        isOpen={isOpen}
+        primaryAction={{ label: 'Crear instrumento', onAction: handleCreateInstrument }}
+        secondaryAction={{ label: 'Cancelar', onAction: onClose }}
+      >
+        Sarasa por???
+      </BasicModal>
     </PageBody>
   );
 }
