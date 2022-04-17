@@ -4,6 +4,7 @@ import { Button, useDisclosure } from '@chakra-ui/react';
 import BasicModal from '../../components/BasicModal/BasicModal';
 import PageBody from '../../components/Layout/PageBody/PageBody';
 import InstrumentsList from '../../domain/components/InstrumentsList/InstrumentsList';
+import NewInstrumentForm from '../../domain/components/NewInstrumentForm.jsx/NewInstrumentForm';
 import useInstruments from '../../hooks/useInstruments';
 
 export default function InstrumentsPage() {
@@ -27,7 +28,7 @@ export default function InstrumentsPage() {
         primaryAction={{ label: 'Crear instrumento', onAction: handleCreateInstrument }}
         secondaryAction={{ label: 'Cancelar', onAction: onClose }}
       >
-        Sarasa por???
+        <NewInstrumentForm />
       </BasicModal>
     </PageBody>
   );
