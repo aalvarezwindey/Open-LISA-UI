@@ -4,12 +4,16 @@ import { Button, useDisclosure } from '@chakra-ui/react';
 import BasicModal from '../../components/BasicModal/BasicModal';
 import PageBody from '../../components/Layout/PageBody/PageBody';
 import InstrumentsList from '../../domain/components/InstrumentsList/InstrumentsList';
-import NewInstrumentForm from '../../domain/components/NewInstrumentForm.jsx/NewInstrumentForm';
+import NewInstrumentForm, {
+  NewInstrumentFormFileds,
+} from '../../domain/components/NewInstrumentForm/NewInstrumentForm';
+import useForm from '../../hooks/useForm';
 import useInstruments from '../../hooks/useInstruments';
 
 export default function InstrumentsPage() {
   const { instruments } = useInstruments();
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const formProps = useForm({ fields: NewInstrumentFormFileds });
 
   const handleCreateInstrument = () => {
     alert('intrument created');
@@ -28,7 +32,7 @@ export default function InstrumentsPage() {
         primaryAction={{ label: 'Crear instrumento', onAction: handleCreateInstrument }}
         secondaryAction={{ label: 'Cancelar', onAction: onClose }}
       >
-        <NewInstrumentForm />
+        <NewInstrumentForm {...formProps} />
       </BasicModal>
     </PageBody>
   );

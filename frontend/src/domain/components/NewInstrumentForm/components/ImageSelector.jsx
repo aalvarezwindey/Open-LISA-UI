@@ -9,7 +9,7 @@ const ImageCard = (props) => {
   const checkbox = getCheckboxProps();
 
   return (
-    <Box as="label">
+    <Box as="label" ml={0}>
       <input {...input} />
       <Box
         {...checkbox}
@@ -18,11 +18,8 @@ const ImageCard = (props) => {
         borderRadius="md"
         boxShadow="md"
         _checked={{
-          bg: 'teal.400',
           color: 'white',
           borderColor: 'teal.300',
-        }}
-        _focus={{
           boxShadow: 'outline',
         }}
       >
@@ -34,17 +31,17 @@ const ImageCard = (props) => {
 
 const MAX_WIDTH = 100;
 
-function ImageSelector({ images }) {
+function ImageSelector({ images, value, onChange, name }) {
   const { getRootProps, getRadioProps } = useRadioGroup({
-    name: 'image',
-    defaultValue: 'NONE',
-    onChange: console.log,
+    name: name,
+    defaultValue: value,
+    onChange: onChange,
   });
 
   const group = getRootProps();
 
   return (
-    <HStack {...group}>
+    <HStack {...group} wrap="wrap">
       {images.map(({ key, path }) => {
         const radio = getRadioProps({ value: key });
         return (
