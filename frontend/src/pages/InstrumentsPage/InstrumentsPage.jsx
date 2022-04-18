@@ -18,6 +18,7 @@ export default function InstrumentsPage() {
   const handleCreateInstrument = () => {
     alert('intrument created');
   };
+
   return (
     <PageBody>
       <InstrumentsList instruments={instruments} />

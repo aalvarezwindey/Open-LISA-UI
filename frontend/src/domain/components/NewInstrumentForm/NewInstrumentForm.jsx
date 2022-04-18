@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import PropTypes from 'prop-types';
 import {
   Code,
@@ -23,6 +23,12 @@ const INPUT_NAMES = {
   DETECTED_PHYSICAL_ADDRESS: 'detected-physical-address',
   DESCRIPTION: 'description',
   IMAGE: 'instrument-image',
+};
+
+const OTHER_PHYSICAL_ADDRESS_VALUE = 'OTHER';
+const OTHER_PHYSICAL_ADDRESS = {
+  label: 'Otra',
+  value: OTHER_PHYSICAL_ADDRESS_VALUE,
 };
 
 export const NewInstrumentFormFileds = [
@@ -51,6 +57,7 @@ export const NewInstrumentFormFileds = [
 
 export default function NewInstrumentForm({ updateField, values, errors }) {
   const { detectedPhysicalAddresses } = useDetectedPhysicalAddresses();
+  const physicalAddressInput = useRef(null);
   return (
     <form>
       <VStack spacing={6} align="start">
@@ -74,17 +81,6 @@ export default function NewInstrumentForm({ updateField, values, errors }) {
           />
         </FormControl>
 
-        <FormControl>
-          <FormLabel htmlFor={INPUT_NAMES.PHYSICAL_ADDRESS}>Dirección física</FormLabel>
-          <Input
-            type="text"
-            readOnly
-            placeholder="Seleccione una de las direcciones detectadas"
-            value={values[INPUT_NAMES.PHYSICAL_ADDRESS]}
-            name={INPUT_NAMES.PHYSICAL_ADDRESS}
-          />
-        </FormControl>
-
         <FormControl as="fieldset">
           <FormLabel as="legend" htmlFor={INPUT_NAMES.DETECTED_PHYSICAL_ADDRESS}>
             Instrumentos detectados
@@ -93,22 +89,43 @@ export default function NewInstrumentForm({ updateField, values, errors }) {
             value={values[INPUT_NAMES.DETECTED_PHYSICAL_ADDRESS]}
             name={INPUT_NAMES.DETECTED_PHYSICAL_ADDRESS}
             onChange={(value) => {
-              updateField(INPUT_NAMES.PHYSICAL_ADDRESS)(value);
               updateField(INPUT_NAMES.DETECTED_PHYSICAL_ADDRESS)(value);
+              if (value !== OTHER_PHYSICAL_ADDRESS_VALUE) {
+                updateField(INPUT_NAMES.PHYSICAL_ADDRESS)(value);
+              } else {
+                updateField(INPUT_NAMES.PHYSICAL_ADDRESS)('');
+                physicalAddressInput.current.focus();
+              }
             }}
           >
             <VStack spacing={2} align="start">
-              {[...detectedPhysicalAddresses, 'Elegir más tarde'].map((physicalAddress, index) => (
-                <Radio key={physicalAddress} value={physicalAddress}>
-                  {index === detectedPhysicalAddresses.length ? (
-                    physicalAddress
-                  ) : (
-                    <Code>{physicalAddress}</Code>
-                  )}
-                </Radio>
-              ))}
+              {[...detectedPhysicalAddresses, OTHER_PHYSICAL_ADDRESS].map(
+                (physicalAddress, index) => (
+                  <Radio key={physicalAddress.value} value={physicalAddress.value}>
+                    {index === detectedPhysicalAddresses.length ? (
+                      physicalAddress.label
+                    ) : (
+                      <Code>{physicalAddress.label}</Code>
+                    )}
+                  </Radio>
+                ),
+              )}
             </VStack>
           </RadioGroup>
+        </FormControl>
+
+        <FormControl>
+          <FormLabel htmlFor={INPUT_NAMES.PHYSICAL_ADDRESS}>Dirección física</FormLabel>
+          <Input
+            ref={physicalAddressInput}
+            type="text"
+            readOnly={
+              values[INPUT_NAMES.DETECTED_PHYSICAL_ADDRESS] !== OTHER_PHYSICAL_ADDRESS_VALUE
+            }
+            placeholder="Seleccione una de las direcciones detectadas"
+            value={values[INPUT_NAMES.PHYSICAL_ADDRESS]}
+            name={INPUT_NAMES.PHYSICAL_ADDRESS}
+          />
         </FormControl>
 
         <FormControl>
