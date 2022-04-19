@@ -16,11 +16,12 @@ export default function InstrumentsPage() {
   const { isValid, displayErrors, ...formProps } = useForm({ fields: NewInstrumentFormFileds });
 
   const handleCreateInstrument = () => {
+    const { values: formValues } = formProps;
     if (!isValid) {
-      displayErrors();
+      displayErrors(formValues);
       return;
     }
-    alert('intrument created');
+    alert(JSON.stringify(formValues, null, 2));
   };
 
   return (

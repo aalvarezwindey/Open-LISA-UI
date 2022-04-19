@@ -95,7 +95,7 @@ describe('useForm', () => {
       await waitFor(() => expect(result.current.displayErrors).toEqual(expect.any(Function)));
       await waitFor(() => expect(errorsIsEmpty(result.current.errors)).toEqual(true));
 
-      result.current.displayErrors();
+      result.current.displayErrors(result.current.values);
 
       await waitFor(() => expect(errorsIsEmpty(result.current.errors)).toEqual(false));
     });

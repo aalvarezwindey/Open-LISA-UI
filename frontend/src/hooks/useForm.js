@@ -73,13 +73,16 @@ const useForm = ({ fields = [], onSubmit }) => {
     });
   }, [fields, state.values]);
 
-  const displayErrors = useCallback(() => {
-    const errors = fields.reduce((carry, { name, value, getError }) => {
-      const error = getError ? getError(value) : DEFAULT_GET_ERROR();
-      return { ...carry, [name]: error };
-    }, {});
-    dispatch({ type: ACTION_TYPES.DISPLAY_ERRORS, payload: { errors } });
-  }, [fields]);
+  const displayErrors = useCallback(
+    (formValues) => {
+      const errors = fields.reduce((carry, { name, getError }) => {
+        const error = getError ? getError(formValues[name]) : DEFAULT_GET_ERROR();
+        return { ...carry, [name]: error };
+      }, {});
+      dispatch({ type: ACTION_TYPES.DISPLAY_ERRORS, payload: { errors } });
+    },
+    [fields],
+  );
 
   return {
     ...state,
