@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import {
   Code,
   FormControl,
+  FormErrorMessage,
   FormLabel,
   Input,
   Radio,
@@ -61,7 +62,7 @@ export default function NewInstrumentForm({ updateField, values, errors }) {
   return (
     <form>
       <VStack spacing={6} align="start">
-        <FormControl isRequired>
+        <FormControl isRequired isInvalid={Boolean(errors[INPUT_NAMES.BRAND])}>
           <FormLabel htmlFor={INPUT_NAMES.BRAND}>Marca</FormLabel>
           <Input
             type="text"
@@ -69,9 +70,12 @@ export default function NewInstrumentForm({ updateField, values, errors }) {
             name={INPUT_NAMES.BRAND}
             onChange={(e) => updateField(INPUT_NAMES.BRAND)(e.target.value)}
           />
+          {errors[INPUT_NAMES.BRAND] ? (
+            <FormErrorMessage>{errors[INPUT_NAMES.BRAND]}</FormErrorMessage>
+          ) : null}
         </FormControl>
 
-        <FormControl isRequired>
+        <FormControl isRequired isInvalid={Boolean(errors[INPUT_NAMES.MODEL])}>
           <FormLabel htmlFor={INPUT_NAMES.MODEL}>Modelo</FormLabel>
           <Input
             type="text"
@@ -79,9 +83,15 @@ export default function NewInstrumentForm({ updateField, values, errors }) {
             name={INPUT_NAMES.MODEL}
             onChange={(e) => updateField(INPUT_NAMES.MODEL)(e.target.value)}
           />
+          {errors[INPUT_NAMES.MODEL] ? (
+            <FormErrorMessage>{errors[INPUT_NAMES.MODEL]}</FormErrorMessage>
+          ) : null}
         </FormControl>
 
-        <FormControl as="fieldset">
+        <FormControl
+          as="fieldset"
+          isInvalid={Boolean(errors[INPUT_NAMES.DETECTED_PHYSICAL_ADDRESS])}
+        >
           <FormLabel as="legend" htmlFor={INPUT_NAMES.DETECTED_PHYSICAL_ADDRESS}>
             Instrumentos detectados
           </FormLabel>
@@ -114,7 +124,7 @@ export default function NewInstrumentForm({ updateField, values, errors }) {
           </RadioGroup>
         </FormControl>
 
-        <FormControl>
+        <FormControl isInvalid={Boolean(errors[INPUT_NAMES.PHYSICAL_ADDRESS])}>
           <FormLabel htmlFor={INPUT_NAMES.PHYSICAL_ADDRESS}>Dirección física</FormLabel>
           <Input
             ref={physicalAddressInput}
@@ -128,7 +138,7 @@ export default function NewInstrumentForm({ updateField, values, errors }) {
           />
         </FormControl>
 
-        <FormControl>
+        <FormControl isInvalid={Boolean(errors[INPUT_NAMES.DESCRIPTION])}>
           <FormLabel htmlFor={INPUT_NAMES.DESCRIPTION}>Descripción</FormLabel>
           <Textarea
             placeholder="Ingrese opcionalmente un detalle sobre el instrumento"
@@ -138,7 +148,7 @@ export default function NewInstrumentForm({ updateField, values, errors }) {
           />
         </FormControl>
 
-        <FormControl>
+        <FormControl isInvalid={Boolean(errors[INPUT_NAMES.IMAGE])}>
           <FormLabel htmlFor={INPUT_NAMES.IMAGE}>Elija una imagen</FormLabel>
           <ImageSelector
             value={values[INPUT_NAMES.IMAGE]}

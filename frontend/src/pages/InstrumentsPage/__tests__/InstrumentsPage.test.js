@@ -20,6 +20,7 @@ const getModalCloseButton = () =>
   screen.getByRole('button', {
     name: /close/i,
   });
+
 describe('InstrumentsPage', () => {
   describe('New instrument', () => {
     it('should open dialog when clicking new instrument button', async () => {

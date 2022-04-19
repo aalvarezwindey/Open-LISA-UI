@@ -13,9 +13,13 @@ import useInstruments from '../../hooks/useInstruments';
 export default function InstrumentsPage() {
   const { instruments } = useInstruments();
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const formProps = useForm({ fields: NewInstrumentFormFileds });
+  const { isValid, displayErrors, ...formProps } = useForm({ fields: NewInstrumentFormFileds });
 
   const handleCreateInstrument = () => {
+    if (!isValid) {
+      displayErrors();
+      return;
+    }
     alert('intrument created');
   };
 

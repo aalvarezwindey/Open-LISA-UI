@@ -2,6 +2,7 @@ const { useReducer, useCallback, useMemo } = require('react');
 
 const ACTION_TYPES = {
   UPDATE_FIELD: 'UPDATE_FIELD',
+  DISPLAY_ERRORS: 'DISPLAY_ERRORS',
 };
 
 const DEFAULT_GET_ERROR = () => '';
@@ -16,14 +17,15 @@ function reducer(state, action) {
           ...state.values,
           [name]: value,
         },
-        touched: {
-          ...state.touched,
-          [name]: true,
-        },
         errors: {
           ...state.errors,
           [name]: error,
         },
+      };
+    case ACTION_TYPES.DISPLAY_ERRORS:
+      return {
+        ...state,
+        errors: action.payload.errors,
       };
     default:
       return state;
@@ -38,11 +40,10 @@ function reducer(state, action) {
  * @param {string} field.defaultValue initial value for a specific field
  * @param {string} field.error human readable string for a specific field error
  * @param {string} field.getError function that receives current field value and returns a human readable string error
- * @param {boolean} field.touched boolean that determines if the user already updated the specific field at least once
  *
  * @returns {Object} containing fields state and updateField function
  */
-const useForm = ({ fields = [] }) => {
+const useForm = ({ fields = [], onSubmit }) => {
   const initialState = useMemo(
     () => ({
       values: fields.reduce(
@@ -50,7 +51,6 @@ const useForm = ({ fields = [] }) => {
         {},
       ),
       errors: fields.reduce((carry, field) => ({ ...carry, [field.name]: '' }), {}),
-      touched: fields.reduce((carry, field) => ({ ...carry, [field.name]: false }), {}),
     }),
     [fields],
   );
@@ -66,9 +66,26 @@ const useForm = ({ fields = [] }) => {
     [fields],
   );
 
+  const isValid = useMemo(() => {
+    return fields.every(({ name, getError }) => {
+      const fieldIsInvalid = getError ? getError(state.values[name]) : false;
+      return !fieldIsInvalid;
+    });
+  }, [fields, state.values]);
+
+  const displayErrors = useCallback(() => {
+    const errors = fields.reduce((carry, { name, value, getError }) => {
+      const error = getError ? getError(value) : DEFAULT_GET_ERROR();
+      return { ...carry, [name]: error };
+    }, {});
+    dispatch({ type: ACTION_TYPES.DISPLAY_ERRORS, payload: { errors } });
+  }, [fields]);
+
   return {
     ...state,
     updateField,
+    isValid,
+    displayErrors,
   };
 };
 
