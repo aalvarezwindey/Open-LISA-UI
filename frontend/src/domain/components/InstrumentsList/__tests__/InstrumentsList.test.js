@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import instruments from '../../../mock_data/instruments';
+import instruments from '../../../../mock_data/instruments';
 import InstrumentsList from '../InstrumentsList';
 
 describe('InstrumentsList', () => {

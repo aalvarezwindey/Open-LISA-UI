@@ -1,7 +1,7 @@
 import instruments from '../../mock_data/instruments';
 
 const getInstruments = async () => {
-  // TODO: make HTTP requess
+  // TODO: make HTTP request
 
   return instruments;
 };
