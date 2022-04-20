@@ -13,7 +13,12 @@ import {
 
 function BasicModal({ title, isOpen, onClose, primaryAction, secondaryAction, children }) {
   const PrimaryAction = () => (
-    <Button ml={4} onClick={primaryAction.onAction} colorScheme="blue">
+    <Button
+      ml={4}
+      onClick={primaryAction.onAction}
+      colorScheme="blue"
+      isLoading={primaryAction.loading}
+    >
       {primaryAction.label}
     </Button>
   );
@@ -46,6 +51,7 @@ BasicModal.propTypes = {
   primaryAction: PropTypes.shape({
     label: PropTypes.string.isRequired,
     onAction: PropTypes.func.isRequired,
+    loading: PropTypes.bool,
   }).isRequired,
   secondaryAction: PropTypes.shape({
     label: PropTypes.string.isRequired,

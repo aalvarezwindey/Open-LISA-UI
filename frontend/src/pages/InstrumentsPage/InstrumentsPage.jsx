@@ -1,6 +1,6 @@
 import React from 'react';
 import { AddIcon } from '@chakra-ui/icons';
-import { Button, useDisclosure } from '@chakra-ui/react';
+import { Button, useBoolean, useDisclosure } from '@chakra-ui/react';
 import BasicModal from '../../components/BasicModal/BasicModal';
 import PageBody from '../../components/Layout/PageBody/PageBody';
 import InstrumentsList from '../../domain/components/InstrumentsList/InstrumentsList';
@@ -9,19 +9,33 @@ import NewInstrumentForm, {
 } from '../../domain/components/NewInstrumentForm/NewInstrumentForm';
 import useForm from '../../hooks/useForm';
 import useInstruments from '../../hooks/useInstruments';
+import { logger } from '../../logger';
+import createInstrument from '../../services/instruments/createInstrument';
 
 export default function InstrumentsPage() {
   const { instruments } = useInstruments();
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const { isValid, displayErrors, ...formProps } = useForm({ fields: NewInstrumentFormFileds });
+  const [submittingNewInstrument, { on: submittingOn, off: submittingOff }] = useBoolean(false);
+  const { isValid, reset, displayErrors, ...formProps } = useForm({
+    fields: NewInstrumentFormFileds,
+  });
 
-  const handleCreateInstrument = () => {
+  const handleCreateInstrument = async () => {
     const { values: formValues } = formProps;
     if (!isValid) {
       displayErrors(formValues);
       return;
     }
-    alert(JSON.stringify(formValues, null, 2));
+
+    try {
+      submittingOn();
+      await createInstrument(formValues);
+      submittingOff();
+      reset();
+      onClose();
+    } catch (err) {
+      logger.error('[CREATE_INSTRUMENT]', err);
+    }
   };
 
   return (
@@ -35,7 +49,11 @@ export default function InstrumentsPage() {
         title="Nuevo instrumento"
         onClose={onClose}
         isOpen={isOpen}
-        primaryAction={{ label: 'Crear instrumento', onAction: handleCreateInstrument }}
+        primaryAction={{
+          label: 'Crear instrumento',
+          onAction: handleCreateInstrument,
+          loading: submittingNewInstrument,
+        }}
         secondaryAction={{ label: 'Cancelar', onAction: onClose }}
       >
         <NewInstrumentForm {...formProps} />

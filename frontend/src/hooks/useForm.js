@@ -3,6 +3,7 @@ const { useReducer, useCallback, useMemo } = require('react');
 const ACTION_TYPES = {
   UPDATE_FIELD: 'UPDATE_FIELD',
   DISPLAY_ERRORS: 'DISPLAY_ERRORS',
+  SET_STATE: 'SET_STATE',
 };
 
 const DEFAULT_GET_ERROR = () => '';
@@ -27,6 +28,8 @@ function reducer(state, action) {
         ...state,
         errors: action.payload.errors,
       };
+    case ACTION_TYPES.SET_STATE:
+      return action.payload.newState;
     default:
       return state;
   }
@@ -43,7 +46,7 @@ function reducer(state, action) {
  *
  * @returns {Object} containing fields state and updateField function
  */
-const useForm = ({ fields = [], onSubmit }) => {
+const useForm = ({ fields = [] }) => {
   const initialState = useMemo(
     () => ({
       values: fields.reduce(
@@ -84,11 +87,16 @@ const useForm = ({ fields = [], onSubmit }) => {
     [fields],
   );
 
+  const reset = useCallback(() => {
+    dispatch({ type: ACTION_TYPES.SET_STATE, payload: { newState: initialState } });
+  }, [initialState]);
+
   return {
     ...state,
     updateField,
     isValid,
     displayErrors,
+    reset,
   };
 };
 

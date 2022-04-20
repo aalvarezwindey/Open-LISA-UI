@@ -1,4 +1,14 @@
 const DEFAULT_IMAGE_BASE_PATH = '/images/default/';
+
+export const INSTRUMENT_FIELD_NAMES = {
+  BRAND: 'brand',
+  MODEL: 'model',
+  PHYSICAL_ADDRESS: 'physicalAddress',
+  DETECTED_PHYSICAL_ADDRESS: 'detectedPhysicalAddress',
+  DESCRIPTION: 'description',
+  IMAGE: 'instrumentImage',
+};
+
 export const DEFAULT_IMAGES = {
   NONE: {
     path: DEFAULT_IMAGE_BASE_PATH + 'none.png',

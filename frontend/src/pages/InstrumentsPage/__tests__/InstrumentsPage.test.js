@@ -1,9 +1,15 @@
-const { screen, fireEvent, waitFor, act } = require('@testing-library/react');
+const { screen, fireEvent, waitFor, findByText } = require('@testing-library/react');
+const { INSTRUMENT_FIELD_NAMES } = require('../../../domain/constants');
 const { default: InstrumentsPage } = require('../InstrumentsPage');
 
 const clickNewInstrumentButton = () => {
   const newInstrumentButton = screen.getByRole('button', { name: /nuevo instrumento/i });
   fireEvent.click(newInstrumentButton);
+};
+
+const typeInInputWithLabel = async (label, value) => {
+  const input = await screen.findByRole('textbox', { name: new RegExp(label, 'i') });
+  fireEvent.change(input, { target: { value } });
 };
 
 const getModalPrimaryAction = () =>
@@ -46,6 +52,49 @@ describe('InstrumentsPage', () => {
 
       fireEvent.click(getModalCloseButton());
       await waitFor(() => expect(modalPrimaryAction).not.toBeInTheDocument());
+    });
+
+    describe('when filling the new instrument form', () => {
+      const FORM_LABELS = {
+        BRAND: 'marca',
+        MODEL: 'modelo',
+      };
+      const VALID_FORM = {
+        BRAND: 'Siglient',
+        MODEL: 'AABBCC1234',
+      };
+      it('should add instrument after submitting a valid form', async () => {
+        global.renderApp(<InstrumentsPage />);
+
+        clickNewInstrumentButton();
+
+        await typeInInputWithLabel(FORM_LABELS.BRAND, VALID_FORM.BRAND);
+        await typeInInputWithLabel(FORM_LABELS.MODEL, VALID_FORM.MODEL);
+        const modalPrimaryAction = getModalPrimaryAction();
+        fireEvent.click(modalPrimaryAction);
+        const newInstrumentCardTitle = await screen.findByText(
+          new RegExp(`${VALID_FORM.BRAND} - ${VALID_FORM.MODEL}`, 'i'),
+        );
+        expect(newInstrumentCardTitle).toBeInTheDocument();
+      });
+
+      it('should display errors after submitting an invalid form', async () => {
+        global.renderApp(<InstrumentsPage />);
+
+        clickNewInstrumentButton();
+
+        await typeInInputWithLabel(FORM_LABELS.BRAND, VALID_FORM.BRAND);
+        // without model
+
+        const modalPrimaryAction = getModalPrimaryAction();
+        const input = await screen.findByRole('textbox', {
+          name: new RegExp(FORM_LABELS.MODEL, 'i'),
+        });
+
+        expect(input).not.toHaveAttribute('aria-invalid', 'true');
+        fireEvent.click(modalPrimaryAction);
+        expect(input).toHaveAttribute('aria-invalid', 'true');
+      });
     });
   });
 });

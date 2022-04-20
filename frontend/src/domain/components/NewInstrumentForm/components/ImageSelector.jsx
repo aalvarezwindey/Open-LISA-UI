@@ -31,9 +31,9 @@ const ImageCard = (props) => {
 
 const MAX_WIDTH = 100;
 
-function ImageSelector({ images, value, onChange, name }) {
+function ImageSelector({ images, value, onChange, id }) {
   const { getRootProps, getRadioProps } = useRadioGroup({
-    name: name,
+    name: id,
     defaultValue: value,
     onChange: onChange,
   });

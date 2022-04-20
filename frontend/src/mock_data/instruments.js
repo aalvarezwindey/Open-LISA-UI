@@ -1,6 +1,6 @@
 import { DEFAULT_IMAGES } from '../domain/constants';
 
-const instruments = [
+let instruments = [
   {
     id: 1,
     brand: 'Tektronix',
@@ -38,5 +38,8 @@ const instruments = [
     image: DEFAULT_IMAGES.DAQ.path,
   },
 ];
+
+export const addMockInstrument = (instrument) =>
+  instruments.push({ ...instrument, id: instruments.length + 1 });
 
 export default instruments;
