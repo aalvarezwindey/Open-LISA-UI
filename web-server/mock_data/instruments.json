@@ -36,12 +36,12 @@
         "model": "2442"
     },
     {
-        "brand": "adsf",
+        "brand": "None",
         "description": "",
         "detectedPhysicalAddress": "",
         "id": 7,
-        "instrumentImage": "NONE",
-        "model": "asdf",
+        "image": "http://localhost:5000/static/none.png",
+        "model": "Ninguno",
         "physicalAddress": ""
     }
 ]
