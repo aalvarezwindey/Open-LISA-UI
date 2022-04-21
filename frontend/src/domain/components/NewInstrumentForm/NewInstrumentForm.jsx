@@ -12,7 +12,8 @@ import {
   VStack,
 } from '@chakra-ui/react';
 import useDetectedPhysicalAddresses from '../../../hooks/useDetectedPhysicalAddresses';
-import { DEFAULT_IMAGES, INSTRUMENT_FIELD_NAMES } from '../../constants';
+import useInstrumentImages from '../../../hooks/useInstrumentImages';
+import { INSTRUMENT_FIELD_NAMES, NONE_IMAGE_FILE_NAME } from '../../constants';
 import ImageSelector from './components/ImageSelector';
 import { brandValidator } from './validators/brandValidator';
 import { modelValidator } from './validators/modelValidator';
@@ -43,12 +44,13 @@ export const NewInstrumentFormFileds = [
   },
   {
     name: INSTRUMENT_FIELD_NAMES.IMAGE,
-    defaultValue: 'NONE',
+    defaultValue: NONE_IMAGE_FILE_NAME,
   },
 ];
 
 export default function NewInstrumentForm({ updateField, values, errors }) {
   const { detectedPhysicalAddresses } = useDetectedPhysicalAddresses();
+  const { instrumentImages } = useInstrumentImages();
   const physicalAddressInput = useRef(null);
   return (
     <form>
@@ -146,7 +148,7 @@ export default function NewInstrumentForm({ updateField, values, errors }) {
             value={values[INSTRUMENT_FIELD_NAMES.IMAGE]}
             id={INSTRUMENT_FIELD_NAMES.IMAGE}
             onChange={(value) => updateField(INSTRUMENT_FIELD_NAMES.IMAGE)(value)}
-            images={Object.keys(DEFAULT_IMAGES).map((key) => ({ ...DEFAULT_IMAGES[key], key }))}
+            images={instrumentImages}
           />
         </FormControl>
       </VStack>

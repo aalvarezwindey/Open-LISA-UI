@@ -1,0 +1,47 @@
+[
+    {
+        "brand": "Tektronix",
+        "id": 1,
+        "image": "http://localhost:5000/static/oscilloscope.png",
+        "model": "TDS1002B"
+    },
+    {
+        "brand": "PixelFly",
+        "id": 2,
+        "image": "http://localhost:5000/static/camera.png",
+        "model": "QE"
+    },
+    {
+        "brand": "Siglent",
+        "id": 3,
+        "image": "http://localhost:5000/static/functions_generator.png",
+        "model": "SDG6052X"
+    },
+    {
+        "brand": "UNI-T",
+        "id": 4,
+        "image": "http://localhost:5000/static/multimeter.png",
+        "model": "UT131-D"
+    },
+    {
+        "brand": "LODESTAR",
+        "id": 5,
+        "image": "http://localhost:5000/static/power_supply.png",
+        "model": "LP3001D"
+    },
+    {
+        "brand": "MC",
+        "id": 6,
+        "image": "http://localhost:5000/static/daq.png",
+        "model": "2442"
+    },
+    {
+        "brand": "None",
+        "description": "",
+        "detectedPhysicalAddress": "",
+        "id": 7,
+        "image": "http://localhost:5000/static/none.png",
+        "model": "Ninguno",
+        "physicalAddress": ""
+    }
+]

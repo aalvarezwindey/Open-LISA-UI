@@ -1,9 +1,10 @@
-import mockDetectedPhysicalAddresses from '../../mock_data/detected_physical_addresses';
+import axios from '../axios';
+import { URI } from './constants';
 
 const getDetectedPhysicalAddresses = async () => {
-  // TODO: make HTTP request
+  const { data } = await axios.get(URI.DETECTED_PHYSICAL_ADDRESSES);
 
-  return mockDetectedPhysicalAddresses;
+  return data;
 };
 
 export default getDetectedPhysicalAddresses;

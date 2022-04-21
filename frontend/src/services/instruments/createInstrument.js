@@ -1,15 +1,8 @@
-import { DEFAULT_IMAGES, INSTRUMENT_FIELD_NAMES } from '../../domain/constants';
-import { addMockInstrument } from '../../mock_data/instruments';
-
-const promiseTimeout = (time) => new Promise((resolve) => setTimeout(resolve, time));
+import axios from '../axios';
+import { URI } from './constants';
 
 const createInstrument = async (instrument) => {
-  // TODO: make HTTP request
-  await promiseTimeout(1000);
-  addMockInstrument({
-    ...instrument,
-    image: DEFAULT_IMAGES[instrument[INSTRUMENT_FIELD_NAMES.IMAGE]].path,
-  });
+  await axios.post(URI.INSTRUMENTS, instrument);
 };
 
 export default createInstrument;

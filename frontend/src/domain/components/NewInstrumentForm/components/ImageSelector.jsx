@@ -42,11 +42,18 @@ function ImageSelector({ images, value, onChange, id }) {
 
   return (
     <HStack {...group} wrap="wrap">
-      {images.map(({ key, path }) => {
-        const radio = getRadioProps({ value: key });
+      {images.map(({ fileName, url }) => {
+        const radio = getRadioProps({ value: fileName });
         return (
-          <ImageCard key={key} {...radio}>
-            <Image src={path} alt={key} objectFit="contain" h={[100]} w={[MAX_WIDTH]} shadow="lg" />
+          <ImageCard key={fileName} {...radio}>
+            <Image
+              src={url}
+              alt={fileName}
+              objectFit="contain"
+              h={[100]}
+              w={[MAX_WIDTH]}
+              shadow="lg"
+            />
           </ImageCard>
         );
       })}
@@ -57,8 +64,8 @@ function ImageSelector({ images, value, onChange, id }) {
 ImageSelector.propTypes = {
   images: PropTypes.arrayOf(
     PropTypes.shape({
-      key: PropTypes.string.isRequired,
-      path: PropTypes.string.isRequired,
+      fileName: PropTypes.string.isRequired,
+      url: PropTypes.string.isRequired,
     }),
   ).isRequired,
 };
