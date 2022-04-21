@@ -1,5 +1,4 @@
-const { screen, fireEvent, waitFor, findByText } = require('@testing-library/react');
-const { INSTRUMENT_FIELD_NAMES } = require('../../../domain/constants');
+const { screen, fireEvent, waitFor } = require('@testing-library/react');
 const { default: InstrumentsPage } = require('../InstrumentsPage');
 
 const clickNewInstrumentButton = () => {
