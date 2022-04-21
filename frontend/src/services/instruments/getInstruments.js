@@ -1,7 +1,8 @@
-import instruments from '../../mock_data/instruments';
+import axios from '../axios';
+import { URI } from './constants';
 
 const getInstruments = async () => {
-  // TODO: make HTTP request
+  const { data: instruments } = await axios.get(URI.INSTRUMENTS);
 
   return instruments;
 };

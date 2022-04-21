@@ -13,7 +13,7 @@ import { logger } from '../../logger';
 import createInstrument from '../../services/instruments/createInstrument';
 
 export default function InstrumentsPage() {
-  const { instruments } = useInstruments();
+  const { instruments, refetch } = useInstruments();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [submittingNewInstrument, { on: submittingOn, off: submittingOff }] = useBoolean(false);
   const { isValid, reset, displayErrors, ...formProps } = useForm({
@@ -30,10 +30,12 @@ export default function InstrumentsPage() {
     try {
       submittingOn();
       await createInstrument(formValues);
+      await refetch();
       submittingOff();
       reset();
       onClose();
     } catch (err) {
+      submittingOff();
       logger.error('[CREATE_INSTRUMENT]', err);
     }
   };
