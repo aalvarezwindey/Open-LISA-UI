@@ -1,13 +1,7 @@
-import { useEffect, useState } from 'react';
 import getDetectedPhysicalAddresses from '../services/instruments/getDetectedPhysicalAddresses';
+import { useService } from './useService';
 
-const useDetectedPhysicalAddresses = (service = getDetectedPhysicalAddresses) => {
-  const [detectedPhysicalAddresses, setDetectedPhysicalAddresses] = useState([]);
-  useEffect(() => {
-    service().then(setDetectedPhysicalAddresses);
-  }, [service]);
-
-  return { detectedPhysicalAddresses };
-};
+const useDetectedPhysicalAddresses = (service = getDetectedPhysicalAddresses) =>
+  useService(service);
 
 export default useDetectedPhysicalAddresses;

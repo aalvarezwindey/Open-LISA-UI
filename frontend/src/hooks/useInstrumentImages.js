@@ -1,13 +1,6 @@
-import { useEffect, useState } from 'react';
 import getInstrumentsImages from '../services/instruments/getInstrumentsImages';
+import { useService } from './useService';
 
-const useInstrumentImages = (service = getInstrumentsImages) => {
-  const [instrumentImages, setInstrumentImages] = useState([]);
-  useEffect(() => {
-    service().then(setInstrumentImages);
-  }, [service]);
-
-  return { instrumentImages };
-};
+const useInstrumentImages = (service = getInstrumentsImages) => useService(service);
 
 export default useInstrumentImages;
