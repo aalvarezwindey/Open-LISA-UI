@@ -1,17 +1,15 @@
 import React from 'react';
+import { useParams } from 'react-router-dom';
 import PageBody from '../../components/Layout/PageBody/PageBody';
+import useInstrumentDetail from '../../hooks/useInstrumentDetail';
 import InstrumentDetail from './components/InstrumentDetail';
 
 export default function InstrumentDetailPage() {
+  const { instrumentId } = useParams();
+  const { data: instrument } = useInstrumentDetail(instrumentId);
   return (
     <PageBody>
-      <InstrumentDetail
-        brand="Tektronix"
-        model="TDS1002B"
-        image="http://localhost:5000/static/oscilloscope.png"
-        physicalAddress="USB0::0x0699::0x0363::C107676::INSTR"
-        description="Osciloscopio principal para medir tensión en los individuos de la experiencia"
-      />
+      <InstrumentDetail {...instrument} />
     </PageBody>
   );
 }

@@ -49,9 +49,13 @@ export const NewInstrumentFormFileds = [
 ];
 
 export default function NewInstrumentForm({ updateField, values, errors }) {
-  const { detectedPhysicalAddresses } = useDetectedPhysicalAddresses();
-  const { instrumentImages } = useInstrumentImages();
+  const { data: detectedPhysicalAddresses, isLoading: loadingDetectedPhysicalAddresses } =
+    useDetectedPhysicalAddresses();
+  const { data: instrumentImages, isLoading: loadingInstrumentImages } = useInstrumentImages();
   const physicalAddressInput = useRef(null);
+
+  if (loadingDetectedPhysicalAddresses || loadingInstrumentImages) return null;
+
   return (
     <form>
       <VStack spacing={6} align="start">

@@ -1,14 +1,6 @@
-import { useCallback, useEffect, useState } from 'react';
 import getInstruments from '../services/instruments/getInstruments';
+import { useService } from './useService';
 
-const useInstruments = (service = getInstruments) => {
-  const [instruments, setInstruments] = useState([]);
-  const refetch = useCallback(async () => service().then(setInstruments), [service]);
-  useEffect(() => {
-    service().then(setInstruments);
-  }, [service]);
-
-  return { instruments, refetch };
-};
+const useInstruments = (service = getInstruments) => useService(service);
 
 export default useInstruments;
