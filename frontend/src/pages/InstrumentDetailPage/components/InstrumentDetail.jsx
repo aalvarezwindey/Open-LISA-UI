@@ -14,14 +14,18 @@ function InstrumentDetail({ brand, model, image, physicalAddress, description })
         mr={8}
       />
       <Flex direction="column">
-        <Heading size="xl" mb={8}>
-          {brand} {model}
-        </Heading>
-        <Text mb={6} fontWeight="bold">
-          Dirección física: <Code fontWeight="normal">{physicalAddress}</Code>
-        </Text>
-        <Text>{description}</Text>
-        <Flex flexGrow={1}>
+        <Flex flexGrow={1} direction="column">
+          <Heading size="xl" mb={8}>
+            {brand} {model}
+          </Heading>
+          {physicalAddress ? (
+            <Text mb={6} fontWeight="bold">
+              Dirección física: <Code fontWeight="normal">{physicalAddress}</Code>
+            </Text>
+          ) : null}
+          {description ? <Text>{description}</Text> : null}
+        </Flex>
+        <Flex>
           <Button colorScheme="blue">Editar instrumento</Button>
           <Button ml={4} colorScheme="red">
             Eliminar instrumento

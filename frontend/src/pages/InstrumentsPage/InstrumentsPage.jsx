@@ -1,6 +1,6 @@
 import React from 'react';
 import { AddIcon } from '@chakra-ui/icons';
-import { Button, useBoolean, useDisclosure } from '@chakra-ui/react';
+import { Button, Progress, useBoolean, useDisclosure } from '@chakra-ui/react';
 import BasicModal from '../../components/BasicModal/BasicModal';
 import PageBody from '../../components/Layout/PageBody/PageBody';
 import InstrumentsList from '../../domain/components/InstrumentsList/InstrumentsList';
@@ -13,7 +13,7 @@ import { logger } from '../../logger';
 import createInstrument from '../../services/instruments/createInstrument';
 
 export default function InstrumentsPage() {
-  const { instruments, refetch } = useInstruments();
+  const { data: instruments, refetch, isLoading } = useInstruments();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [submittingNewInstrument, { on: submittingOn, off: submittingOff }] = useBoolean(false);
   const { isValid, reset, displayErrors, ...formProps } = useForm({
@@ -40,9 +40,13 @@ export default function InstrumentsPage() {
     }
   };
 
+  if (isLoading) {
+    return <Progress size="xs" isIndeterminate />;
+  }
+
   return (
     <PageBody>
-      <InstrumentsList instruments={instruments} />
+      <InstrumentsList instruments={instruments || []} />
       <Button position="fixed" bottom={6} right={6} onClick={onOpen}>
         <AddIcon mr={4} />
         Nuevo instrumento
