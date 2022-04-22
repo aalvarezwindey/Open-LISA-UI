@@ -13,6 +13,11 @@ cors = CORS(app, resources={r"*": {"origins": FRONTEND_ORIGIN}})
 
 STATIC_FILES_URL = "http://localhost:5000/static/"
 
+NOT_FOUND = {
+    "code": 'NOT_FOUND',
+    "message": "Resource not found"
+}
+
 
 @app.route("/instruments", methods=['GET'])
 def get_all_instruments():
@@ -21,7 +26,20 @@ def get_all_instruments():
         return jsonify(data)
 
 
-@app.route("/instruments", methods=['POST'])
+@app.route("/instruments/<instrument_id>", methods=['GET'])
+def get_instrument_by_id(instrument_id):
+    with open('mock_data/instruments.json') as f:
+        data = json.load(f)
+        match = next((i for i in data if str(
+            i["id"]) == str(instrument_id)), None)
+
+        if match:
+            return jsonify(match)
+        else:
+            return (jsonify(NOT_FOUND), 404)
+
+
+@ app.route("/instruments", methods=['POST'])
 def create_instrument():
     payload = request.get_json()
     with open('mock_data/instruments.json') as f:
@@ -36,7 +54,7 @@ def create_instrument():
         return ('', 201)
 
 
-@app.route("/instruments/images", methods=['GET'])
+@ app.route("/instruments/images", methods=['GET'])
 def get_all_instruments_images():
     images = []
     noneFileName = "none.png"
@@ -62,7 +80,7 @@ def get_all_instruments_images():
     return jsonify(images)
 
 
-@app.route("/physical-addresses/detected", methods=['GET'])
+@ app.route("/physical-addresses/detected", methods=['GET'])
 def get_detected_physical_addresses():
     with open('mock_data/detected_physical_addresses.json') as f:
         data = json.load(f)

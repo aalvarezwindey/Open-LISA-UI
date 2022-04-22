@@ -1,47 +1,50 @@
 [
     {
         "brand": "Tektronix",
+        "description": "Osciloscopio principal para medir la tensión de entrada de la experiencia",
         "id": 1,
         "image": "http://localhost:5000/static/oscilloscope.png",
-        "model": "TDS1002B"
+        "model": "TDS1002B",
+        "physicalAddress": "USB1::0x0699::0x1234::C107676::INSTR"
     },
     {
         "brand": "PixelFly",
+        "description": "Cámara de alta velocidad, 5000 FPS de capacidad",
         "id": 2,
         "image": "http://localhost:5000/static/camera.png",
-        "model": "QE"
+        "model": "QE",
+        "physicalAddress": "USB1::0x0699::0x1234::C107676::INSTR"
     },
     {
         "brand": "Siglent",
+        "description": "Generador de funciones, no funciona la onda sinusoidal",
         "id": 3,
         "image": "http://localhost:5000/static/functions_generator.png",
-        "model": "SDG6052X"
+        "model": "SDG6052X",
+        "physicalAddress": "USB1::0x0699::0x1234::C107676::INSTR"
     },
     {
         "brand": "UNI-T",
+        "description": "No le funciona el modo amperímetro",
         "id": 4,
         "image": "http://localhost:5000/static/multimeter.png",
-        "model": "UT131-D"
+        "model": "UT131-D",
+        "physicalAddress": "USB1::0x0699::0x1234::C107676::INSTR"
     },
     {
         "brand": "LODESTAR",
+        "description": "Fuente 0-12V, 0-3A, 1000W",
         "id": 5,
         "image": "http://localhost:5000/static/power_supply.png",
-        "model": "LP3001D"
+        "model": "LP3001D",
+        "physicalAddress": "USB1::0x0699::0x1234::C107676::INSTR"
     },
     {
         "brand": "MC",
+        "description": "Dispositivo adquisidor de datos para orquestar el resto de los instrumentos",
         "id": 6,
         "image": "http://localhost:5000/static/daq.png",
-        "model": "2442"
-    },
-    {
-        "brand": "None",
-        "description": "",
-        "detectedPhysicalAddress": "",
-        "id": 7,
-        "image": "http://localhost:5000/static/none.png",
-        "model": "Ninguno",
-        "physicalAddress": ""
+        "model": "2442",
+        "physicalAddress": "USB1::0x0699::0x1234::C107676::INSTR"
     }
 ]
