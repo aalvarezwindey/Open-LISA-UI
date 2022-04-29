@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { useDisclosure } from '@chakra-ui/react';
+import { Progress, useBoolean, useDisclosure } from '@chakra-ui/react';
 import BasicModal from '../../components/BasicModal/BasicModal';
 import PageBody from '../../components/Layout/PageBody/PageBody';
 import InstrumentForm, {
@@ -9,6 +9,8 @@ import InstrumentForm, {
 import { INSTRUMENT_FIELD_NAMES } from '../../domain/constants';
 import useForm from '../../hooks/useForm';
 import useInstrumentDetail from '../../hooks/useInstrumentDetail';
+import { logger } from '../../logger';
+import editInstrument from '../../services/instruments/editInstrument';
 import InstrumentDetail from './components/InstrumentDetail';
 
 export default function InstrumentDetailPage() {
@@ -18,10 +20,15 @@ export default function InstrumentDetailPage() {
     onOpen: openEditModal,
     onClose: closeEditModal,
   } = useDisclosure();
-  const { data: instrument } = useInstrumentDetail(instrumentId);
+  const {
+    data: instrument,
+    refetch: refetchInstrumentDetail,
+    isLoading: isFetchingInstrumentDetail,
+  } = useInstrumentDetail(instrumentId);
   const { isValid, reset, displayErrors, updateField, ...formProps } = useForm({
     fields: InstrumentFormFileds,
   });
+  const [submittingEditInstrument, { on: submittingOn, off: submittingOff }] = useBoolean(false);
 
   const setFormWithCurrentInstrumentValues = useCallback(() => {
     if (instrument) {
@@ -40,12 +47,33 @@ export default function InstrumentDetailPage() {
     setFormWithCurrentInstrumentValues();
   }, [setFormWithCurrentInstrumentValues]);
 
-  const handleEditInstrument = () => {};
+  const handleEditInstrument = async () => {
+    const { values: formValues } = formProps;
+    if (!isValid) {
+      displayErrors(formValues);
+      return;
+    }
+
+    try {
+      submittingOn();
+      await editInstrument(instrumentId, formValues);
+      await refetchInstrumentDetail();
+      submittingOff();
+      closeEditModal();
+    } catch (err) {
+      submittingOff();
+      logger.error('[EDIT_INSTRUMENT]', err);
+    }
+  };
 
   const handleCloseEditModal = () => {
     setFormWithCurrentInstrumentValues();
     closeEditModal();
   };
+
+  if (isFetchingInstrumentDetail) {
+    return <Progress size="xs" isIndeterminate />;
+  }
 
   return (
     <PageBody>
@@ -57,7 +85,7 @@ export default function InstrumentDetailPage() {
         primaryAction={{
           label: 'Confirmar',
           onAction: handleEditInstrument,
-          loading: false, // TODO
+          loading: submittingEditInstrument,
         }}
         secondaryAction={{ label: 'Cancelar', onAction: handleCloseEditModal }}
       >

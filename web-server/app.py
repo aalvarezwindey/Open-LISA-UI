@@ -1,3 +1,4 @@
+import logging
 from crypt import methods
 import json
 import os
@@ -37,6 +38,33 @@ def get_instrument_by_id(instrument_id):
             return jsonify(match)
         else:
             return (jsonify(NOT_FOUND), 404)
+
+
+@app.route("/instruments/<instrument_id>", methods=['PUT'])
+def update_instrument(instrument_id):
+    payload = request.get_json()
+    match = False
+    with open('mock_data/instruments.json') as f:
+        instruments = json.load(f)
+        for idx, instrument in enumerate(instruments):
+            if str(instrument["id"]) == str(instrument_id):
+                match = instrument
+                match_idx = idx
+
+    if not match:
+        logging.error(
+            '[update_instrument][INSTRUMENT_NOT_FOUND] id: {}'.format(instrument_id))
+        return (jsonify(NOT_FOUND), 404)
+
+    edited_instrument = payload
+    edited_instrument["id"] = instrument_id
+    edited_instrument['image'] = "{}{}".format(
+        STATIC_FILES_URL, edited_instrument['image'])
+    instruments[match_idx] = edited_instrument
+
+    with open('mock_data/instruments.json', 'w') as f:
+        f.write(json.dumps(instruments, indent=4, sort_keys=True))
+        return (edited_instrument, 200)
 
 
 @ app.route("/instruments", methods=['POST'])
