@@ -11,7 +11,7 @@
         "brand": "PixelFly",
         "description": "C\u00e1mara de alta velocidad, 5000 FPS de capacidad",
         "detectedPhysicalAddress": "USB0::0x0699::0x0363::C107676::INSTR",
-        "id": "2",
+        "id": 2,
         "image": "http://localhost:5000/static/camera.png",
         "model": "QE",
         "physicalAddress": "USB0::0x0699::0x0363::C107676::INSTR"

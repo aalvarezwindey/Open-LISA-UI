@@ -67,6 +67,29 @@ def update_instrument(instrument_id):
         return (edited_instrument, 200)
 
 
+@app.route("/instruments/<instrument_id>", methods=['DELETE'])
+def delete_instrument(instrument_id):
+    match = False
+    with open('mock_data/instruments.json') as f:
+        instruments = json.load(f)
+        for idx, instrument in enumerate(instruments):
+            if str(instrument["id"]) == str(instrument_id):
+                match = instrument
+                match_idx = idx
+
+    if not match:
+        logging.error(
+            '[delete_instrument][INSTRUMENT_NOT_FOUND] id: {}'.format(instrument_id))
+        return (jsonify(NOT_FOUND), 404)
+
+    del instruments[match_idx]
+
+    with open('mock_data/instruments.json', 'w') as f:
+        f.write(json.dumps(instruments, indent=4, sort_keys=True))
+
+    return (match, 200)
+
+
 @ app.route("/instruments", methods=['POST'])
 def create_instrument():
     payload = request.get_json()

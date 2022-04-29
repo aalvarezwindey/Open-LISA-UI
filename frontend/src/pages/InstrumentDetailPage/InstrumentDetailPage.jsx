@@ -1,7 +1,8 @@
 import React, { useCallback, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { Progress, useBoolean, useDisclosure } from '@chakra-ui/react';
 import BasicModal from '../../components/BasicModal/BasicModal';
+import DestructiveDialog from '../../components/DestructiveDialog/DestructiveDialog';
 import PageBody from '../../components/Layout/PageBody/PageBody';
 import InstrumentForm, {
   InstrumentFormFileds,
@@ -10,11 +11,19 @@ import { INSTRUMENT_FIELD_NAMES } from '../../domain/constants';
 import useForm from '../../hooks/useForm';
 import useInstrumentDetail from '../../hooks/useInstrumentDetail';
 import { logger } from '../../logger';
+import { ROUTES } from '../../routing/routes';
+import deleteInstrument from '../../services/instruments/deleteInstrument';
 import editInstrument from '../../services/instruments/editInstrument';
 import InstrumentDetail from './components/InstrumentDetail';
 
 export default function InstrumentDetailPage() {
+  const navigate = useNavigate();
   const { instrumentId } = useParams();
+  const {
+    isOpen: deleteDialogIsOpen,
+    onOpen: openDeleteDialog,
+    onClose: closeDeleteDialog,
+  } = useDisclosure();
   const {
     isOpen: editModalIsOpen,
     onOpen: openEditModal,
@@ -29,6 +38,7 @@ export default function InstrumentDetailPage() {
     fields: InstrumentFormFileds,
   });
   const [submittingEditInstrument, { on: submittingOn, off: submittingOff }] = useBoolean(false);
+  const [deletingInstrument, { on: deletingOn, off: deletingOff }] = useBoolean(false);
 
   const setFormWithCurrentInstrumentValues = useCallback(() => {
     if (instrument) {
@@ -66,6 +76,19 @@ export default function InstrumentDetailPage() {
     }
   };
 
+  const handleDeleteInstrument = async () => {
+    try {
+      deletingOn();
+      await deleteInstrument(instrumentId);
+      deletingOff();
+      closeDeleteDialog();
+      navigate(ROUTES.INSTRUMENTS);
+    } catch (err) {
+      deletingOff();
+      logger.error('[DELETE_INSTRUMENT]', err);
+    }
+  };
+
   const handleCloseEditModal = () => {
     setFormWithCurrentInstrumentValues();
     closeEditModal();
@@ -77,7 +100,11 @@ export default function InstrumentDetailPage() {
 
   return (
     <PageBody>
-      <InstrumentDetail {...instrument} onEditInstrument={openEditModal} />
+      <InstrumentDetail
+        {...instrument}
+        onEditInstrument={openEditModal}
+        onDeleteInstrument={openDeleteDialog}
+      />
       <BasicModal
         title="Editar instrumento"
         onClose={handleCloseEditModal}
@@ -91,6 +118,14 @@ export default function InstrumentDetailPage() {
       >
         <InstrumentForm {...formProps} updateField={updateField} />
       </BasicModal>
+      <DestructiveDialog
+        isOpen={deleteDialogIsOpen}
+        title="Eliminar instrumento"
+        description={`¿Estás seguro que querés eliminar el instrumento ${instrument?.brand} - ${instrument?.model}?`}
+        onCancel={closeDeleteDialog}
+        onDelete={handleDeleteInstrument}
+        loading={deletingInstrument}
+      />
     </PageBody>
   );
 }

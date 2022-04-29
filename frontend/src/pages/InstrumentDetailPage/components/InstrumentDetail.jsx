@@ -2,7 +2,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Button, Code, Flex, Heading, Image, Text } from '@chakra-ui/react';
 
-function InstrumentDetail({ brand, model, image, physicalAddress, description, onEditInstrument }) {
+function InstrumentDetail({
+  brand,
+  model,
+  image,
+  physicalAddress,
+  description,
+  onEditInstrument,
+  onDeleteInstrument,
+}) {
   return (
     <Flex h="50vh" direction="row">
       <Image
@@ -29,7 +37,7 @@ function InstrumentDetail({ brand, model, image, physicalAddress, description, o
           <Button colorScheme="blue" onClick={onEditInstrument}>
             Editar instrumento
           </Button>
-          <Button ml={4} colorScheme="red">
+          <Button ml={4} colorScheme="red" onClick={onDeleteInstrument}>
             Eliminar instrumento
           </Button>
         </Flex>
@@ -45,6 +53,7 @@ InstrumentDetail.propTypes = {
   physicalAddress: PropTypes.string,
   description: PropTypes.string,
   onEditInstrument: PropTypes.func.isRequired,
+  onDeleteInstrument: PropTypes.func.isRequired,
 };
 
 export default InstrumentDetail;
