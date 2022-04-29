@@ -3,10 +3,10 @@ import { AddIcon } from '@chakra-ui/icons';
 import { Button, Progress, useBoolean, useDisclosure } from '@chakra-ui/react';
 import BasicModal from '../../components/BasicModal/BasicModal';
 import PageBody from '../../components/Layout/PageBody/PageBody';
+import InstrumentForm, {
+  InstrumentFormFileds,
+} from '../../domain/components/InstrumentForm/InstrumentForm';
 import InstrumentsList from '../../domain/components/InstrumentsList/InstrumentsList';
-import NewInstrumentForm, {
-  NewInstrumentFormFileds,
-} from '../../domain/components/NewInstrumentForm/NewInstrumentForm';
 import useForm from '../../hooks/useForm';
 import useInstruments from '../../hooks/useInstruments';
 import { logger } from '../../logger';
@@ -17,7 +17,7 @@ export default function InstrumentsPage() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [submittingNewInstrument, { on: submittingOn, off: submittingOff }] = useBoolean(false);
   const { isValid, reset, displayErrors, ...formProps } = useForm({
-    fields: NewInstrumentFormFileds,
+    fields: InstrumentFormFileds,
   });
 
   const handleCreateInstrument = async () => {
@@ -62,7 +62,7 @@ export default function InstrumentsPage() {
         }}
         secondaryAction={{ label: 'Cancelar', onAction: onClose }}
       >
-        <NewInstrumentForm {...formProps} />
+        <InstrumentForm {...formProps} />
       </BasicModal>
     </PageBody>
   );

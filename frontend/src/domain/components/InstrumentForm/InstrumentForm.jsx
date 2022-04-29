@@ -24,7 +24,7 @@ const OTHER_PHYSICAL_ADDRESS = {
   value: OTHER_PHYSICAL_ADDRESS_VALUE,
 };
 
-export const NewInstrumentFormFileds = [
+export const InstrumentFormFileds = [
   {
     name: INSTRUMENT_FIELD_NAMES.BRAND,
     getError: brandValidator,
@@ -48,7 +48,7 @@ export const NewInstrumentFormFileds = [
   },
 ];
 
-export default function NewInstrumentForm({ updateField, values, errors }) {
+export default function InstrumentForm({ updateField, values, errors }) {
   const { data: detectedPhysicalAddresses, isLoading: loadingDetectedPhysicalAddresses } =
     useDetectedPhysicalAddresses();
   const { data: instrumentImages, isLoading: loadingInstrumentImages } = useInstrumentImages();
@@ -160,10 +160,10 @@ export default function NewInstrumentForm({ updateField, values, errors }) {
   );
 }
 
-NewInstrumentForm.propTypes = {
+InstrumentForm.propTypes = {
   updateField: PropTypes.func.isRequired,
   values: PropTypes.shape(
-    NewInstrumentFormFileds.reduce(
+    InstrumentFormFileds.reduce(
       (carry, field) => ({
         ...carry,
         [field.name]: PropTypes.string.isRequired,
@@ -172,7 +172,7 @@ NewInstrumentForm.propTypes = {
     ),
   ),
   errors: PropTypes.shape(
-    NewInstrumentFormFileds.reduce(
+    InstrumentFormFileds.reduce(
       (carry, field) => ({
         ...carry,
         [field.name]: PropTypes.string,

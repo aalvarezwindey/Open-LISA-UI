@@ -1,7 +1,7 @@
 [
     {
         "brand": "Tektronix",
-        "description": "Osciloscopio principal para medir la tensión de entrada de la experiencia",
+        "description": "Osciloscopio principal para medir la tensi\u00f3n de entrada de la experiencia",
         "id": 1,
         "image": "http://localhost:5000/static/oscilloscope.png",
         "model": "TDS1002B",
@@ -9,11 +9,12 @@
     },
     {
         "brand": "PixelFly",
-        "description": "Cámara de alta velocidad, 5000 FPS de capacidad",
-        "id": 2,
+        "description": "C\u00e1mara de alta velocidad, 5000 FPS de capacidad",
+        "detectedPhysicalAddress": "USB0::0x0699::0x0363::C107676::INSTR",
+        "id": "2",
         "image": "http://localhost:5000/static/camera.png",
         "model": "QE",
-        "physicalAddress": "USB1::0x0699::0x1234::C107676::INSTR"
+        "physicalAddress": "USB0::0x0699::0x0363::C107676::INSTR"
     },
     {
         "brand": "Siglent",
@@ -25,7 +26,7 @@
     },
     {
         "brand": "UNI-T",
-        "description": "No le funciona el modo amperímetro",
+        "description": "No le funciona el modo amper\u00edmetro",
         "id": 4,
         "image": "http://localhost:5000/static/multimeter.png",
         "model": "UT131-D",
