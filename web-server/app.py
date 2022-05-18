@@ -133,6 +133,19 @@ def delete_instrument(instrument_id):
     return (match, 200)
 
 
+@app.route("/instruments/<instrument_id>/commands", methods=['GET'])
+def get_instrument_commands(instrument_id):
+    with open('mock_data/commands.json') as f:
+        data = json.load(f)
+        match = next((c for c in data if str(
+            c["instrumentId"]) == str(instrument_id)), None)
+
+        if match:
+            return jsonify(match['commands'])
+        else:
+            return (jsonify([]), 200)
+
+
 # Physical Addresses routes
 @ app.route("/physical-addresses/detected", methods=['GET'])
 def get_detected_physical_addresses():

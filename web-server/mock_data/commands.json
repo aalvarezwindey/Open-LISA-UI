@@ -1,6 +1,6 @@
 [
   {
-    "instrument_id": 1,
+    "instrumentId": 1,
     "commands": [
       {
         "name": "clear_status",
