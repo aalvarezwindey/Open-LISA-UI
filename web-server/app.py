@@ -20,6 +20,7 @@ NOT_FOUND = {
 }
 
 
+# Instruments routes
 @app.route("/instruments", methods=['GET'])
 def get_all_instruments():
     with open('mock_data/instruments.json') as f:
@@ -27,6 +28,48 @@ def get_all_instruments():
         return jsonify(data)
 
 
+@ app.route("/instruments", methods=['POST'])
+def create_instrument():
+    payload = request.get_json()
+    with open('mock_data/instruments.json') as f:
+        instruments = json.load(f)
+
+    with open('mock_data/instruments.json', 'w') as f:
+        payload['id'] = len(instruments) + 1
+        payload['image'] = "{}{}".format(
+            STATIC_FILES_URL, payload['image'])
+        instruments.append(payload)
+        f.write(json.dumps(instruments, indent=4, sort_keys=True))
+        return ('', 201)
+
+
+@ app.route("/instruments/images", methods=['GET'])
+def get_all_instruments_images():
+    images = []
+    noneFileName = "none.png"
+    fileNames = os.listdir("static")
+
+    # put NONE image first
+    if noneFileName in fileNames:
+        file = noneFileName
+        images.append({
+            "fileName": file,
+            "url": "{}{}".format(STATIC_FILES_URL, file)
+        })
+
+    for file in os.listdir("static"):
+        if file == noneFileName:
+            continue
+
+        images.append({
+            "fileName": file,
+            "url": "{}{}".format(STATIC_FILES_URL, file)
+        })
+
+    return jsonify(images)
+
+
+# Specific instrument routes
 @app.route("/instruments/<instrument_id>", methods=['GET'])
 def get_instrument_by_id(instrument_id):
     with open('mock_data/instruments.json') as f:
@@ -90,47 +133,20 @@ def delete_instrument(instrument_id):
     return (match, 200)
 
 
-@ app.route("/instruments", methods=['POST'])
-def create_instrument():
-    payload = request.get_json()
-    with open('mock_data/instruments.json') as f:
-        instruments = json.load(f)
+@app.route("/instruments/<instrument_id>/commands", methods=['GET'])
+def get_instrument_commands(instrument_id):
+    with open('mock_data/commands.json') as f:
+        data = json.load(f)
+        match = next((c for c in data if str(
+            c["instrumentId"]) == str(instrument_id)), None)
 
-    with open('mock_data/instruments.json', 'w') as f:
-        payload['id'] = len(instruments) + 1
-        payload['image'] = "{}{}".format(
-            STATIC_FILES_URL, payload['image'])
-        instruments.append(payload)
-        f.write(json.dumps(instruments, indent=4, sort_keys=True))
-        return ('', 201)
+        if match:
+            return jsonify(match['commands'])
+        else:
+            return (jsonify([]), 200)
 
 
-@ app.route("/instruments/images", methods=['GET'])
-def get_all_instruments_images():
-    images = []
-    noneFileName = "none.png"
-    fileNames = os.listdir("static")
-
-    # put NONE image first
-    if noneFileName in fileNames:
-        file = noneFileName
-        images.append({
-            "fileName": file,
-            "url": "{}{}".format(STATIC_FILES_URL, file)
-        })
-
-    for file in os.listdir("static"):
-        if file == noneFileName:
-            continue
-
-        images.append({
-            "fileName": file,
-            "url": "{}{}".format(STATIC_FILES_URL, file)
-        })
-
-    return jsonify(images)
-
-
+# Physical Addresses routes
 @ app.route("/physical-addresses/detected", methods=['GET'])
 def get_detected_physical_addresses():
     with open('mock_data/detected_physical_addresses.json') as f:

@@ -14,6 +14,7 @@ import { logger } from '../../logger';
 import { ROUTES } from '../../routing/routes';
 import deleteInstrument from '../../services/instruments/deleteInstrument';
 import editInstrument from '../../services/instruments/editInstrument';
+import InstrumentCommands from './components/InstrumentCommands/InstrumentCommands';
 import InstrumentDetail from './components/InstrumentDetail';
 
 export default function InstrumentDetailPage() {
@@ -105,6 +106,7 @@ export default function InstrumentDetailPage() {
         onEditInstrument={openEditModal}
         onDeleteInstrument={openDeleteDialog}
       />
+      <InstrumentCommands instrumentId={instrumentId} />
       <BasicModal
         title="Editar instrumento"
         onClose={handleCloseEditModal}
