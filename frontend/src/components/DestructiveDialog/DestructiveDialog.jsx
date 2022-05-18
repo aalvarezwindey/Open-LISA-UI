@@ -38,7 +38,7 @@ function DestructiveDialog({ isOpen, onCancel, onDelete, title, description, loa
 }
 
 DestructiveDialog.propTypes = {
-  iaOpen: PropTypes.bool.isRequired,
+  isOpen: PropTypes.bool.isRequired,
   onCancel: PropTypes.func.isRequired,
   onDelete: PropTypes.func.isRequired,
   title: PropTypes.string.isRequired,
