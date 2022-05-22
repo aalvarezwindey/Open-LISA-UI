@@ -1,7 +1,7 @@
 import React from 'react';
-import { AddIcon } from '@chakra-ui/icons';
-import { Button, Progress, useBoolean, useDisclosure } from '@chakra-ui/react';
+import { Progress, useBoolean, useDisclosure } from '@chakra-ui/react';
 import BasicModal from '../../components/BasicModal/BasicModal';
+import NewButton from '../../components/Buttons/NewButton/NewButton';
 import PageBody from '../../components/Layout/PageBody/PageBody';
 import InstrumentForm, {
   InstrumentFormFileds,
@@ -47,10 +47,9 @@ export default function InstrumentsPage() {
   return (
     <PageBody>
       <InstrumentsList instruments={instruments || []} />
-      <Button position="fixed" bottom={6} right={6} onClick={onOpen}>
-        <AddIcon mr={4} />
+      <NewButton position="fixed" bottom={6} right={6} onClick={onOpen}>
         Nuevo instrumento
-      </Button>
+      </NewButton>
       <BasicModal
         title="Nuevo instrumento"
         onClose={onClose}

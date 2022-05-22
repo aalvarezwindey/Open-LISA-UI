@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Button, Code, Flex, Heading, Image, Text } from '@chakra-ui/react';
+import { Code, Flex, Heading, Image, Text } from '@chakra-ui/react';
+import DeleteButton from '../../../components/Buttons/DeleteButton/DeleteButton';
+import EditButton from '../../../components/Buttons/EditButton/EditButton';
 
 function InstrumentDetail({
   brand,
@@ -34,12 +36,10 @@ function InstrumentDetail({
           {description ? <Text>{description}</Text> : null}
         </Flex>
         <Flex>
-          <Button colorScheme="blue" onClick={onEditInstrument}>
-            Editar instrumento
-          </Button>
-          <Button ml={4} colorScheme="red" onClick={onDeleteInstrument}>
+          <EditButton onClick={onEditInstrument}>Editar instrumento</EditButton>
+          <DeleteButton ml={4} onClick={onDeleteInstrument}>
             Eliminar instrumento
-          </Button>
+          </DeleteButton>
         </Flex>
       </Flex>
     </Flex>

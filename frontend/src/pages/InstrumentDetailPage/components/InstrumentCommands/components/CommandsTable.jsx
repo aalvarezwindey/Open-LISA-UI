@@ -1,20 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import { InfoIcon } from '@chakra-ui/icons';
-import { Code, Table, TableContainer, Tbody, Td, Th, Thead, Tooltip, Tr } from '@chakra-ui/react';
-
-let tooltipTimer;
-const TOOLTIP_TIME = 3000;
+import { Code, Table, TableContainer, Tbody, Td, Th, Thead, Tr } from '@chakra-ui/react';
+import InfoTooltip from '../../../../../components/InfoTooltip/InfoTooltip';
 
 function CommandsTable({ commands }) {
-  const [openTooltip, setOpenTooltip] = useState('');
-
-  const onTooltipClick = (commandName) => {
-    clearTimeout(tooltipTimer);
-    setOpenTooltip(commandName);
-    tooltipTimer = setTimeout(() => setOpenTooltip(''), TOOLTIP_TIME);
-  };
-
   return (
     <TableContainer mt={4}>
       <Table variant="simple" size="lg">
@@ -32,13 +21,7 @@ function CommandsTable({ commands }) {
                 <Td>
                   <Code>{command.name}</Code>
                   {command.description ? (
-                    <Tooltip
-                      hasArrow
-                      label={command.description}
-                      isOpen={openTooltip === command.name}
-                    >
-                      <InfoIcon ml={2} onClick={() => onTooltipClick(command.name)} />
-                    </Tooltip>
+                    <InfoTooltip ml={2}>{command.description}</InfoTooltip>
                   ) : null}
                 </Td>
                 <Td>
