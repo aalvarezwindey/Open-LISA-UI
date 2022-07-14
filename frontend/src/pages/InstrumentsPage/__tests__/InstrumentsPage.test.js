@@ -1,8 +1,8 @@
 const { screen, fireEvent, waitFor } = require('@testing-library/react');
 const { default: InstrumentsPage } = require('../InstrumentsPage');
 
-const clickNewInstrumentButton = () => {
-  const newInstrumentButton = screen.getByRole('button', { name: /nuevo instrumento/i });
+const clickNewInstrumentButton = async () => {
+  const newInstrumentButton = await screen.findByRole('button', { name: /nuevo instrumento/i });
   fireEvent.click(newInstrumentButton);
 };
 
@@ -30,7 +30,7 @@ describe('InstrumentsPage', () => {
   describe('New instrument', () => {
     it('should open dialog when clicking new instrument button', async () => {
       global.renderApp(<InstrumentsPage />);
-      clickNewInstrumentButton();
+      await clickNewInstrumentButton();
 
       expect(getModalPrimaryAction()).toBeInTheDocument();
     });
@@ -38,14 +38,14 @@ describe('InstrumentsPage', () => {
     it('should close dialog when clicking secondary action or close button', async () => {
       global.renderApp(<InstrumentsPage />);
 
-      clickNewInstrumentButton();
+      await clickNewInstrumentButton();
       let modalPrimaryAction = getModalPrimaryAction();
       expect(modalPrimaryAction).toBeInTheDocument();
 
       fireEvent.click(getModalSecondaryAction());
       await waitFor(() => expect(modalPrimaryAction).not.toBeInTheDocument());
 
-      clickNewInstrumentButton();
+      await clickNewInstrumentButton();
       modalPrimaryAction = getModalPrimaryAction();
       await waitFor(() => expect(modalPrimaryAction).toBeInTheDocument());
 
@@ -65,7 +65,7 @@ describe('InstrumentsPage', () => {
       it('should add instrument after submitting a valid form', async () => {
         global.renderApp(<InstrumentsPage />);
 
-        clickNewInstrumentButton();
+        await clickNewInstrumentButton();
 
         await typeInInputWithLabel(FORM_LABELS.BRAND, VALID_FORM.BRAND);
         await typeInInputWithLabel(FORM_LABELS.MODEL, VALID_FORM.MODEL);
@@ -80,7 +80,7 @@ describe('InstrumentsPage', () => {
       it('should display errors after submitting an invalid form', async () => {
         global.renderApp(<InstrumentsPage />);
 
-        clickNewInstrumentButton();
+        await clickNewInstrumentButton();
 
         await typeInInputWithLabel(FORM_LABELS.BRAND, VALID_FORM.BRAND);
         // without model
