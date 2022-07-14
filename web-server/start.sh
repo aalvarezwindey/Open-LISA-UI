@@ -1,1 +1,1 @@
-source bin/activate && python3 app.py
+source bin/activate && python app.py
