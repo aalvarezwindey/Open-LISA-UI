@@ -54,7 +54,8 @@ export default function InstrumentForm({ updateField, values, errors }) {
   const { data: instrumentImages, isLoading: loadingInstrumentImages } = useInstrumentImages();
   const physicalAddressInput = useRef(null);
 
-  if (loadingDetectedPhysicalAddresses || loadingInstrumentImages) return null;
+  if (loadingDetectedPhysicalAddresses || loadingInstrumentImages || !detectedPhysicalAddresses)
+    return null;
 
   return (
     <form>

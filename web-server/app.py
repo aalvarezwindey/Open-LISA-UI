@@ -1,9 +1,9 @@
 import logging
-from crypt import methods
 import json
 import os
 from flask import Flask, jsonify, request
 from flask_cors import CORS
+from app.domain.settings import ConnectionProtocol
 
 
 app = Flask(__name__)
@@ -14,6 +14,10 @@ cors = CORS(app, resources={r"*": {"origins": FRONTEND_ORIGIN}})
 
 STATIC_FILES_URL = "http://localhost:5000/static/"
 
+BAD_REQUEST = {
+    "code": 'BAD_REQUEST',
+    "message": "Bad request"
+}
 NOT_FOUND = {
     "code": 'NOT_FOUND',
     "message": "Resource not found"
@@ -152,6 +156,47 @@ def get_detected_physical_addresses():
     with open('mock_data/detected_physical_addresses.json') as f:
         data = json.load(f)
         return jsonify(data)
+
+# Settings routes
+
+
+@app.route("/settings/connection-protocol", methods=['GET'])
+def get_connection_protocol():
+    conn_protocol = ConnectionProtocol()
+    return jsonify({
+        "protocol": conn_protocol.get_current_connection_protocol(),
+        "configurations": conn_protocol.get_configurations()
+    })
+
+
+@app.route("/settings/connection-protocol", methods=['PUT'])
+def update_connection_protocol():
+    payload = request.get_json()
+    new_protocol = payload["protocol"]
+    if new_protocol in ConnectionProtocol.SUPPORTED_CONNECTION_PROTOCOLS:
+        conn_protocol = ConnectionProtocol()
+        conn_protocol.update_connection_protocol(new_protocol)
+        return jsonify({
+            "protocol": conn_protocol.get_current_connection_protocol(),
+            "configurations": conn_protocol.get_configurations()
+        })
+    else:
+        logging.error(
+            '[update_connection_protocol][UNSUPPORTED_CONNECTION_PROTOCOL] protocol: {}'.format(new_protocol))
+        return (jsonify(BAD_REQUEST), 400)
+
+
+@app.route("/settings/connection-protocol/health-check", methods=['POST'])
+def connection_protocol_health_check():
+    try:
+        conn_protocol = ConnectionProtocol()
+        conn_protocol.check_connection()
+        return ('', 200)
+    except Exception as e:
+        return (jsonify({
+            "code": "CONNECTION_CHECK_ERROR",
+            "message": e.message,
+        }), 400)
 
 
 if __name__ == "__main__":
