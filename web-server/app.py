@@ -1,50 +1,43 @@
 import logging
 import json
 import os
+import traceback
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 from app.domain.settings import ConnectionProtocol
+from app.domain.repositories.instruments_repository import InstrumentRepository
+from app.config.config import load_config
+from app.http import errors
 
-
+env = os.environ["ENV"] if "ENV" in os.environ else "dev"
+load_config(env)
 app = Flask(__name__)
 
-# TODO: specify this from ENV variables
-FRONTEND_ORIGIN = "http://localhost:3000"
+
+STATIC_FILES_URL = os.environ["STATIC_FILES_URL"]
+FRONTEND_ORIGIN = os.environ["FRONTEND_ORIGIN"]
 cors = CORS(app, resources={r"*": {"origins": FRONTEND_ORIGIN}})
-
-STATIC_FILES_URL = "http://localhost:5000/static/"
-
-BAD_REQUEST = {
-    "code": 'BAD_REQUEST',
-    "message": "Bad request"
-}
-NOT_FOUND = {
-    "code": 'NOT_FOUND',
-    "message": "Resource not found"
-}
 
 
 # Instruments routes
 @app.route("/instruments", methods=['GET'])
 def get_all_instruments():
-    with open('mock_data/instruments.json') as f:
-        data = json.load(f)
-        return jsonify(data)
+    repo = InstrumentRepository()
+    instruments = repo.get_all()
+    return (jsonify(instruments), 200)
 
 
 @ app.route("/instruments", methods=['POST'])
 def create_instrument():
     payload = request.get_json()
-    with open('mock_data/instruments.json') as f:
-        instruments = json.load(f)
-
-    with open('mock_data/instruments.json', 'w') as f:
-        payload['id'] = len(instruments) + 1
-        payload['image'] = "{}{}".format(
-            STATIC_FILES_URL, payload['image'])
-        instruments.append(payload)
-        f.write(json.dumps(instruments, indent=4, sort_keys=True))
-        return ('', 201)
+    try:
+        repo = InstrumentRepository()
+        created_instrument = repo.create_instrument(payload)
+        return jsonify(created_instrument, 201)
+    except Exception as e:
+        traceback.print_exc()
+        logging.error('[create_instrument] error {}'.format(e))
+        return errors.BAD_REQUEST(str(e))
 
 
 @ app.route("/instruments/images", methods=['GET'])
@@ -57,7 +50,7 @@ def get_all_instruments_images():
     if noneFileName in fileNames:
         file = noneFileName
         images.append({
-            "fileName": file,
+            "file_name": file,
             "url": "{}{}".format(STATIC_FILES_URL, file)
         })
 
@@ -66,7 +59,7 @@ def get_all_instruments_images():
             continue
 
         images.append({
-            "fileName": file,
+            "file_name": file,
             "url": "{}{}".format(STATIC_FILES_URL, file)
         })
 
@@ -76,69 +69,47 @@ def get_all_instruments_images():
 # Specific instrument routes
 @app.route("/instruments/<instrument_id>", methods=['GET'])
 def get_instrument_by_id(instrument_id):
-    with open('mock_data/instruments.json') as f:
-        data = json.load(f)
-        match = next((i for i in data if str(
-            i["id"]) == str(instrument_id)), None)
-
-        if match:
-            return jsonify(match)
-        else:
-            return (jsonify(NOT_FOUND), 404)
+    instrument_id = int(instrument_id)
+    try:
+        repo = InstrumentRepository()
+        instrument = repo.get_by_id(id=instrument_id)
+        return jsonify(instrument)
+    except Exception as e:
+        traceback.print_exc()
+        logging.error('[get_instrument_by_id] error {}'.format(e))
+        return errors.NOT_FOUND()
 
 
 @app.route("/instruments/<instrument_id>", methods=['PUT'])
 def update_instrument(instrument_id):
+    instrument_id = int(instrument_id)
     payload = request.get_json()
-    match = False
-    with open('mock_data/instruments.json') as f:
-        instruments = json.load(f)
-        for idx, instrument in enumerate(instruments):
-            if str(instrument["id"]) == str(instrument_id):
-                match = instrument
-                match_idx = idx
-
-    if not match:
-        logging.error(
-            '[update_instrument][INSTRUMENT_NOT_FOUND] id: {}'.format(instrument_id))
-        return (jsonify(NOT_FOUND), 404)
-
-    edited_instrument = payload
-    edited_instrument["id"] = instrument_id
-    edited_instrument['image'] = "{}{}".format(
-        STATIC_FILES_URL, edited_instrument['image'])
-    instruments[match_idx] = edited_instrument
-
-    with open('mock_data/instruments.json', 'w') as f:
-        f.write(json.dumps(instruments, indent=4, sort_keys=True))
-        return (edited_instrument, 200)
+    try:
+        repo = InstrumentRepository()
+        updated_instrument = repo.update_instrument(instrument_id, payload)
+        return jsonify(updated_instrument, 200)
+    except Exception as e:
+        traceback.print_exc()
+        logging.error('[update_instrument] error {}'.format(e))
+        return errors.BAD_REQUEST(str(e))
 
 
 @app.route("/instruments/<instrument_id>", methods=['DELETE'])
 def delete_instrument(instrument_id):
-    match = False
-    with open('mock_data/instruments.json') as f:
-        instruments = json.load(f)
-        for idx, instrument in enumerate(instruments):
-            if str(instrument["id"]) == str(instrument_id):
-                match = instrument
-                match_idx = idx
-
-    if not match:
-        logging.error(
-            '[delete_instrument][INSTRUMENT_NOT_FOUND] id: {}'.format(instrument_id))
-        return (jsonify(NOT_FOUND), 404)
-
-    del instruments[match_idx]
-
-    with open('mock_data/instruments.json', 'w') as f:
-        f.write(json.dumps(instruments, indent=4, sort_keys=True))
-
-    return (match, 200)
+    instrument_id = int(instrument_id)
+    try:
+        repo = InstrumentRepository()
+        deleted_instrument = repo.delete_instrument(instrument_id)
+        return jsonify(deleted_instrument, 200)
+    except Exception as e:
+        traceback.print_exc()
+        logging.error('[delete_instrument] error {}'.format(e))
+        return errors.BAD_REQUEST(str(e))
 
 
 @app.route("/instruments/<instrument_id>/commands", methods=['GET'])
 def get_instrument_commands(instrument_id):
+    instrument_id = int(instrument_id)
     with open('mock_data/commands.json') as f:
         data = json.load(f)
         match = next((c for c in data if str(
@@ -181,9 +152,10 @@ def update_connection_protocol():
             "configurations": conn_protocol.get_configurations()
         })
     else:
+        traceback.print_exc()
         logging.error(
             '[update_connection_protocol][UNSUPPORTED_CONNECTION_PROTOCOL] protocol: {}'.format(new_protocol))
-        return (jsonify(BAD_REQUEST), 400)
+        return errors.BAD_REQUEST()
 
 
 @app.route("/settings/connection-protocol/health-check", methods=['POST'])
@@ -193,10 +165,10 @@ def connection_protocol_health_check():
         conn_protocol.check_connection()
         return ('', 200)
     except Exception as e:
-        return (jsonify({
-            "code": "CONNECTION_CHECK_ERROR",
-            "message": e.message,
-        }), 400)
+        traceback.print_exc()
+        logging.error(
+            "[connection_protocol_health_check] error {}".format(str(e)))
+        return errors.BAD_REQUEST(msg=str(e))
 
 
 if __name__ == "__main__":
