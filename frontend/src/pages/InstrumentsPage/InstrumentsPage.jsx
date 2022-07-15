@@ -11,6 +11,7 @@ import useForm from '../../hooks/useForm';
 import useInstruments from '../../hooks/useInstruments';
 import { logger } from '../../logger';
 import createInstrument from '../../services/instruments/createInstrument';
+import { objectKeysCamelCaseToUnderscore } from '../../utils/object/camelCaseToUnderscore';
 
 export default function InstrumentsPage() {
   const { data: instruments, refetch, isLoading } = useInstruments();
@@ -29,7 +30,10 @@ export default function InstrumentsPage() {
 
     try {
       submittingOn();
-      await createInstrument(formValues);
+      const formValuesSnaked = objectKeysCamelCaseToUnderscore(formValues);
+      delete formValuesSnaked['detected_physical_address'];
+      formValuesSnaked['type'] = 'SCPI'; // TODO: Fix form
+      await createInstrument(formValuesSnaked);
       await refetch();
       submittingOff();
       reset();

@@ -14,6 +14,7 @@ import { logger } from '../../logger';
 import { ROUTES } from '../../routing/routes';
 import deleteInstrument from '../../services/instruments/deleteInstrument';
 import editInstrument from '../../services/instruments/editInstrument';
+import { objectKeysCamelCaseToUnderscore } from '../../utils/object/camelCaseToUnderscore';
 import InstrumentCommands from './components/InstrumentCommands/InstrumentCommands';
 import InstrumentDetail from './components/InstrumentDetail';
 
@@ -67,7 +68,9 @@ export default function InstrumentDetailPage() {
 
     try {
       submittingOn();
-      await editInstrument(instrumentId, formValues);
+      const formValuesSnaked = objectKeysCamelCaseToUnderscore(formValues);
+      delete formValuesSnaked['detected_physical_address'];
+      await editInstrument(instrumentId, formValuesSnaked);
       await refetchInstrumentDetail();
       submittingOff();
       closeEditModal();
