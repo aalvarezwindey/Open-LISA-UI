@@ -8,7 +8,7 @@ function InstrumentDetail({
   brand,
   model,
   image,
-  physicalAddress,
+  physical_address,
   description,
   onEditInstrument,
   onDeleteInstrument,
@@ -28,9 +28,9 @@ function InstrumentDetail({
           <Heading size="xl" mb={8}>
             {brand} {model}
           </Heading>
-          {physicalAddress ? (
+          {physical_address ? (
             <Text mb={6} fontWeight="bold">
-              Dirección física: <Code fontWeight="normal">{physicalAddress}</Code>
+              Dirección física: <Code fontWeight="normal">{physical_address}</Code>
             </Text>
           ) : null}
           {description ? <Text>{description}</Text> : null}
@@ -50,7 +50,7 @@ InstrumentDetail.propTypes = {
   brand: PropTypes.string.isRequired,
   model: PropTypes.string.isRequired,
   image: PropTypes.string.isRequired,
-  physicalAddress: PropTypes.string,
+  physical_address: PropTypes.string,
   description: PropTypes.string,
   onEditInstrument: PropTypes.func.isRequired,
   onDeleteInstrument: PropTypes.func.isRequired,

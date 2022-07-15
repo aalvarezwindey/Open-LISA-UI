@@ -3,10 +3,16 @@ export const NONE_IMAGE_FILE_NAME = 'none.png';
 export const INSTRUMENT_FIELD_NAMES = {
   BRAND: 'brand',
   MODEL: 'model',
+  TYPE: 'type',
   PHYSICAL_ADDRESS: 'physicalAddress',
   DETECTED_PHYSICAL_ADDRESS: 'detectedPhysicalAddress',
   DESCRIPTION: 'description',
   IMAGE: 'image',
+};
+
+export const INSTRUMENT_TYPES = {
+  SCPI: 'SCPI',
+  CLIB: 'CLIB',
 };
 
 export const SCPI_COMMAND_FIELD_NAMES = {

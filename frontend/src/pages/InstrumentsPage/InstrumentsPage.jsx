@@ -32,7 +32,6 @@ export default function InstrumentsPage() {
       submittingOn();
       const formValuesSnaked = objectKeysCamelCaseToUnderscore(formValues);
       delete formValuesSnaked['detected_physical_address'];
-      formValuesSnaked['type'] = 'SCPI'; // TODO: Fix form
       await createInstrument(formValuesSnaked);
       await refetch();
       submittingOff();

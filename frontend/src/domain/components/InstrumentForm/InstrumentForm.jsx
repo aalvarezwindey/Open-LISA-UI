@@ -1,19 +1,22 @@
 import React, { useRef } from 'react';
 import PropTypes from 'prop-types';
+import { InfoIcon } from '@chakra-ui/icons';
 import {
   Code,
   FormControl,
   FormErrorMessage,
+  FormHelperText,
   FormLabel,
   Input,
   Radio,
   RadioGroup,
+  Select,
   Textarea,
   VStack,
 } from '@chakra-ui/react';
 import useDetectedPhysicalAddresses from '../../../hooks/useDetectedPhysicalAddresses';
 import useInstrumentImages from '../../../hooks/useInstrumentImages';
-import { INSTRUMENT_FIELD_NAMES, NONE_IMAGE_FILE_NAME } from '../../constants';
+import { INSTRUMENT_FIELD_NAMES, INSTRUMENT_TYPES, NONE_IMAGE_FILE_NAME } from '../../constants';
 import ImageSelector from './components/ImageSelector';
 import { brandValidator } from './validators/brandValidator';
 import { modelValidator } from './validators/modelValidator';
@@ -32,6 +35,10 @@ export const InstrumentFormFileds = [
   {
     name: INSTRUMENT_FIELD_NAMES.MODEL,
     getError: modelValidator,
+  },
+  {
+    name: INSTRUMENT_FIELD_NAMES.TYPE,
+    defaultValue: INSTRUMENT_TYPES.SCPI,
   },
   {
     name: INSTRUMENT_FIELD_NAMES.PHYSICAL_ADDRESS,
@@ -53,6 +60,8 @@ export default function InstrumentForm({ updateField, values, errors }) {
     useDetectedPhysicalAddresses();
   const { data: instrumentImages, isLoading: loadingInstrumentImages } = useInstrumentImages();
   const physicalAddressInput = useRef(null);
+  const disablePhysicalAddressField = values[INSTRUMENT_FIELD_NAMES.TYPE] !== INSTRUMENT_TYPES.SCPI;
+  const currentPhysicalAddress = values[INSTRUMENT_FIELD_NAMES.PHYSICAL_ADDRESS];
 
   if (loadingDetectedPhysicalAddresses || loadingInstrumentImages || !detectedPhysicalAddresses)
     return null;
@@ -86,14 +95,28 @@ export default function InstrumentForm({ updateField, values, errors }) {
           ) : null}
         </FormControl>
 
+        <FormControl isRequired isInvalid={Boolean(errors[INSTRUMENT_FIELD_NAMES.TYPE])}>
+          <FormLabel htmlFor={INSTRUMENT_FIELD_NAMES.TYPE}>Tipo</FormLabel>
+          <Select onChange={(e) => updateField(INSTRUMENT_FIELD_NAMES.TYPE)(e.target.value)}>
+            <option value={INSTRUMENT_TYPES.SCPI}>SCPI</option>
+            <option value={INSTRUMENT_TYPES.CLIB}>Librerías C/C++</option>
+          </Select>
+        </FormControl>
+
         <FormControl
           as="fieldset"
           isInvalid={Boolean(errors[INSTRUMENT_FIELD_NAMES.DETECTED_PHYSICAL_ADDRESS])}
+          disabled={disablePhysicalAddressField}
         >
-          <FormLabel as="legend" htmlFor={INSTRUMENT_FIELD_NAMES.DETECTED_PHYSICAL_ADDRESS}>
+          <FormLabel
+            as="legend"
+            htmlFor={INSTRUMENT_FIELD_NAMES.DETECTED_PHYSICAL_ADDRESS}
+            _disabled={disablePhysicalAddressField}
+          >
             Instrumentos detectados
           </FormLabel>
           <RadioGroup
+            _disabled={disablePhysicalAddressField}
             value={values[INSTRUMENT_FIELD_NAMES.DETECTED_PHYSICAL_ADDRESS]}
             id={INSTRUMENT_FIELD_NAMES.DETECTED_PHYSICAL_ADDRESS}
             onChange={(value) => {
@@ -109,7 +132,11 @@ export default function InstrumentForm({ updateField, values, errors }) {
             <VStack spacing={2} align="start">
               {[...detectedPhysicalAddresses, OTHER_PHYSICAL_ADDRESS].map(
                 (physicalAddress, index) => (
-                  <Radio key={physicalAddress.value} value={physicalAddress.value}>
+                  <Radio
+                    key={physicalAddress.value}
+                    value={physicalAddress.value}
+                    _selected={physicalAddress.value === currentPhysicalAddress}
+                  >
                     {index === detectedPhysicalAddresses.length ? (
                       physicalAddress.label
                     ) : (
@@ -120,11 +147,30 @@ export default function InstrumentForm({ updateField, values, errors }) {
               )}
             </VStack>
           </RadioGroup>
+          <FormHelperText>
+            {disablePhysicalAddressField ? (
+              <>
+                <InfoIcon /> La dirección física solo es necesaria para instrumentos que implementan
+                el protocolo SCPI
+              </>
+            ) : (
+              ''
+            )}
+          </FormHelperText>
         </FormControl>
 
-        <FormControl isInvalid={Boolean(errors[INSTRUMENT_FIELD_NAMES.PHYSICAL_ADDRESS])}>
-          <FormLabel htmlFor={INSTRUMENT_FIELD_NAMES.PHYSICAL_ADDRESS}>Dirección física</FormLabel>
+        <FormControl
+          isInvalid={Boolean(errors[INSTRUMENT_FIELD_NAMES.PHYSICAL_ADDRESS])}
+          disabled={disablePhysicalAddressField}
+        >
+          <FormLabel
+            _disabled={disablePhysicalAddressField}
+            htmlFor={INSTRUMENT_FIELD_NAMES.PHYSICAL_ADDRESS}
+          >
+            Dirección física
+          </FormLabel>
           <Input
+            disabled={disablePhysicalAddressField}
             ref={physicalAddressInput}
             type="text"
             readOnly={
@@ -134,6 +180,7 @@ export default function InstrumentForm({ updateField, values, errors }) {
             placeholder="Seleccione una de las direcciones detectadas"
             value={values[INSTRUMENT_FIELD_NAMES.PHYSICAL_ADDRESS]}
             id={INSTRUMENT_FIELD_NAMES.PHYSICAL_ADDRESS}
+            onChange={(e) => updateField(INSTRUMENT_FIELD_NAMES.PHYSICAL_ADDRESS)(e.target.value)}
           />
         </FormControl>
 

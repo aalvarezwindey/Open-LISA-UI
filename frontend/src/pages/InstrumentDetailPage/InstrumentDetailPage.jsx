@@ -46,7 +46,7 @@ export default function InstrumentDetailPage() {
     if (instrument) {
       updateField(INSTRUMENT_FIELD_NAMES.BRAND)(instrument.brand);
       updateField(INSTRUMENT_FIELD_NAMES.MODEL)(instrument.model);
-      updateField(INSTRUMENT_FIELD_NAMES.PHYSICAL_ADDRESS)(instrument.physicalAddress);
+      updateField(INSTRUMENT_FIELD_NAMES.PHYSICAL_ADDRESS)(instrument.physical_address);
       updateField(INSTRUMENT_FIELD_NAMES.DESCRIPTION)(instrument.description);
 
       const imageUrlParts = instrument.image.split('/');
