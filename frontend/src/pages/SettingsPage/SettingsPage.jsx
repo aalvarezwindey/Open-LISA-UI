@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Box, Button, Input, Tab, TabList, TabPanel, TabPanels, Tabs } from '@chakra-ui/react';
+import { Box, Button, Tab, TabList, TabPanel, TabPanels, Tabs } from '@chakra-ui/react';
 import GenericError from '../../components/Errors/GenericError/GenericError';
 import useConnectionProtocol from '../../hooks/useConnectionProtocol';
 import useForm from '../../hooks/useForm';

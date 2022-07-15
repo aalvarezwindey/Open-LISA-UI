@@ -28,7 +28,11 @@ class ConnectionProtocol:
         return self._configuration["configurations"]
 
     def check_connection(self):
-        sdk = SDK(log_level="DEBUG")
+        sdk = self.get_open_lisa_SDK_instance_connected()
+        # TODO: do health check?
+
+    def get_open_lisa_SDK_instance_connected(self, sdk_log_level="DEBUG") -> SDK:
+        sdk = SDK(log_level=sdk_log_level)
         curr_protocol = self._configuration["current_protocol"]
         if curr_protocol == ConnectionProtocol.TCP_CONNECTION_PROTOCOL:
             sdk.connect_through_TCP(
@@ -40,6 +44,7 @@ class ConnectionProtocol:
                 baudrate=self._configuration["configurations"][ConnectionProtocol.SERIAL_CONNECTION_PROTOCOL]["baudrate"],
                 port=self._configuration["configurations"][ConnectionProtocol.SERIAL_CONNECTION_PROTOCOL]["port"]
             )
+        return sdk
 
     def __refresh_in_memory_configuration(self):
         self._configuration = self._db.getById(
