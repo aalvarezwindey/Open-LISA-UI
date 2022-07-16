@@ -2,10 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Box, Button, Heading, Image } from '@chakra-ui/react';
 import Card from '../../../components/Card/Card';
+import { useFormatMessage } from '../../../i18n/hooks/useFormatMessage';
+import { MESSAGES_KEYS } from '../../../i18n/messages/keys';
 
 const MAX_WIDTH = 200;
 
 function InstrumentCard({ image, brand, model, onViewMore }) {
+  const formatMessage = useFormatMessage();
   const heading = `${brand} - ${model}`;
   return (
     <Card>
@@ -33,7 +36,9 @@ function InstrumentCard({ image, brand, model, onViewMore }) {
         {heading}
       </Heading>
       <Box w="100%" textAlign="center">
-        <Button onClick={onViewMore}>Ver más</Button>
+        <Button onClick={onViewMore}>
+          {formatMessage(MESSAGES_KEYS.INSTRUMENTS_PAGE_CARD_VIEW_MORE_BUTTON_LABEL)}
+        </Button>
       </Box>
     </Card>
   );

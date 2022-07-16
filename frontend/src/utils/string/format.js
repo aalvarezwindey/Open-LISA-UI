@@ -5,6 +5,7 @@
  * @example format('this {} an {}', 'is', 'example') => 'this is an example'
  */
 function format(str, ...args) {
+  if (!args) return str;
   let numberOfOccurrence = -1;
   return str.replace(/{}/g, (match) => {
     numberOfOccurrence += 1;
