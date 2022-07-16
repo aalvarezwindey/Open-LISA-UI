@@ -55,3 +55,8 @@ export const SCPI_COMMAND_PARAM_VALUE_TYPES = [
     example: 'A',
   },
 ];
+
+export const SUPPORTED_LANGUAGES = {
+  ENGLISH: 'en',
+  SPANISH: 'es',
+};

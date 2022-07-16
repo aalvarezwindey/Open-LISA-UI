@@ -1,7 +1,7 @@
 const semanticTokens = {
   colors: {
     navbar: {
-      default: 'teal.200',
+      default: 'cyan.500',
     },
     card: {
       default: 'white',

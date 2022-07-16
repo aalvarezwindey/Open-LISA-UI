@@ -2,10 +2,15 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Box, Button, Heading } from '@chakra-ui/react';
 import { ReactComponent as ConnectionIcon } from '../../assets/connection.svg';
+import { useFormatMessage } from '../../i18n/hooks/useFormatMessage';
+import { MESSAGES_KEYS } from '../../i18n/messages/keys';
 import { ROUTES } from '../../routing/routes';
+import LanguageSwitch from '../LanguageSwitch/LanguageSwitch';
 
 export default function NavBar() {
   const navigate = useNavigate();
+  const formatMessage = useFormatMessage();
+
   return (
     <Box
       as="nav"
@@ -22,12 +27,13 @@ export default function NavBar() {
       w="100%"
     >
       <Heading color="text.primary">Open LISA</Heading>
-      <Button variant="ghost" onClick={() => navigate(ROUTES.SETTINGS)}>
+      <Button onClick={() => navigate(ROUTES.SETTINGS)} backgroundColor="green.400">
         <Box mr={2}>
           <ConnectionIcon width={25} height={25} />
         </Box>
-        Conexión con el servidor
+        {formatMessage(MESSAGES_KEYS.NAVBAR_SERVER_BUTTON_LABEL, 'ONLINE')}
       </Button>
+      <LanguageSwitch />
     </Box>
   );
 }
