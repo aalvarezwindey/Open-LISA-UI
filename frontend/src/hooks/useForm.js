@@ -1,3 +1,5 @@
+import { useFormatMessage } from '../i18n/hooks/useFormatMessage';
+
 const { useReducer, useCallback, useMemo } = require('react');
 
 const ACTION_TYPES = {
@@ -47,6 +49,7 @@ function reducer(state, action) {
  * @returns {Object} containing fields state and updateField function
  */
 const useForm = ({ fields = [] }) => {
+  const formatMessage = useFormatMessage();
   const initialState = useMemo(
     () => ({
       values: fields.reduce(
@@ -63,28 +66,28 @@ const useForm = ({ fields = [] }) => {
   const updateField = useCallback(
     (name) => (value) => {
       const field = fields.find(({ name: fieldName }) => fieldName === name) || {};
-      const error = field.getError ? field.getError(value) : DEFAULT_GET_ERROR();
+      const error = field.getError ? field.getError(value, formatMessage) : DEFAULT_GET_ERROR();
       dispatch({ type: ACTION_TYPES.UPDATE_FIELD, payload: { name, value, error } });
     },
-    [fields],
+    [fields, formatMessage],
   );
 
   const isValid = useMemo(() => {
     return fields.every(({ name, getError }) => {
-      const fieldIsInvalid = getError ? getError(state.values[name]) : false;
+      const fieldIsInvalid = getError ? getError(state.values[name], formatMessage) : false;
       return !fieldIsInvalid;
     });
-  }, [fields, state.values]);
+  }, [fields, state.values, formatMessage]);
 
   const displayErrors = useCallback(
     (formValues) => {
       const errors = fields.reduce((carry, { name, getError }) => {
-        const error = getError ? getError(formValues[name]) : DEFAULT_GET_ERROR();
+        const error = getError ? getError(formValues[name], formatMessage) : DEFAULT_GET_ERROR();
         return { ...carry, [name]: error };
       }, {});
       dispatch({ type: ACTION_TYPES.DISPLAY_ERRORS, payload: { errors } });
     },
-    [fields],
+    [fields, formatMessage],
   );
 
   const reset = useCallback(() => {

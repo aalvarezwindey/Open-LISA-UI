@@ -10,6 +10,8 @@ import InstrumentForm, {
 import { INSTRUMENT_FIELD_NAMES } from '../../domain/constants';
 import useForm from '../../hooks/useForm';
 import useInstrumentDetail from '../../hooks/useInstrumentDetail';
+import { useFormatMessage } from '../../i18n/hooks/useFormatMessage';
+import { MESSAGES_KEYS } from '../../i18n/messages/keys';
 import { logger } from '../../logger';
 import { ROUTES } from '../../routing/routes';
 import deleteInstrument from '../../services/instruments/deleteInstrument';
@@ -19,6 +21,7 @@ import InstrumentCommands from './components/InstrumentCommands/InstrumentComman
 import InstrumentDetail from './components/InstrumentDetail';
 
 export default function InstrumentDetailPage() {
+  const formatMessage = useFormatMessage();
   const navigate = useNavigate();
   const { instrumentId } = useParams();
   const {
@@ -111,22 +114,28 @@ export default function InstrumentDetailPage() {
       />
       <InstrumentCommands instrumentId={instrumentId} />
       <BasicModal
-        title="Editar instrumento"
+        title={formatMessage(MESSAGES_KEYS.INSTRUMENT_FORM_EDIT_TITLE)}
         onClose={handleCloseEditModal}
         isOpen={editModalIsOpen}
         primaryAction={{
-          label: 'Confirmar',
+          label: formatMessage(MESSAGES_KEYS.INSTRUMENT_FORM_EDIT_CONFIRM_LABEL),
           onAction: handleEditInstrument,
           loading: submittingEditInstrument,
         }}
-        secondaryAction={{ label: 'Cancelar', onAction: handleCloseEditModal }}
+        secondaryAction={{
+          label: formatMessage(MESSAGES_KEYS.INSTRUMENT_FORM_EDIT_CANCEL_LABEL),
+          onAction: handleCloseEditModal,
+        }}
       >
         <InstrumentForm {...formProps} updateField={updateField} />
       </BasicModal>
       <DestructiveDialog
         isOpen={deleteDialogIsOpen}
-        title="Eliminar instrumento"
-        description={`¿Estás seguro que querés eliminar el instrumento ${instrument?.brand} - ${instrument?.model}?`}
+        title={formatMessage(MESSAGES_KEYS.INSTRUMENT_DETAIL_DELETE_INSTRUMENT_MODAL_TITLE)}
+        description={formatMessage(
+          MESSAGES_KEYS.INSTRUMENT_DETAIL_DELETE_INSTRUMENT_MODAL_DESCRIPTION,
+          `${instrument?.brand} - ${instrument?.model}`,
+        )}
         onCancel={closeDeleteDialog}
         onDelete={handleDeleteInstrument}
         loading={deletingInstrument}

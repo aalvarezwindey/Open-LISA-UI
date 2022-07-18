@@ -4,6 +4,8 @@ import GenericError from '../../components/Errors/GenericError/GenericError';
 import useConnectionProtocol from '../../hooks/useConnectionProtocol';
 import useForm from '../../hooks/useForm';
 import useNotifier from '../../hooks/useNotifier';
+import { useFormatMessage } from '../../i18n/hooks/useFormatMessage';
+import { MESSAGES_KEYS } from '../../i18n/messages/keys';
 import checkServerConnection from '../../services/instruments/checkServerConnection';
 import updateConnectionProtocol from '../../services/instruments/updateConnectionProtocol';
 import SerialConfigurationForm, {
@@ -24,6 +26,7 @@ const CONNECTION_PROTOCOLS = {
   },
 };
 export default function SettingsPage() {
+  const formatMessage = useFormatMessage();
   const [checkingConnection, setCheckingConnection] = useState(false);
   const [tabIndex, setTabIndex] = useState();
   const { notifyError, notifySuccess } = useNotifier();
@@ -60,7 +63,11 @@ export default function SettingsPage() {
       await updateConnectionProtocol(newProtocol);
       setTabIndex(index);
     } catch (err) {
-      notifyError('No se pudo actualizar el protocolo de comunicación', err.message);
+      console.error('[PROTOCOL_UPDATE_ERROR', err);
+      notifyError(
+        formatMessage(MESSAGES_KEYS.SETTINGS_FAILED_CHECK_CONNECTION_TITLE),
+        formatMessage(MESSAGES_KEYS.SETTINGS_FAILED_CHECK_CONNECTION_DESCRIPTION),
+      );
     }
   };
 
@@ -69,11 +76,15 @@ export default function SettingsPage() {
       setCheckingConnection(true);
       await checkServerConnection();
       notifySuccess(
-        'Conexión establecida',
-        'Se ha podido detectar el servidor con la configuración especificada',
+        formatMessage(MESSAGES_KEYS.SETTINGS_SUCCESSFUL_CHECK_CONNECTION_TITLE),
+        formatMessage(MESSAGES_KEYS.SETTINGS_SUCCESSFUL_CHECK_CONNECTION_DESCRIPTION),
       );
     } catch (err) {
-      notifyError('No se pudo conectar con el servidor', err.message);
+      console.error('[PROTOCOL_UPDATE_ERROR', err);
+      notifyError(
+        formatMessage(MESSAGES_KEYS.SETTINGS_FAILED_CHECK_CONNECTION_TITLE),
+        formatMessage(MESSAGES_KEYS.SETTINGS_FAILED_CHECK_CONNECTION_DESCRIPTION),
+      );
     } finally {
       setCheckingConnection(false);
     }
@@ -94,10 +105,10 @@ export default function SettingsPage() {
       >
         <TabList>
           <Tab _selected={{ color: 'white', bg: 'blue.200' }} w="50%">
-            Conexión TCP
+            {formatMessage(MESSAGES_KEYS.SETTINGS_TCP_TAB)}
           </Tab>
           <Tab _selected={{ color: 'white', bg: 'blue.200' }} w="50%">
-            Conexión Serial
+            {formatMessage(MESSAGES_KEYS.SETTINGS_SERIAL_TAB)}
           </Tab>
         </TabList>
 
@@ -111,7 +122,7 @@ export default function SettingsPage() {
               onClick={checkConnection}
               isLoading={checkingConnection}
             >
-              Probar conexión
+              {formatMessage(MESSAGES_KEYS.SETTINGS_CHECK_CONNECTION_BUTTON_LABEL)}
             </Button>
           </TabPanel>
           <TabPanel>
@@ -123,7 +134,7 @@ export default function SettingsPage() {
               onClick={checkConnection}
               isLoading={checkingConnection}
             >
-              Probar conexión
+              {formatMessage(MESSAGES_KEYS.SETTINGS_CHECK_CONNECTION_BUTTON_LABEL)}
             </Button>
           </TabPanel>
         </TabPanels>

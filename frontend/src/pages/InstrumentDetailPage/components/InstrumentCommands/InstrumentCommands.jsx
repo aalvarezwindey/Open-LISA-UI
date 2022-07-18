@@ -8,10 +8,13 @@ import CommandForm, {
 } from '../../../../domain/components/CommandForm/CommandForm';
 import useForm from '../../../../hooks/useForm';
 import useInstrumentCommands from '../../../../hooks/useInstrumentCommands';
+import { useFormatMessage } from '../../../../i18n/hooks/useFormatMessage';
+import { MESSAGES_KEYS } from '../../../../i18n/messages/keys';
 import { logger } from '../../../../logger';
 import CommandsTable from './components/CommandsTable';
 
 function InstrumentCommands({ instrumentId }) {
+  const formatMessage = useFormatMessage();
   const { data: commands, isLoading, refetch } = useInstrumentCommands(instrumentId);
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [submittingNewCommand, { on: submittingOn, off: submittingOff }] = useBoolean(false);
@@ -47,8 +50,10 @@ function InstrumentCommands({ instrumentId }) {
   return (
     <Box as="section" mt={16}>
       <Box w="100%" display="flex" justifyContent="space-between">
-        <Heading size="lg">Comandos</Heading>
-        <NewButton onClick={onOpen}>Nuevo comando</NewButton>
+        <Heading size="lg">{formatMessage(MESSAGES_KEYS.INSTRUMENT_DETAIL_COMMANDS_TITLE)}</Heading>
+        <NewButton onClick={onOpen}>
+          {formatMessage(MESSAGES_KEYS.INSTRUMENT_DETAIL_NEW_COMMAND_BUTTON_LABEL)}
+        </NewButton>
       </Box>
       <CommandsTable commands={commands} />
       <BasicModal

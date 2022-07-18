@@ -1,5 +1,7 @@
 import React from 'react';
 import { FormControl, FormErrorMessage, FormLabel, Input, VStack } from '@chakra-ui/react';
+import { useFormatMessage } from '../../../i18n/hooks/useFormatMessage';
+import { MESSAGES_KEYS } from '../../../i18n/messages/keys';
 
 export const TCP_CONFIGURATION_FIELD_NAMES = {
   HOST: 'host',
@@ -16,10 +18,13 @@ export const TCPConfigurationFormFileds = [
 ];
 
 export default function TCPConfigurationForm({ values, updateField, errors }) {
+  const formatMessage = useFormatMessage();
   return (
     <VStack spacing={6} align="start">
       <FormControl isRequired>
-        <FormLabel htmlFor={TCP_CONFIGURATION_FIELD_NAMES.HOST}>Host</FormLabel>
+        <FormLabel htmlFor={TCP_CONFIGURATION_FIELD_NAMES.HOST}>
+          {formatMessage(MESSAGES_KEYS.SETTINGS_TCP_FORM_HOST_LABEL)}
+        </FormLabel>
         <Input
           type="text"
           value={values[TCP_CONFIGURATION_FIELD_NAMES.HOST]}
@@ -32,7 +37,9 @@ export default function TCPConfigurationForm({ values, updateField, errors }) {
       </FormControl>
 
       <FormControl isRequired>
-        <FormLabel htmlFor={TCP_CONFIGURATION_FIELD_NAMES.PORT}>Puerto</FormLabel>
+        <FormLabel htmlFor={TCP_CONFIGURATION_FIELD_NAMES.PORT}>
+          {formatMessage(MESSAGES_KEYS.SETTINGS_TCP_FORM_PORT_LABEL)}
+        </FormLabel>
         <Input
           type="text"
           value={values[TCP_CONFIGURATION_FIELD_NAMES.PORT]}

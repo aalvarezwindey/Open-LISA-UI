@@ -26,7 +26,9 @@ export default function NavBar() {
       p={4}
       w="100%"
     >
-      <Heading color="text.primary">Open LISA</Heading>
+      <Heading color="text.primary" cursor="pointer" onClick={() => navigate(ROUTES.INSTRUMENTS)}>
+        Open LISA
+      </Heading>
       <Button onClick={() => navigate(ROUTES.SETTINGS)} backgroundColor="green.400">
         <Box mr={2}>
           <ConnectionIcon width={25} height={25} />

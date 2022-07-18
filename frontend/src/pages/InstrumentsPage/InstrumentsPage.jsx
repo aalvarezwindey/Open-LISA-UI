@@ -9,12 +9,15 @@ import InstrumentForm, {
 import InstrumentsList from '../../domain/components/InstrumentsList/InstrumentsList';
 import useForm from '../../hooks/useForm';
 import useInstruments from '../../hooks/useInstruments';
+import { useFormatMessage } from '../../i18n/hooks/useFormatMessage';
+import { MESSAGES_KEYS } from '../../i18n/messages/keys';
 import { logger } from '../../logger';
 import createInstrument from '../../services/instruments/createInstrument';
 import { objectKeysCamelCaseToUnderscore } from '../../utils/object/camelCaseToUnderscore';
 
 export default function InstrumentsPage() {
   const { data: instruments, refetch, isLoading } = useInstruments();
+  const formatMessage = useFormatMessage();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [submittingNewInstrument, { on: submittingOn, off: submittingOff }] = useBoolean(false);
   const { isValid, reset, displayErrors, ...formProps } = useForm({
@@ -51,18 +54,21 @@ export default function InstrumentsPage() {
     <PageBody>
       <InstrumentsList instruments={instruments || []} />
       <NewButton position="fixed" bottom={6} right={6} onClick={onOpen}>
-        Nuevo instrumento
+        {formatMessage(MESSAGES_KEYS.INSTRUMENTS_PAGE_CARD_NEW_INSTRUMENT_BUTTON_LABEL)}
       </NewButton>
       <BasicModal
-        title="Nuevo instrumento"
+        title={formatMessage(MESSAGES_KEYS.INSTRUMENT_FORM_NEW_TITLE)}
         onClose={onClose}
         isOpen={isOpen}
         primaryAction={{
-          label: 'Crear instrumento',
+          label: formatMessage(MESSAGES_KEYS.INSTRUMENT_FORM_NEW_CONFIRM_LABEL),
           onAction: handleCreateInstrument,
           loading: submittingNewInstrument,
         }}
-        secondaryAction={{ label: 'Cancelar', onAction: onClose }}
+        secondaryAction={{
+          label: formatMessage(MESSAGES_KEYS.INSTRUMENT_FORM_NEW_CANCEL_LABEL),
+          onAction: onClose,
+        }}
       >
         <InstrumentForm {...formProps} />
       </BasicModal>

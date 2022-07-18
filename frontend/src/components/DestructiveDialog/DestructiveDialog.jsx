@@ -9,10 +9,12 @@ import {
   AlertDialogOverlay,
   Button,
 } from '@chakra-ui/react';
+import { useFormatMessage } from '../../i18n/hooks/useFormatMessage';
+import { MESSAGES_KEYS } from '../../i18n/messages/keys';
 
 function DestructiveDialog({ isOpen, onCancel, onDelete, title, description, loading }) {
   const cancelRef = React.useRef();
-
+  const formatMessage = useFormatMessage();
   return (
     <AlertDialog isOpen={isOpen} leastDestructiveRef={cancelRef} onClose={onCancel}>
       <AlertDialogOverlay>
@@ -25,10 +27,10 @@ function DestructiveDialog({ isOpen, onCancel, onDelete, title, description, loa
 
           <AlertDialogFooter>
             <Button ref={cancelRef} onClick={onCancel} loading={loading}>
-              Cancelar
+              {formatMessage(MESSAGES_KEYS.INSTRUMENT_DETAIL_DESTRUCTIVE_MODAL_CANCEL_LABEL)}
             </Button>
             <Button colorScheme="red" onClick={onDelete} ml={3} loading={loading}>
-              Eliminar
+              {formatMessage(MESSAGES_KEYS.INSTRUMENT_DETAIL_DESTRUCTIVE_MODAL_CONFIRM_LABEL)}
             </Button>
           </AlertDialogFooter>
         </AlertDialogContent>

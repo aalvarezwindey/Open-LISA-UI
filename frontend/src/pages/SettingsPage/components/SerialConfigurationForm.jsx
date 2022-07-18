@@ -1,5 +1,7 @@
 import React from 'react';
 import { FormControl, FormErrorMessage, FormLabel, Input, VStack } from '@chakra-ui/react';
+import { useFormatMessage } from '../../../i18n/hooks/useFormatMessage';
+import { MESSAGES_KEYS } from '../../../i18n/messages/keys';
 
 export const SERIAL_CONFIGURATION_FIELD_NAMES = {
   BAUDRATE: 'baudrate',
@@ -16,10 +18,13 @@ export const SerialConfigurationFormFileds = [
 ];
 
 export default function SerialConfigurationForm({ values, updateField, errors }) {
+  const formatMessage = useFormatMessage();
   return (
     <VStack spacing={6} align="start">
       <FormControl isRequired>
-        <FormLabel htmlFor={SERIAL_CONFIGURATION_FIELD_NAMES.BAUDRATE}>Baudrate</FormLabel>
+        <FormLabel htmlFor={SERIAL_CONFIGURATION_FIELD_NAMES.BAUDRATE}>
+          {formatMessage(MESSAGES_KEYS.SETTINGS_SERIAL_FORM_BAUDRATE_LABEL)}
+        </FormLabel>
         <Input
           type="text"
           value={values[SERIAL_CONFIGURATION_FIELD_NAMES.BAUDRATE]}
@@ -32,7 +37,9 @@ export default function SerialConfigurationForm({ values, updateField, errors })
       </FormControl>
 
       <FormControl isRequired>
-        <FormLabel htmlFor={SERIAL_CONFIGURATION_FIELD_NAMES.PORT}>Puerto serial</FormLabel>
+        <FormLabel htmlFor={SERIAL_CONFIGURATION_FIELD_NAMES.PORT}>
+          {formatMessage(MESSAGES_KEYS.SETTINGS_SERIAL_FORM_PORT_LABEL)}
+        </FormLabel>
         <Input
           type="text"
           value={values[SERIAL_CONFIGURATION_FIELD_NAMES.PORT]}
