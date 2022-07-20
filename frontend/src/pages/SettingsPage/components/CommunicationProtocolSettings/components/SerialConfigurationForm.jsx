@@ -1,7 +1,7 @@
 import React from 'react';
 import { FormControl, FormErrorMessage, FormLabel, Input, VStack } from '@chakra-ui/react';
-import { useFormatMessage } from '../../../i18n/hooks/useFormatMessage';
-import { MESSAGES_KEYS } from '../../../i18n/messages/keys';
+import { useFormatMessage } from '../../../../../i18n/hooks/useFormatMessage';
+import { MESSAGES_KEYS } from '../../../../../i18n/messages/keys';
 
 export const SERIAL_CONFIGURATION_FIELD_NAMES = {
   BAUDRATE: 'baudrate',
