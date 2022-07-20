@@ -61,4 +61,6 @@ export const MESSAGES_KEYS = {
     'settings.page.successful.check.connection.description',
   SETTINGS_FAILED_CHECK_CONNECTION_TITLE: 'settings.page.failed.check.connection.title',
   SETTINGS_FAILED_CHECK_CONNECTION_DESCRIPTION: 'settings.page.failed.check.connection.description',
+  SETTINGS_CONNECTION_PROTCOL_TITLE: 'settings.page.connection.protocol.title',
+  SETTINGS_FILESYSTEM_TITLE: 'settings.page.filesystem.title',
 };

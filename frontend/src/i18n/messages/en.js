@@ -53,4 +53,6 @@ export const en = {
   [MESSAGES_KEYS.SETTINGS_FAILED_CHECK_CONNECTION_TITLE]:
     'Communication protocol could not be updated',
   [MESSAGES_KEYS.SETTINGS_FAILED_CHECK_CONNECTION_DESCRIPTION]: 'Check logs for more details',
+  [MESSAGES_KEYS.SETTINGS_CONNECTION_PROTCOL_TITLE]: 'Communication protocol',
+  [MESSAGES_KEYS.SETTINGS_FILESYSTEM_TITLE]: 'Server files',
 };

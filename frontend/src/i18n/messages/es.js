@@ -53,4 +53,6 @@ export const es = {
   [MESSAGES_KEYS.SETTINGS_FAILED_CHECK_CONNECTION_TITLE]:
     'No se pudo actualizar el protocolo de comunicación',
   [MESSAGES_KEYS.SETTINGS_FAILED_CHECK_CONNECTION_DESCRIPTION]: 'Revise los logs para más detalles',
+  [MESSAGES_KEYS.SETTINGS_CONNECTION_PROTCOL_TITLE]: 'Protocolo de comunicación',
+  [MESSAGES_KEYS.SETTINGS_FILESYSTEM_TITLE]: 'Archivos en el servidor',
 };
