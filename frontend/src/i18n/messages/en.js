@@ -54,7 +54,11 @@ export const en = {
     'Communication protocol could not be updated',
   [MESSAGES_KEYS.ERROR_MESSAGE_CHECK_LOGS]: 'Check logs for more details',
   [MESSAGES_KEYS.SETTINGS_CONNECTION_PROTCOL_TITLE]: 'Communication protocol',
+  [MESSAGES_KEYS.SETTINGS_CONNECTION_PROTCOL_DESCRIPTION]:
+    'You can modify the communication protocol with the server as well as the parameters of each mode. Use the "Check connection" button to verify that the configuration is correct',
   [MESSAGES_KEYS.SETTINGS_FILESYSTEM_TITLE]: 'Server files',
+  [MESSAGES_KEYS.SETTINGS_FILESYSTEM_DESCRIPTION]:
+    'You can manage important files that are located on the server. The clibs folder contains the C libraries to which the instrument commands that require it can be associated. In the database folder are the files that determine the registered instruments and commands. Finally, the experiments folder, can be used to save processing scripts or results of specific experiences',
   [MESSAGES_KEYS.SETTINGS_FILESYSTEM_TOOLTIP_CREATE_DIRECTORY]: 'New folder',
   [MESSAGES_KEYS.SETTINGS_FILESYSTEM_TOOLTIP_UPLOAD_FILE]: 'Upload file',
   [MESSAGES_KEYS.SETTINGS_FILESYSTEM_TOOLTIP_DELETE_DIRECTORY]: 'Delete folder',
@@ -65,7 +69,7 @@ export const en = {
   [MESSAGES_KEYS.SETTINGS_FILESYSTEM_DELETE_DIRECTORY_MODAL_TITLE]: 'Delete folder',
   [MESSAGES_KEYS.SETTINGS_FILESYSTEM_DELETE_DIRECTORY_MODAL_DESCRIPTION]:
     'Do you confirm to delete the folder {}? Take in consideration that ALL its content will be deleted.',
-  [MESSAGES_KEYS.SETTINGS_FILESYSTEM_UPLOAD_FILE_FEEDBACK]: 'Uploading file...',
+  [MESSAGES_KEYS.SETTINGS_FILESYSTEM_UPLOAD_FILE_FEEDBACK]: 'Uploading file {} of {}...',
   [MESSAGES_KEYS.SETTINGS_FILESYSTEM_UPLOAD_FILE_SUCCESS]: 'File uploaded successfully',
   [MESSAGES_KEYS.SETTINGS_FILESYSTEM_UPLOAD_FILE_ERROR]: 'File could not be upload',
   [MESSAGES_KEYS.SETTINGS_FILESYSTEM_NEW_DIRECTORY_TITLE]: 'New folder',

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Heading } from '@chakra-ui/react';
+import { Heading, Text } from '@chakra-ui/react';
 import Card from '../../components/Card/Card';
 import PageBody from '../../components/Layout/PageBody/PageBody';
 import { useFormatMessage } from '../../i18n/hooks/useFormatMessage';
@@ -12,6 +12,9 @@ const SettingsSubsectionHeading = ({ children }) => (
     {children}
   </Heading>
 );
+
+const SettingsSubsectionDescription = ({ children }) => <Text mb={4}>{children}</Text>;
+
 const SettingsSubsectionCard = ({ children }) => (
   <Card w="100%" mb={8}>
     {children}
@@ -27,12 +30,18 @@ export default function SettingsPage() {
         <SettingsSubsectionHeading size="lg">
           {formatMessage(MESSAGES_KEYS.SETTINGS_CONNECTION_PROTCOL_TITLE)}
         </SettingsSubsectionHeading>
+        <SettingsSubsectionDescription>
+          {formatMessage(MESSAGES_KEYS.SETTINGS_CONNECTION_PROTCOL_DESCRIPTION)}
+        </SettingsSubsectionDescription>
         <CommunicationProtocolSettings />
       </SettingsSubsectionCard>
       <SettingsSubsectionCard>
         <SettingsSubsectionHeading size="lg">
           {formatMessage(MESSAGES_KEYS.SETTINGS_FILESYSTEM_TITLE)}
         </SettingsSubsectionHeading>
+        <SettingsSubsectionDescription>
+          {formatMessage(MESSAGES_KEYS.SETTINGS_FILESYSTEM_DESCRIPTION)}
+        </SettingsSubsectionDescription>
         <FilesystemSettings />
       </SettingsSubsectionCard>
     </PageBody>

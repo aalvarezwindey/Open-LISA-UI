@@ -54,7 +54,11 @@ export const es = {
     'No se pudo actualizar el protocolo de comunicación',
   [MESSAGES_KEYS.ERROR_MESSAGE_CHECK_LOGS]: 'Revisá los logs para más detalles',
   [MESSAGES_KEYS.SETTINGS_CONNECTION_PROTCOL_TITLE]: 'Protocolo de comunicación',
+  [MESSAGES_KEYS.SETTINGS_CONNECTION_PROTCOL_DESCRIPTION]:
+    'Podés modificar el protocolo de comunicación con el servidor así como también los parámetros de cada modo. Usá el botón de "Probar conexión" para verificar que la configuración es correcta',
   [MESSAGES_KEYS.SETTINGS_FILESYSTEM_TITLE]: 'Archivos en el servidor',
+  [MESSAGES_KEYS.SETTINGS_FILESYSTEM_DESCRIPTION]:
+    'Podés gestionar los archivos de importancia que se ubican en el servidor. En la carpeta clibs se ubican las librerías C a las que se pueden asociar los comandos de instrumentos que lo precisan. En la carpeta database están los archivos que determinan los instrumentos y comandos registrados. Por último la carpeta experiments puede ser utilizada para guardar scripts de procesamiento o resultados de experiencias específicas.',
   [MESSAGES_KEYS.SETTINGS_FILESYSTEM_TOOLTIP_CREATE_DIRECTORY]: 'Nueva carpeta',
   [MESSAGES_KEYS.SETTINGS_FILESYSTEM_TOOLTIP_UPLOAD_FILE]: 'Cargar archivo',
   [MESSAGES_KEYS.SETTINGS_FILESYSTEM_TOOLTIP_DELETE_DIRECTORY]: 'Borrar carpeta',
