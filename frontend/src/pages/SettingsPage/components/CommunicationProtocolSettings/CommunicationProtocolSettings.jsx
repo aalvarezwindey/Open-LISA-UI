@@ -6,6 +6,7 @@ import useForm from '../../../../hooks/useForm';
 import useNotifier from '../../../../hooks/useNotifier';
 import { useFormatMessage } from '../../../../i18n/hooks/useFormatMessage';
 import { MESSAGES_KEYS } from '../../../../i18n/messages/keys';
+import { logger } from '../../../../logger';
 import checkServerConnection from '../../../../services/instruments/checkServerConnection';
 import updateConnectionProtocol from '../../../../services/instruments/updateConnectionProtocol';
 import SerialConfigurationForm, {
@@ -63,7 +64,7 @@ export default function CommunicationProtocolSettings() {
       await updateConnectionProtocol(newProtocol);
       setTabIndex(index);
     } catch (err) {
-      console.error('[PROTOCOL_UPDATE_ERROR', err);
+      logger.error('[PROTOCOL_UPDATE_ERROR', err);
       notifyError(
         formatMessage(MESSAGES_KEYS.SETTINGS_FAILED_CHECK_CONNECTION_TITLE),
         formatMessage(MESSAGES_KEYS.ERROR_MESSAGE_CHECK_LOGS),
@@ -80,7 +81,7 @@ export default function CommunicationProtocolSettings() {
         formatMessage(MESSAGES_KEYS.SETTINGS_SUCCESSFUL_CHECK_CONNECTION_DESCRIPTION),
       );
     } catch (err) {
-      console.error('[PROTOCOL_UPDATE_ERROR', err);
+      logger.error('[PROTOCOL_UPDATE_ERROR', err);
       notifyError(
         formatMessage(MESSAGES_KEYS.SETTINGS_FAILED_CHECK_CONNECTION_TITLE),
         formatMessage(MESSAGES_KEYS.ERROR_MESSAGE_CHECK_LOGS),
