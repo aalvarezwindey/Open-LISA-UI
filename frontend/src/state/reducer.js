@@ -10,6 +10,12 @@ export const reducer = (state = INITIAL_STATE, action) => {
         [STATE_KEYS.LANGUAGE]: payload[STATE_KEYS.LANGUAGE],
       };
     }
+    case ACTION_TYPE.UPDATE_GLOBAL_LOADING: {
+      return {
+        ...state,
+        [STATE_KEYS.GLOBAL_LOADING]: payload[STATE_KEYS.GLOBAL_LOADING],
+      };
+    }
     default:
       return state;
   }

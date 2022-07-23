@@ -23,6 +23,22 @@ export const SCPI_COMMAND_FIELD_NAMES = {
   PARAMS: 'params',
 };
 
+export const NEW_DIRECTORY_FIELD_NAMES = {
+  DIRECTORY: 'directory',
+};
+
+export const FILESYSTEM_ACTIONS = {
+  DELETE: 'delete',
+  UPLOAD_FILE: 'upload_file',
+  CREATE_DIRECTORY: 'create_directory',
+};
+
+export const FILESYSTEM_SUPPORTED_DIRECTORIES = {
+  CLIBS: 'CLIBS',
+  EXPERIMENTS: 'EXPERIMENTS',
+  DATABASE: 'DATABASE',
+};
+
 export const SCPI_COMMAND_TYPES = [
   {
     label: 'Set',

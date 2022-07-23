@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { Progress, useBoolean, useDisclosure } from '@chakra-ui/react';
+import { useBoolean, useDisclosure } from '@chakra-ui/react';
 import BasicModal from '../../components/BasicModal/BasicModal';
 import DestructiveDialog from '../../components/DestructiveDialog/DestructiveDialog';
 import PageBody from '../../components/Layout/PageBody/PageBody';
@@ -9,6 +9,7 @@ import InstrumentForm, {
 } from '../../domain/components/InstrumentForm/InstrumentForm';
 import { INSTRUMENT_FIELD_NAMES } from '../../domain/constants';
 import useForm from '../../hooks/useForm';
+import { useGlobalLoadingFeedback } from '../../hooks/useGlobalLoadingFeedback';
 import useInstrumentDetail from '../../hooks/useInstrumentDetail';
 import { useFormatMessage } from '../../i18n/hooks/useFormatMessage';
 import { MESSAGES_KEYS } from '../../i18n/messages/keys';
@@ -39,6 +40,7 @@ export default function InstrumentDetailPage() {
     refetch: refetchInstrumentDetail,
     isLoading: isFetchingInstrumentDetail,
   } = useInstrumentDetail(instrumentId);
+  const showLoadingFeedback = useGlobalLoadingFeedback(isFetchingInstrumentDetail);
   const { isValid, reset, displayErrors, updateField, ...formProps } = useForm({
     fields: InstrumentFormFileds,
   });
@@ -101,8 +103,8 @@ export default function InstrumentDetailPage() {
     closeEditModal();
   };
 
-  if (isFetchingInstrumentDetail) {
-    return <Progress size="xs" isIndeterminate />;
+  if (showLoadingFeedback) {
+    return null;
   }
 
   return (

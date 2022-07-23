@@ -52,5 +52,34 @@ export const en = {
     'Server could be detected with the configuration specified',
   [MESSAGES_KEYS.SETTINGS_FAILED_CHECK_CONNECTION_TITLE]:
     'Communication protocol could not be updated',
-  [MESSAGES_KEYS.SETTINGS_FAILED_CHECK_CONNECTION_DESCRIPTION]: 'Check logs for more details',
+  [MESSAGES_KEYS.ERROR_MESSAGE_CHECK_LOGS]: 'Check logs for more details',
+  [MESSAGES_KEYS.SETTINGS_CONNECTION_PROTCOL_TITLE]: 'Communication protocol',
+  [MESSAGES_KEYS.SETTINGS_CONNECTION_PROTCOL_DESCRIPTION]:
+    'You can modify the communication protocol with the server as well as the parameters of each mode. Use the "Check connection" button to verify that the configuration is correct',
+  [MESSAGES_KEYS.SETTINGS_FILESYSTEM_TITLE]: 'Server files',
+  [MESSAGES_KEYS.SETTINGS_FILESYSTEM_DESCRIPTION]:
+    'You can manage important files that are located on the server. The clibs folder contains the C libraries to which the instrument commands that require it can be associated. In the database folder are the files that determine the registered instruments and commands. Finally, the experiments folder, can be used to save processing scripts or results of specific experiences',
+  [MESSAGES_KEYS.SETTINGS_FILESYSTEM_TOOLTIP_CREATE_DIRECTORY]: 'New folder',
+  [MESSAGES_KEYS.SETTINGS_FILESYSTEM_TOOLTIP_UPLOAD_FILE]: 'Upload file',
+  [MESSAGES_KEYS.SETTINGS_FILESYSTEM_TOOLTIP_DELETE_DIRECTORY]: 'Delete folder',
+  [MESSAGES_KEYS.SETTINGS_FILESYSTEM_TOOLTIP_DELETE_FILE]: 'Delete file',
+  [MESSAGES_KEYS.SETTINGS_FILESYSTEM_DELETE_FILE_MODAL_TITLE]: 'Delete file',
+  [MESSAGES_KEYS.SETTINGS_FILESYSTEM_DELETE_FILE_MODAL_DESCRIPTION]:
+    'Do you confirm to delete the file {}?',
+  [MESSAGES_KEYS.SETTINGS_FILESYSTEM_DELETE_DIRECTORY_MODAL_TITLE]: 'Delete folder',
+  [MESSAGES_KEYS.SETTINGS_FILESYSTEM_DELETE_DIRECTORY_MODAL_DESCRIPTION]:
+    'Do you confirm to delete the folder {}? Take in consideration that ALL its content will be deleted.',
+  [MESSAGES_KEYS.SETTINGS_FILESYSTEM_UPLOAD_FILE_FEEDBACK]: 'Uploading file {} of {}...',
+  [MESSAGES_KEYS.SETTINGS_FILESYSTEM_UPLOAD_FILE_SUCCESS]: 'File uploaded successfully',
+  [MESSAGES_KEYS.SETTINGS_FILESYSTEM_UPLOAD_FILE_ERROR]: 'File could not be upload',
+  [MESSAGES_KEYS.SETTINGS_FILESYSTEM_NEW_DIRECTORY_TITLE]: 'New folder',
+  [MESSAGES_KEYS.SETTINGS_FILESYSTEM_NEW_DIRECTORY_LABEL]: 'Name',
+  [MESSAGES_KEYS.SETTINGS_FILESYSTEM_NEW_DIRECTORY_ERROR]:
+    'New folder can not contain any of the following characters: {}',
+  [MESSAGES_KEYS.SETTINGS_FILESYSTEM_DIRECTORY_CREATION_SUCCESS]: 'Folder created',
+  [MESSAGES_KEYS.SETTINGS_FILESYSTEM_DIRECTORY_CREATION_ERROR]: 'The folder could not be created',
+  [MESSAGES_KEYS.SETTINGS_FILESYSTEM_DIRECTORY_DELETE_ERROR]: 'The folder could not be deleted',
+  [MESSAGES_KEYS.SETTINGS_FILESYSTEM_FILE_DELETE_ERROR]: 'The file could not be deleted',
+  [MESSAGES_KEYS.SETTINGS_FILESYSTEM_DIRECTORY_DELETE_SUCCESS]: 'Folder deleted',
+  [MESSAGES_KEYS.SETTINGS_FILESYSTEM_FILE_DELETE_SUCCESS]: 'File deleted',
 };

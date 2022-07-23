@@ -60,5 +60,33 @@ export const MESSAGES_KEYS = {
   SETTINGS_SUCCESSFUL_CHECK_CONNECTION_DESCRIPTION:
     'settings.page.successful.check.connection.description',
   SETTINGS_FAILED_CHECK_CONNECTION_TITLE: 'settings.page.failed.check.connection.title',
-  SETTINGS_FAILED_CHECK_CONNECTION_DESCRIPTION: 'settings.page.failed.check.connection.description',
+  ERROR_MESSAGE_CHECK_LOGS: 'error.message.check.logs',
+  SETTINGS_CONNECTION_PROTCOL_TITLE: 'settings.page.connection.protocol.title',
+  SETTINGS_CONNECTION_PROTCOL_DESCRIPTION: 'settings.page.connection.protocol.description',
+  SETTINGS_FILESYSTEM_TITLE: 'settings.page.filesystem.title',
+  SETTINGS_FILESYSTEM_DESCRIPTION: 'settings.page.filesystem.description',
+  SETTINGS_FILESYSTEM_TOOLTIP_CREATE_DIRECTORY: 'settings.page.filesystem.tooltip.create.directory',
+  SETTINGS_FILESYSTEM_TOOLTIP_UPLOAD_FILE: 'settings.page.filesystem.tooltip.upload.file',
+  SETTINGS_FILESYSTEM_TOOLTIP_DELETE_DIRECTORY: 'settings.page.filesystem.tooltip.delete.directory',
+  SETTINGS_FILESYSTEM_TOOLTIP_DELETE_FILE: 'settings.page.filesystem.tooltip.delete.file',
+  SETTINGS_FILESYSTEM_DELETE_FILE_MODAL_TITLE: 'settings.page.filesystem.delete.file.modal.title',
+  SETTINGS_FILESYSTEM_DELETE_FILE_MODAL_DESCRIPTION:
+    'settings.page.filesystem.delete.file.modal.description',
+  SETTINGS_FILESYSTEM_DELETE_DIRECTORY_MODAL_TITLE:
+    'settings.page.filesystem.delete.directory.modal.title',
+  SETTINGS_FILESYSTEM_DELETE_DIRECTORY_MODAL_DESCRIPTION:
+    'settings.page.filesystem.delete.directory.modal.description',
+  SETTINGS_FILESYSTEM_UPLOAD_FILE_FEEDBACK: 'settings.page.filesystem.upload.file.feedback',
+  SETTINGS_FILESYSTEM_UPLOAD_FILE_SUCCESS: 'settings.page.filesystem.upload.file.success',
+  SETTINGS_FILESYSTEM_UPLOAD_FILE_ERROR: 'settings.page.filesystem.upload.file.error',
+  SETTINGS_FILESYSTEM_NEW_DIRECTORY_TITLE: 'settings.page.filesystem.new.directory.title',
+  SETTINGS_FILESYSTEM_NEW_DIRECTORY_LABEL: 'settings.page.filesystem.new.directory.label',
+  SETTINGS_FILESYSTEM_NEW_DIRECTORY_ERROR: 'settings.page.filesystem.new.directory.error',
+  SETTINGS_FILESYSTEM_DIRECTORY_CREATION_SUCCESS:
+    'settings.page.filesystem.directory.creation.success',
+  SETTINGS_FILESYSTEM_DIRECTORY_CREATION_ERROR: 'settings.page.filesystem.directory.creation.error',
+  SETTINGS_FILESYSTEM_DIRECTORY_DELETE_ERROR: 'settings.page.filesystem.directory.delete.error',
+  SETTINGS_FILESYSTEM_FILE_DELETE_ERROR: 'settings.page.filesystem.file.delete.error',
+  SETTINGS_FILESYSTEM_DIRECTORY_DELETE_SUCCESS: 'settings.page.filesystem.directory.delete.success',
+  SETTINGS_FILESYSTEM_FILE_DELETE_SUCCESS: 'settings.page.filesystem.file.delete.success',
 };

@@ -16,8 +16,8 @@ export const es = {
   [MESSAGES_KEYS.INSTRUMENT_DETAIL_DESTRUCTIVE_MODAL_CONFIRM_LABEL]: 'Eliminar',
   [MESSAGES_KEYS.INSTRUMENT_DETAIL_DESTRUCTIVE_MODAL_CANCEL_LABEL]: 'Cancelar',
 
-  [MESSAGES_KEYS.INSTRUMENT_FORM_EMPTY_BRAND_ERROR]: 'Debe ingresar una marca',
-  [MESSAGES_KEYS.INSTRUMENT_FORM_EMPTY_MODEL_ERROR]: 'Debe ingresar un modelo',
+  [MESSAGES_KEYS.INSTRUMENT_FORM_EMPTY_BRAND_ERROR]: 'Tenés que ingresar una marca',
+  [MESSAGES_KEYS.INSTRUMENT_FORM_EMPTY_MODEL_ERROR]: 'Tenés que ingresar un modelo',
   [MESSAGES_KEYS.INSTRUMENT_FORM_NEW_TITLE]: 'Nuevo instrumento',
   [MESSAGES_KEYS.INSTRUMENT_FORM_NEW_CONFIRM_LABEL]: 'Crear instrumento',
   [MESSAGES_KEYS.INSTRUMENT_FORM_NEW_CANCEL_LABEL]: 'Cancelar',
@@ -29,11 +29,11 @@ export const es = {
   [MESSAGES_KEYS.INSTRUMENT_FORM_FIELD_PHYSICAL_ADDRESS_LABEL]: 'Dirección física',
   [MESSAGES_KEYS.INSTRUMENT_FORM_FIELD_PHYSICAL_ADDRESS_OTHER_LABEL]: 'Otra',
   [MESSAGES_KEYS.INSTRUMENT_FORM_FIELD_DESCRIPTION_LABEL]: 'Descripción',
-  [MESSAGES_KEYS.INSTRUMENT_FORM_FIELD_IMAGE_LABEL]: 'Elija una imagen',
+  [MESSAGES_KEYS.INSTRUMENT_FORM_FIELD_IMAGE_LABEL]: 'Elegí una imagen',
   [MESSAGES_KEYS.INSTRUMENT_FORM_FIELD_PHYSICAL_ADDRESS_PLACEHOLDER]:
-    'Seleccione una de las direcciones detectadas',
+    'Seleccioná una de las direcciones detectadas',
   [MESSAGES_KEYS.INSTRUMENT_FORM_FIELD_DESCRIPTION_PLACEHOLDER]:
-    'Opcionalmente ingrese un detalle sobre el instrumento',
+    'Opcionalmente ingresá un detalle sobre el instrumento',
   [MESSAGES_KEYS.INSTRUMENT_FORM_FIELD_PHYSICAL_ADDRESS_HELP_FOR_CLIB]:
     'La dirección física solo es necesaria para instrumentos que implementan el protocolo SCPI',
   [MESSAGES_KEYS.INSTRUMENT_FORM_EDIT_TITLE]: 'Editar instrumento',
@@ -52,5 +52,34 @@ export const es = {
     'Se ha podido detectar el servidor con la configuración especificada',
   [MESSAGES_KEYS.SETTINGS_FAILED_CHECK_CONNECTION_TITLE]:
     'No se pudo actualizar el protocolo de comunicación',
-  [MESSAGES_KEYS.SETTINGS_FAILED_CHECK_CONNECTION_DESCRIPTION]: 'Revise los logs para más detalles',
+  [MESSAGES_KEYS.ERROR_MESSAGE_CHECK_LOGS]: 'Revisá los logs para más detalles',
+  [MESSAGES_KEYS.SETTINGS_CONNECTION_PROTCOL_TITLE]: 'Protocolo de comunicación',
+  [MESSAGES_KEYS.SETTINGS_CONNECTION_PROTCOL_DESCRIPTION]:
+    'Podés modificar el protocolo de comunicación con el servidor así como también los parámetros de cada modo. Usá el botón de "Probar conexión" para verificar que la configuración es correcta',
+  [MESSAGES_KEYS.SETTINGS_FILESYSTEM_TITLE]: 'Archivos en el servidor',
+  [MESSAGES_KEYS.SETTINGS_FILESYSTEM_DESCRIPTION]:
+    'Podés gestionar los archivos de importancia que se ubican en el servidor. En la carpeta clibs se ubican las librerías C a las que se pueden asociar los comandos de instrumentos que lo precisan. En la carpeta database están los archivos que determinan los instrumentos y comandos registrados. Por último la carpeta experiments puede ser utilizada para guardar scripts de procesamiento o resultados de experiencias específicas.',
+  [MESSAGES_KEYS.SETTINGS_FILESYSTEM_TOOLTIP_CREATE_DIRECTORY]: 'Nueva carpeta',
+  [MESSAGES_KEYS.SETTINGS_FILESYSTEM_TOOLTIP_UPLOAD_FILE]: 'Cargar archivo',
+  [MESSAGES_KEYS.SETTINGS_FILESYSTEM_TOOLTIP_DELETE_DIRECTORY]: 'Borrar carpeta',
+  [MESSAGES_KEYS.SETTINGS_FILESYSTEM_TOOLTIP_DELETE_FILE]: 'Borrar archivo',
+  [MESSAGES_KEYS.SETTINGS_FILESYSTEM_DELETE_FILE_MODAL_TITLE]: 'Eliminar archivo',
+  [MESSAGES_KEYS.SETTINGS_FILESYSTEM_DELETE_FILE_MODAL_DESCRIPTION]:
+    '¿Estás seguro que querés eliminar el archivo {}?',
+  [MESSAGES_KEYS.SETTINGS_FILESYSTEM_DELETE_DIRECTORY_MODAL_TITLE]: 'Eliminar carpeta',
+  [MESSAGES_KEYS.SETTINGS_FILESYSTEM_DELETE_DIRECTORY_MODAL_DESCRIPTION]:
+    '¿Estás seguro que querés eliminar la carpeta {}? Tené en cuenta que eliminás TODO su contenido.',
+  [MESSAGES_KEYS.SETTINGS_FILESYSTEM_UPLOAD_FILE_FEEDBACK]: 'Cargando archivo {} de {}...',
+  [MESSAGES_KEYS.SETTINGS_FILESYSTEM_UPLOAD_FILE_SUCCESS]: 'El archivo se cargó exitosamente',
+  [MESSAGES_KEYS.SETTINGS_FILESYSTEM_UPLOAD_FILE_ERROR]: 'No se pudo cargar el archivo',
+  [MESSAGES_KEYS.SETTINGS_FILESYSTEM_NEW_DIRECTORY_TITLE]: 'Nueva carpeta',
+  [MESSAGES_KEYS.SETTINGS_FILESYSTEM_NEW_DIRECTORY_LABEL]: 'Nombre',
+  [MESSAGES_KEYS.SETTINGS_FILESYSTEM_NEW_DIRECTORY_ERROR]:
+    'La nueva carpeta no puede contener ninguno de los siguientes caracteres: {}',
+  [MESSAGES_KEYS.SETTINGS_FILESYSTEM_DIRECTORY_CREATION_SUCCESS]: 'Carpeta creada',
+  [MESSAGES_KEYS.SETTINGS_FILESYSTEM_DIRECTORY_CREATION_ERROR]: 'No se pudo crear la carpeta',
+  [MESSAGES_KEYS.SETTINGS_FILESYSTEM_DIRECTORY_DELETE_ERROR]: 'No se pudo eliminar la carpeta',
+  [MESSAGES_KEYS.SETTINGS_FILESYSTEM_FILE_DELETE_ERROR]: 'No se pudo eliminar el archivo',
+  [MESSAGES_KEYS.SETTINGS_FILESYSTEM_DIRECTORY_DELETE_SUCCESS]: 'Carpeta eliminada',
+  [MESSAGES_KEYS.SETTINGS_FILESYSTEM_FILE_DELETE_SUCCESS]: 'Archivo eliminado',
 };
