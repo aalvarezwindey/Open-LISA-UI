@@ -1,5 +1,5 @@
 import React from 'react';
-import { Progress, useBoolean, useDisclosure } from '@chakra-ui/react';
+import { useBoolean, useDisclosure } from '@chakra-ui/react';
 import BasicModal from '../../components/BasicModal/BasicModal';
 import NewButton from '../../components/Buttons/NewButton/NewButton';
 import PageBody from '../../components/Layout/PageBody/PageBody';
@@ -8,6 +8,7 @@ import InstrumentForm, {
 } from '../../domain/components/InstrumentForm/InstrumentForm';
 import InstrumentsList from '../../domain/components/InstrumentsList/InstrumentsList';
 import useForm from '../../hooks/useForm';
+import { useGlobalLoadingFeedback } from '../../hooks/useGlobalLoadingFeedback';
 import useInstruments from '../../hooks/useInstruments';
 import { useFormatMessage } from '../../i18n/hooks/useFormatMessage';
 import { MESSAGES_KEYS } from '../../i18n/messages/keys';
@@ -17,6 +18,7 @@ import { objectKeysCamelCaseToUnderscore } from '../../utils/object/camelCaseToU
 
 export default function InstrumentsPage() {
   const { data: instruments, refetch, isLoading } = useInstruments();
+  const showLoadingFeedback = useGlobalLoadingFeedback(isLoading);
   const formatMessage = useFormatMessage();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [submittingNewInstrument, { on: submittingOn, off: submittingOff }] = useBoolean(false);
@@ -46,8 +48,8 @@ export default function InstrumentsPage() {
     }
   };
 
-  if (isLoading) {
-    return <Progress size="xs" isIndeterminate />;
+  if (showLoadingFeedback) {
+    return null;
   }
 
   return (

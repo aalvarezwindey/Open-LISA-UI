@@ -66,7 +66,7 @@ export default function CommunicationProtocolSettings() {
       console.error('[PROTOCOL_UPDATE_ERROR', err);
       notifyError(
         formatMessage(MESSAGES_KEYS.SETTINGS_FAILED_CHECK_CONNECTION_TITLE),
-        formatMessage(MESSAGES_KEYS.SETTINGS_FAILED_CHECK_CONNECTION_DESCRIPTION),
+        formatMessage(MESSAGES_KEYS.ERROR_MESSAGE_CHECK_LOGS),
       );
     }
   };
@@ -83,7 +83,7 @@ export default function CommunicationProtocolSettings() {
       console.error('[PROTOCOL_UPDATE_ERROR', err);
       notifyError(
         formatMessage(MESSAGES_KEYS.SETTINGS_FAILED_CHECK_CONNECTION_TITLE),
-        formatMessage(MESSAGES_KEYS.SETTINGS_FAILED_CHECK_CONNECTION_DESCRIPTION),
+        formatMessage(MESSAGES_KEYS.ERROR_MESSAGE_CHECK_LOGS),
       );
     } finally {
       setCheckingConnection(false);
