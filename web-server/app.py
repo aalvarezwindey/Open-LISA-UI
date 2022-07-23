@@ -1,13 +1,14 @@
 import logging
 import json
 import os
+import time
 import traceback
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 from app.domain.settings import ConnectionProtocol
 from app.domain.repositories.instruments_repository import InstrumentRepository
 from app.config.config import load_config
-from app.http import errors
+from app.http import errors, mock_responses
 
 env = os.environ["ENV"] if "ENV" in os.environ else "dev"
 load_config(env)
@@ -168,6 +169,107 @@ def connection_protocol_health_check():
         traceback.print_exc()
         logging.error(
             "[connection_protocol_health_check] error {}".format(str(e)))
+        return errors.BAD_REQUEST(msg=str(e))
+
+
+# Filesystem routes
+
+
+@app.route("/files", methods=['POST'])
+def upload_file():
+    try:
+        file_path_to_save = request.form["path"]
+        file_name = request.form["name"]
+        file_size = request.form["size"]
+        file_storage = request.files["file"]
+        file_bytes = file_storage.read()
+        assert int(len(file_bytes)) == int(file_size)
+        time.sleep(2)
+
+        # TODO: send file_bytes through SDK
+
+        return ('', 200)
+    except Exception as e:
+        traceback.print_exc()
+        logging.error(
+            "[upload_file] error {}".format(str(e)))
+        return errors.BAD_REQUEST(msg=str(e))
+
+
+@app.route("/files", methods=['DELETE'])
+def delete_file():
+    try:
+        file_path = request.args.get('file_path')
+        print("this will delete {} file".format(
+            file_path))
+        time.sleep(2)
+
+        # TODO: delete file through SDK
+
+        return ('', 200)
+    except Exception as e:
+        traceback.print_exc()
+        logging.error(
+            "[delete_file] error {}".format(str(e)))
+        return errors.BAD_REQUEST(msg=str(e))
+
+
+SUPPORTED_DIRECTORIES = ["CLIBS", "DATABASE", "EXPERIMENTS"]
+
+
+@app.route("/directories", methods=['GET'])
+def get_directory():
+    try:
+        directory = request.args.get('directory')
+        assert directory in SUPPORTED_DIRECTORIES
+        print("this will get the {} folder".format(directory))
+        time.sleep(2)
+
+        # TODO: get directory through SDK
+
+        return (jsonify(mock_responses.MOCK_DIR), 200)
+    except Exception as e:
+        traceback.print_exc()
+        logging.error(
+            "[get_directoryº] error {}".format(str(e)))
+        return errors.BAD_REQUEST(msg=str(e))
+
+
+@app.route("/directories", methods=['POST'])
+def create_directory():
+    try:
+        payload = request.get_json()
+        directory_base_path = payload["base_path"]
+        new_directory_name = payload["new_directory_name"]
+        print("this will create {} folder".format(
+            directory_base_path + new_directory_name))
+        time.sleep(2)
+
+        # TODO: create directory through SDK
+
+        return ('', 200)
+    except Exception as e:
+        traceback.print_exc()
+        logging.error(
+            "[create_directory] error {}".format(str(e)))
+        return errors.BAD_REQUEST(msg=str(e))
+
+
+@app.route("/directories", methods=['DELETE'])
+def delete_directory():
+    try:
+        directory_path = request.args.get('directory_path')
+        print("this will delete {} folder".format(
+            directory_path))
+        time.sleep(2)
+
+        # TODO: delete file through SDK
+
+        return ('', 200)
+    except Exception as e:
+        traceback.print_exc()
+        logging.error(
+            "[delete_directory] error {}".format(str(e)))
         return errors.BAD_REQUEST(msg=str(e))
 
 
