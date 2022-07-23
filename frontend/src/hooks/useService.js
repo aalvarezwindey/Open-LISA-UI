@@ -4,8 +4,8 @@ export const useService = (serviceCall, options = {}) => {
   const [data, setData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
-  const refetch = useCallback(async () => serviceCall().then(setData), [serviceCall]);
-  useEffect(() => {
+  const fetchData = useCallback(async () => {
+    setIsLoading(true);
     serviceCall()
       .then((data) => {
         setData(data);
@@ -16,8 +16,11 @@ export const useService = (serviceCall, options = {}) => {
         if (options.onError) options.onError(err);
       })
       .finally(() => setIsLoading(false));
+  }, [serviceCall, options]);
+  useEffect(() => {
+    fetchData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  return { data, isLoading, error, refetch };
+  return { data, isLoading, error, refetch: fetchData };
 };
