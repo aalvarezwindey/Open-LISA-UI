@@ -22,3 +22,10 @@ def INTERNAL_SERVER_ERROR(msg="Internal server error"):
         "code": 'INTERNAL_SERVER_ERROR',
         "message": msg
     }), 500)
+
+
+def SERVICE_UNAVAILABLE(msg="Open LISA Server unavailable"):
+    return (jsonify({
+        "code": 'SERVICE_UNAVAILABLE',
+        "message": msg
+    }), 503)

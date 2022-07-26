@@ -16,6 +16,12 @@ export const reducer = (state = INITIAL_STATE, action) => {
         [STATE_KEYS.GLOBAL_LOADING]: payload[STATE_KEYS.GLOBAL_LOADING],
       };
     }
+    case ACTION_TYPE.UPDATE_OPEN_LISA_SERVER_CONNECTION_STATUS: {
+      return {
+        ...state,
+        [STATE_KEYS.OPEN_LISA_SERVER_ONLINE]: payload.isOnline,
+      };
+    }
     default:
       return state;
   }

@@ -76,3 +76,10 @@ export const SUPPORTED_LANGUAGES = {
   ENGLISH: 'en',
   SPANISH: 'es',
 };
+
+export const ERRORS = {
+  UNAVAILABLE_OPEN_LISA_SERVER: {
+    CODE: 'SERVICE_UNAVAILABLE',
+    STATUS: 503,
+  },
+};

@@ -9,6 +9,9 @@ import { MESSAGES_KEYS } from '../../../../i18n/messages/keys';
 import { logger } from '../../../../logger';
 import checkServerConnection from '../../../../services/instruments/checkServerConnection';
 import updateConnectionProtocol from '../../../../services/instruments/updateConnectionProtocol';
+import { updateOpenLISAServerConnectionStatus } from '../../../../state/actions/updateOpenLISAServerConnectionStatus';
+import { useAppDispatch } from '../../../../state/selectors/useAppDispatch';
+import { isOpenLISAServerUnavailableError } from '../../../../utils/errors/isOpenLISAServerUnavailableError';
 import SerialConfigurationForm, {
   SERIAL_CONFIGURATION_FIELD_NAMES,
   SerialConfigurationFormFileds,
@@ -28,6 +31,7 @@ const CONNECTION_PROTOCOLS = {
 };
 export default function CommunicationProtocolSettings() {
   const formatMessage = useFormatMessage();
+  const dispatch = useAppDispatch();
   const [checkingConnection, setCheckingConnection] = useState(false);
   const [tabIndex, setTabIndex] = useState();
   const { notifyError, notifySuccess } = useNotifier();
@@ -80,12 +84,17 @@ export default function CommunicationProtocolSettings() {
         formatMessage(MESSAGES_KEYS.SETTINGS_SUCCESSFUL_CHECK_CONNECTION_TITLE),
         formatMessage(MESSAGES_KEYS.SETTINGS_SUCCESSFUL_CHECK_CONNECTION_DESCRIPTION),
       );
+      updateOpenLISAServerConnectionStatus(dispatch, true);
     } catch (err) {
-      logger.error('[PROTOCOL_UPDATE_ERROR', err);
+      logger.error('[PROTOCOL_UPDATE_ERROR]', err);
       notifyError(
         formatMessage(MESSAGES_KEYS.SETTINGS_FAILED_CHECK_CONNECTION_TITLE),
         formatMessage(MESSAGES_KEYS.ERROR_MESSAGE_CHECK_LOGS),
       );
+
+      if (isOpenLISAServerUnavailableError(err?.response)) {
+        updateOpenLISAServerConnectionStatus(dispatch, false);
+      }
     } finally {
       setCheckingConnection(false);
     }

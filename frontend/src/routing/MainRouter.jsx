@@ -1,12 +1,14 @@
 import React from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import NavBar from '../components/NavBar/NavBar';
+import { useServerConnectionStatusUpdate } from '../hooks/useServerConnectionStatusUpdate';
 import InstrumentDetailPage from '../pages/InstrumentDetailPage/InstrumentDetailPage';
 import InstrumentsPage from '../pages/InstrumentsPage/InstrumentsPage';
 import SettingsPage from '../pages/SettingsPage/SettingsPage';
 import { ROUTES } from './routes';
 
 export default function MainRouter() {
+  useServerConnectionStatusUpdate();
   return (
     <>
       <NavBar />

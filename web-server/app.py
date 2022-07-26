@@ -19,6 +19,21 @@ STATIC_FILES_URL = os.environ["STATIC_FILES_URL"]
 FRONTEND_ORIGIN = os.environ["FRONTEND_ORIGIN"]
 cors = CORS(app, resources={r"*": {"origins": FRONTEND_ORIGIN}})
 
+# TODO: export this exception from SDK
+OPEN_LISA_SDK_COULD_NOT_CONNECT_TO_SERVER_EXCEPTION_NAME = 'CouldNotConnectToServerException'
+
+# Error handling
+
+
+@app.errorhandler(Exception)
+def error_handler(e):
+    logging.error('[error_handler] error {}'.format(e))
+
+    if type(e).__name__ == OPEN_LISA_SDK_COULD_NOT_CONNECT_TO_SERVER_EXCEPTION_NAME:
+        return errors.SERVICE_UNAVAILABLE()
+    else:
+        raise e
+
 
 # Instruments routes
 @app.route("/instruments", methods=['GET'])
@@ -28,7 +43,7 @@ def get_all_instruments():
     return (jsonify(instruments), 200)
 
 
-@ app.route("/instruments", methods=['POST'])
+@app.route("/instruments", methods=['POST'])
 def create_instrument():
     payload = request.get_json()
     try:
@@ -161,15 +176,9 @@ def update_connection_protocol():
 
 @app.route("/settings/connection-protocol/health-check", methods=['POST'])
 def connection_protocol_health_check():
-    try:
-        conn_protocol = ConnectionProtocol()
-        conn_protocol.check_connection()
-        return ('', 200)
-    except Exception as e:
-        traceback.print_exc()
-        logging.error(
-            "[connection_protocol_health_check] error {}".format(str(e)))
-        return errors.BAD_REQUEST(msg=str(e))
+    conn_protocol = ConnectionProtocol()
+    conn_protocol.check_connection()
+    return ('', 200)
 
 
 # Filesystem routes
