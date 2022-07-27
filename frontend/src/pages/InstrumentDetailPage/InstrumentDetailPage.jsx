@@ -103,7 +103,7 @@ export default function InstrumentDetailPage() {
     closeEditModal();
   };
 
-  if (showLoadingFeedback) {
+  if (showLoadingFeedback || !instrument) {
     return null;
   }
 

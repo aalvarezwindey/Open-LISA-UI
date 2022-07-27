@@ -18,9 +18,9 @@ export const INSTRUMENT_TYPES = {
 export const SCPI_COMMAND_FIELD_NAMES = {
   NAME: 'name',
   COMMAND: 'command',
-  TYPE: 'type',
   DESCRIPTION: 'description',
   PARAMS: 'params',
+  RETURN: 'return',
 };
 
 export const NEW_DIRECTORY_FIELD_NAMES = {
@@ -39,36 +39,44 @@ export const FILESYSTEM_SUPPORTED_DIRECTORIES = {
   DATABASE: 'DATABASE',
 };
 
-export const SCPI_COMMAND_TYPES = [
-  {
-    label: 'Set',
-    value: 'set',
-  },
-  {
-    label: 'Query',
-    value: 'query',
-  },
-  {
-    label: 'Query Buffer',
-    value: 'query_buffer',
-  },
-];
-
-export const SCPI_COMMAND_PARAM_VALUE_TYPES = [
+export const COMMAND_PARAM_VALUE_TYPES = [
   {
     label: 'int',
-    value: 'int',
+    value: 'INT',
     example: 1,
   },
   {
     label: 'float',
-    value: 'float',
+    value: 'FLOAT',
     example: 1.5,
   },
   {
     label: 'string',
-    value: 'string',
+    value: 'STRING',
     example: 'A',
+  },
+];
+
+export const COMMAND_RETURN_VALUE_TYPES = [
+  {
+    label: 'void',
+    value: 'VOID',
+  },
+  {
+    label: 'float',
+    value: 'FLOAT',
+  },
+  {
+    label: 'string',
+    value: 'STRING',
+  },
+  {
+    label: 'int',
+    value: 'INT',
+  },
+  {
+    label: 'bytes',
+    value: 'BYTES',
   },
 ];
 

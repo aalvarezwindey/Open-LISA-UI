@@ -1,17 +1,23 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Code, Table, TableContainer, Tbody, Td, Th, Thead, Tr } from '@chakra-ui/react';
-import InfoTooltip from '../../../../../components/InfoTooltip/InfoTooltip';
+import { useFormatMessage } from '../../../../../i18n/hooks/useFormatMessage';
+import { MESSAGES_KEYS } from '../../../../../i18n/messages/keys';
 
 function CommandsTable({ commands }) {
+  const formatMessage = useFormatMessage();
   return (
-    <TableContainer mt={4}>
+    <TableContainer mt={4} maxW="100vw">
       <Table variant="simple" size="lg">
         <Thead>
           <Tr>
-            <Th fontSize={16}>Nombre</Th>
-            <Th fontSize={16}>Comando</Th>
-            <Th fontSize={16}>Tipo</Th>
+            <Th fontSize={16}>{formatMessage(MESSAGES_KEYS.COMMAND_FORM_NAME_FIELD_LABEL)}</Th>
+            <Th fontSize={16}>
+              {formatMessage(MESSAGES_KEYS.COMMAND_FORM_INVOCATION_FIELD_LABEL)}
+            </Th>
+            <Th fontSize={16}>
+              {formatMessage(MESSAGES_KEYS.COMMAND_FORM_DESCRIPTION_FIELD_LABEL)}
+            </Th>
           </Tr>
         </Thead>
         <Tbody>
@@ -20,14 +26,18 @@ function CommandsTable({ commands }) {
               <Tr key={command.name}>
                 <Td>
                   <Code>{command.name}</Code>
-                  {command.description ? (
-                    <InfoTooltip ml={2}>{command.description}</InfoTooltip>
-                  ) : null}
                 </Td>
                 <Td>
                   <Code>{command.command}</Code>
                 </Td>
-                <Td>{command.type}</Td>
+                <Td
+                  textOverflow="ellipsis"
+                  overflow="hidden"
+                  maxWidth="300px"
+                  title={command.description}
+                >
+                  {command.description}
+                </Td>
               </Tr>
             );
           })}

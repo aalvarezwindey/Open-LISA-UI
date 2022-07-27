@@ -89,4 +89,29 @@ export const MESSAGES_KEYS = {
   SETTINGS_FILESYSTEM_FILE_DELETE_ERROR: 'settings.page.filesystem.file.delete.error',
   SETTINGS_FILESYSTEM_DIRECTORY_DELETE_SUCCESS: 'settings.page.filesystem.directory.delete.success',
   SETTINGS_FILESYSTEM_FILE_DELETE_SUCCESS: 'settings.page.filesystem.file.delete.success',
+
+  COMMAND_FORM_TITLE: 'command.form.title',
+  COMMAND_FORM_CONFIRM_LABEL: 'command.form.confirm.label',
+  COMMAND_FORM_CANCEL_LABEL: 'command.form.cancel.label',
+  COMMAND_FORM_NAME_FIELD_LABEL: 'command.form.name.field.label',
+  COMMAND_FORM_NAME_FIELD_HELP_TEXT: 'command.form.name.field.help.text',
+  COMMAND_FORM_NAME_FIELD_ERROR: 'command.form.name.field.error',
+  COMMAND_FORM_INVOCATION_FIELD_LABEL: 'command.form.invocation.field.label',
+  COMMAND_FORM_INVOCATION_FIELD_HELP_TEXT_SCPI: 'command.form.invocation.field.help.text.scpi',
+  COMMAND_FORM_INVOCATION_FIELD_ERROR: 'command.form.invocation.field.error',
+  COMMAND_FORM_DESCRIPTION_FIELD_LABEL: 'command.form.description.field.label',
+  COMMAND_FORM_DESCRIPTION_FIELD_PLACEHOLDER: 'command.form.description.field.placeholder',
+  COMMAND_FORM_PARAMETERS_FIELD_LABEL: 'command.form.parameters.field.label',
+  COMMAND_FORM_PARAMETERS_FIELD_TYPE_LABEL: 'command.form.parameters.field.type.label',
+  COMMAND_FORM_PARAMETERS_FIELD_DESCRIPTION_LABEL:
+    'command.form.parameters.field.description.label',
+  COMMAND_FORM_PARAMETERS_FIELD_DESCRIPTION_PLACEHOLDER:
+    'command.form.parameters.field.description.placeholder',
+  COMMAND_FORM_RETURN_FIELD_LABEL: 'command.form.return.field.label',
+  COMMAND_FORM_RETURN_FIELD_TYPE_LABEL: 'command.form.return.field.type.label',
+  COMMAND_FORM_RETURN_FIELD_DESCRIPTION_LABEL: 'command.form.return.field.description.label',
+  COMMAND_FORM_RETURN_FIELD_DESCRIPTION_PLACEHOLDER:
+    'command.form.return.field.description.placeholder',
+  COMMAND_FORM_INVOCATION_EXAMPLE: 'command.form.invocation.example',
+  COMMAND_FORM_SCPI_INVOCATION_EXAMPLE: 'command.form.scpi.invocation.example',
 };

@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import { Box, Heading, useBoolean, useDisclosure } from '@chakra-ui/react';
 import BasicModal from '../../../../components/BasicModal/BasicModal';
 import NewButton from '../../../../components/Buttons/NewButton/NewButton';
-import CommandForm, {
-  CommandFormFileds,
-} from '../../../../domain/components/CommandForm/CommandForm';
+import SCPICommandForm, {
+  SCPICommandFormFileds,
+} from '../../../../domain/components/CommandForm/SCPICommandForm/SCPICommandForm';
 import useForm from '../../../../hooks/useForm';
 import useInstrumentCommands from '../../../../hooks/useInstrumentCommands';
 import { useFormatMessage } from '../../../../i18n/hooks/useFormatMessage';
@@ -20,7 +20,7 @@ function InstrumentCommands({ instrumentId }) {
   const [submittingNewCommand, { on: submittingOn, off: submittingOff }] = useBoolean(false);
 
   const { isValid, reset, displayErrors, ...newCommandFormProps } = useForm({
-    fields: CommandFormFileds,
+    fields: SCPICommandFormFileds,
   });
 
   if (isLoading) {
@@ -57,17 +57,20 @@ function InstrumentCommands({ instrumentId }) {
       </Box>
       <CommandsTable commands={commands} />
       <BasicModal
-        title="Nuevo comando"
+        title={formatMessage(MESSAGES_KEYS.COMMAND_FORM_TITLE)}
         onClose={onClose}
         isOpen={isOpen}
         primaryAction={{
-          label: 'Crear comando',
+          label: formatMessage(MESSAGES_KEYS.COMMAND_FORM_CONFIRM_LABEL),
           onAction: handleCreateCommand,
           loading: submittingNewCommand,
         }}
-        secondaryAction={{ label: 'Cancelar', onAction: onClose }}
+        secondaryAction={{
+          label: formatMessage(MESSAGES_KEYS.COMMAND_FORM_CANCEL_LABEL),
+          onAction: onClose,
+        }}
       >
-        <CommandForm {...newCommandFormProps} />
+        <SCPICommandForm {...newCommandFormProps} />
       </BasicModal>
     </Box>
   );
