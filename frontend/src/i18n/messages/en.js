@@ -56,7 +56,7 @@ export const en = {
     'You can modify the communication protocol with the server as well as the parameters of each mode. Use the "Check connection" button to verify that the configuration is correct',
   [MK.SETTINGS_FILESYSTEM_TITLE]: 'Server files',
   [MK.SETTINGS_FILESYSTEM_DESCRIPTION]:
-    'You can manage important files that are located on the server. The clibs folder contains the C libraries to which the instrument commands that require it can be associated. In the database folder are the files that determine the registered instruments and commands. Finally, the experiments folder, can be used to save processing scripts or results of specific experiences',
+    'You can manage important files that are located on the server. The clibs folder contains the C libraries to which the instrument commands that require it can be associated. In the database folder are the files that determine the registered instruments and commands. Finally, the sandbox folder, can be used to save processing scripts or results of specific experiences',
   [MK.SETTINGS_FILESYSTEM_TOOLTIP_CREATE_DIRECTORY]: 'New folder',
   [MK.SETTINGS_FILESYSTEM_TOOLTIP_UPLOAD_FILE]: 'Upload file',
   [MK.SETTINGS_FILESYSTEM_TOOLTIP_DELETE_DIRECTORY]: 'Delete folder',

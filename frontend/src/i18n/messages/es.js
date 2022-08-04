@@ -56,7 +56,7 @@ export const es = {
     'Podés modificar el protocolo de comunicación con el servidor así como también los parámetros de cada modo. Usá el botón de "Probar conexión" para verificar que la configuración es correcta',
   [MK.SETTINGS_FILESYSTEM_TITLE]: 'Archivos en el servidor',
   [MK.SETTINGS_FILESYSTEM_DESCRIPTION]:
-    'Podés gestionar los archivos de importancia que se ubican en el servidor. En la carpeta clibs se ubican las librerías C a las que se pueden asociar los comandos de instrumentos que lo precisan. En la carpeta database están los archivos que determinan los instrumentos y comandos registrados. Por último la carpeta experiments puede ser utilizada para guardar scripts de procesamiento o resultados de experiencias específicas.',
+    'Podés gestionar los archivos de importancia que se ubican en el servidor. En la carpeta clibs se ubican las librerías C a las que se pueden asociar los comandos de instrumentos que lo precisan. En la carpeta database están los archivos que determinan los instrumentos y comandos registrados. Por último la carpeta sandbox puede ser utilizada para guardar scripts de procesamiento o resultados de experiencias específicas.',
   [MK.SETTINGS_FILESYSTEM_TOOLTIP_CREATE_DIRECTORY]: 'Nueva carpeta',
   [MK.SETTINGS_FILESYSTEM_TOOLTIP_UPLOAD_FILE]: 'Cargar archivo',
   [MK.SETTINGS_FILESYSTEM_TOOLTIP_DELETE_DIRECTORY]: 'Borrar carpeta',
@@ -83,7 +83,7 @@ export const es = {
 
   [MK.COMMAND_FORM_TITLE]: 'Nuevo comando',
   [MK.COMMAND_FORM_CONFIRM_LABEL]: 'Crear comando',
-  [MK.COMMAND_FORM_CANCEL_LABEL]: 'Camcelar',
+  [MK.COMMAND_FORM_CANCEL_LABEL]: 'Cancelar',
   [MK.COMMAND_FORM_NAME_FIELD_LABEL]: 'Nombre',
   [MK.COMMAND_FORM_NAME_FIELD_HELP_TEXT]:
     'El nombre del comando va a ser la sintaxis utilizada desde la SDK, no debe contener espacios en blanco',

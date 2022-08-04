@@ -27,7 +27,7 @@ const useServerDirectories = () => {
   const directories = [
     { name: 'clibs', type: 'directory', children: clibsDir },
     { name: 'databases', type: 'directory', children: databaseDir },
-    { name: 'experiments', type: 'directory', children: experimentsDir },
+    { name: 'sandbox', type: 'directory', children: experimentsDir },
   ];
 
   const refetch = useCallback(() => {
