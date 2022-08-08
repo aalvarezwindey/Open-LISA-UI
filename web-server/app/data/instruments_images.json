@@ -1,1 +1,59 @@
-{"data": [{"instrument_id": 1, "image_file_name": "none.png", "id": 208117115675927182}, {"instrument_id": 2, "image_file_name": "none.png", "id": 228436757929198700}, {"instrument_id": 284896639667707029, "image_file_name": "multimeter.png", "id": 208709990292326694}, {"instrument_id": 292973185934644472, "image_file_name": "multimeter.png", "id": 303947364333139074}, {"instrument_id": 274136625771765717, "image_file_name": "camera.png", "id": 142547282284640510}, {"instrument_id": 235008528861429682, "image_file_name": "functions_generator.png", "id": 669082413028875384}, {"instrument_id": 171503622302968561, "image_file_name": "multimeter.png", "id": 320755796551955976}, {"instrument_id": 255652983695016896, "image_file_name": "functions_generator.png", "id": 148599554644018456}, {"instrument_id": 300937096329098576, "image_file_name": "functions_generator.png", "id": 278326519539426756}, {"instrument_id": 273192875655031717, "image_file_name": "daq.png", "id": 282514415784129858}, {"instrument_id": 119320520532438119, "image_file_name": "multimeter.png", "id": 188325720959512736}]}
+{
+   "data": [
+      {
+         "instrument_id": 2,
+         "image_file_name": "none.png",
+         "id": 228436757929198700
+      },
+      {
+         "instrument_id": 284896639667707029,
+         "image_file_name": "multimeter.png",
+         "id": 208709990292326694
+      },
+      {
+         "instrument_id": 292973185934644472,
+         "image_file_name": "multimeter.png",
+         "id": 303947364333139074
+      },
+      {
+         "instrument_id": 274136625771765717,
+         "image_file_name": "camera.png",
+         "id": 142547282284640510
+      },
+      {
+         "instrument_id": 235008528861429682,
+         "image_file_name": "functions_generator.png",
+         "id": 669082413028875384
+      },
+      {
+         "instrument_id": 171503622302968561,
+         "image_file_name": "multimeter.png",
+         "id": 320755796551955976
+      },
+      {
+         "instrument_id": 255652983695016896,
+         "image_file_name": "functions_generator.png",
+         "id": 148599554644018456
+      },
+      {
+         "instrument_id": 300937096329098576,
+         "image_file_name": "functions_generator.png",
+         "id": 278326519539426756
+      },
+      {
+         "instrument_id": 273192875655031717,
+         "image_file_name": "daq.png",
+         "id": 282514415784129858
+      },
+      {
+         "instrument_id": 119320520532438119,
+         "image_file_name": "multimeter.png",
+         "id": 188325720959512736
+      },
+      {
+         "instrument_id": 1,
+         "image_file_name": "none.png",
+         "id": 314018312353910042
+      }
+   ]
+}
