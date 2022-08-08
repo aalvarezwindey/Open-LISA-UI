@@ -190,7 +190,7 @@ export default function FilesystemExplorer({
   fileActions,
   rootDirectoriesAreDeletable = true,
   deep = 0,
-  parentPath = '/',
+  parentPath = '',
 }) {
   if (!directoryTree?.length) return null;
 

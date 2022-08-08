@@ -55,6 +55,8 @@ export const es = {
   [MK.SETTINGS_CONNECTION_PROTCOL_DESCRIPTION]:
     'Podés modificar el protocolo de comunicación con el servidor así como también los parámetros de cada modo. Usá el botón de "Probar conexión" para verificar que la configuración es correcta',
   [MK.SETTINGS_FILESYSTEM_TITLE]: 'Archivos en el servidor',
+  [MK.SETTINGS_FILESYSTEM_LOAD_ERROR]:
+    'No se pudieron obtener las carpetas del servidor, verificá la conexión o revisá los logs para más detalles',
   [MK.SETTINGS_FILESYSTEM_DESCRIPTION]:
     'Podés gestionar los archivos de importancia que se ubican en el servidor. En la carpeta clibs se ubican las librerías C a las que se pueden asociar los comandos de instrumentos que lo precisan. En la carpeta database están los archivos que determinan los instrumentos y comandos registrados. Por último la carpeta sandbox puede ser utilizada para guardar scripts de procesamiento o resultados de experiencias específicas.',
   [MK.SETTINGS_FILESYSTEM_TOOLTIP_CREATE_DIRECTORY]: 'Nueva carpeta',

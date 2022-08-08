@@ -6,6 +6,7 @@ import traceback
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 from app.domain.settings import ConnectionProtocol
+from app.domain.filesystem.filemanager import FileManager, VALID_ROOT_FOLDERS
 from app.domain.repositories.instruments_repository import InstrumentRepository
 from app.config.config import load_config
 from app.http import errors, mock_responses
@@ -189,13 +190,12 @@ def upload_file():
     try:
         file_path_to_save = request.form["path"]
         file_name = request.form["name"]
-        file_size = request.form["size"]
         file_storage = request.files["file"]
         file_bytes = file_storage.read()
-        assert int(len(file_bytes)) == int(file_size)
-        time.sleep(2)
 
-        # TODO: send file_bytes through SDK
+        fm = FileManager()
+        fm.upload_file(file_target_path=file_path_to_save +
+                       file_name, file_data=file_bytes)
 
         return ('', 200)
     except Exception as e:
@@ -209,12 +209,8 @@ def upload_file():
 def delete_file():
     try:
         file_path = request.args.get('file_path')
-        print("this will delete {} file".format(
-            file_path))
-        time.sleep(2)
-
-        # TODO: delete file through SDK
-
+        fm = FileManager()
+        fm.delete_remote_file(file_target_path=file_path)
         return ('', 200)
     except Exception as e:
         traceback.print_exc()
@@ -223,24 +219,18 @@ def delete_file():
         return errors.BAD_REQUEST(msg=str(e))
 
 
-SUPPORTED_DIRECTORIES = ["CLIBS", "DATABASE", "EXPERIMENTS"]
-
-
 @app.route("/directories", methods=['GET'])
 def get_directory():
     try:
         directory = request.args.get('directory')
-        assert directory in SUPPORTED_DIRECTORIES
-        print("this will get the {} folder".format(directory))
-        time.sleep(2)
+        fm = FileManager()
+        result = fm.get_server_directory(directory=directory)
+        return (jsonify(result), 200)
 
-        # TODO: get directory through SDK
-
-        return (jsonify(mock_responses.MOCK_DIR), 200)
     except Exception as e:
         traceback.print_exc()
         logging.error(
-            "[get_directoryº] error {}".format(str(e)))
+            "[get_directory] error {}".format(str(e)))
         return errors.BAD_REQUEST(msg=str(e))
 
 

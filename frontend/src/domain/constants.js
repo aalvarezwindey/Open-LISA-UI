@@ -34,9 +34,9 @@ export const FILESYSTEM_ACTIONS = {
 };
 
 export const FILESYSTEM_SUPPORTED_DIRECTORIES = {
-  CLIBS: 'CLIBS',
-  EXPERIMENTS: 'EXPERIMENTS',
-  DATABASE: 'DATABASE',
+  CLIBS: 'clibs',
+  EXPERIMENTS: 'sandbox',
+  DATABASE: 'database',
 };
 
 export const COMMAND_PARAM_VALUE_TYPES = [

@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
-import { Box, Skeleton } from '@chakra-ui/react';
+import { Box, Skeleton, Text } from '@chakra-ui/react';
 import DestructiveDialog from '../../../../components/DestructiveDialog/DestructiveDialog';
 import FilesystemExplorer from '../../../../components/FilesystemExplorer/FilesystemExplorer';
-import { FILESYSTEM_ACTIONS, FILESYSTEM_SUPPORTED_DIRECTORIES } from '../../../../domain/constants';
-import useDirectoryStructure from '../../../../hooks/useDirectoryStructure';
+import { FILESYSTEM_ACTIONS } from '../../../../domain/constants';
 import { useGlobalLoadingFeedback } from '../../../../hooks/useGlobalLoadingFeedback';
 import useNotifier from '../../../../hooks/useNotifier';
 import useServerDirectories from '../../../../hooks/useServerDirectories';
@@ -20,6 +19,11 @@ import UploadFileIcon from './components/UploadFileIcon/UploadFileIcon';
 import UploadingFeedback from './components/UploadingFeedback/UploadingFeedback';
 
 const FilesystemExplorerLoading = () => <Skeleton height="144px" />;
+const FilesystemLoadError = ({ children }) => (
+  <Text color="red.500" mb={4} fontWeight="bold">
+    {children}
+  </Text>
+);
 
 export default function FilesystemSettings() {
   const formatMessage = useFormatMessage();
@@ -199,6 +203,14 @@ export default function FilesystemSettings() {
       onClick: handleDeleteDirectory,
     },
   ];
+
+  if (!loadingDirectories && directoriesError) {
+    return (
+      <FilesystemLoadError>
+        {formatMessage(MESSAGES_KEYS.SETTINGS_FILESYSTEM_LOAD_ERROR)}
+      </FilesystemLoadError>
+    );
+  }
 
   return (
     <>
