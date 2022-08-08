@@ -64,6 +64,7 @@ export const MESSAGES_KEYS = {
   SETTINGS_CONNECTION_PROTCOL_TITLE: 'settings.page.connection.protocol.title',
   SETTINGS_CONNECTION_PROTCOL_DESCRIPTION: 'settings.page.connection.protocol.description',
   SETTINGS_FILESYSTEM_TITLE: 'settings.page.filesystem.title',
+  SETTINGS_FILESYSTEM_LOAD_ERROR: 'settings.page.filesystem.load.error',
   SETTINGS_FILESYSTEM_DESCRIPTION: 'settings.page.filesystem.description',
   SETTINGS_FILESYSTEM_TOOLTIP_CREATE_DIRECTORY: 'settings.page.filesystem.tooltip.create.directory',
   SETTINGS_FILESYSTEM_TOOLTIP_UPLOAD_FILE: 'settings.page.filesystem.tooltip.upload.file',
