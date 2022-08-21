@@ -107,4 +107,9 @@ export const en = {
     'Indicate what the return value represents',
   [MK.COMMAND_FORM_INVOCATION_EXAMPLE]: 'Invocation example:',
   [MK.COMMAND_FORM_SCPI_INVOCATION_EXAMPLE]: 'Instruction that the instrument would receive:',
+  [MK.COMMAND_SCPI_CREATION_SUCCESS_FEEDBACK_TITLE]: 'Command created',
+  [MK.COMMAND_SCPI_CREATION_SUCCESS_FEEDBACK_DESCRIPTION]:
+    'Command {} was added to the instrument.',
+  [MK.COMMAND_SCPI_CREATION_ERROR_FEEDBACK_TITLE]: 'Command creation error',
+  [MK.COMMAND_SCPI_CREATION_ERROR_FEEDBACK_DESCRIPTION]: 'Check the logs for more details.',
 };
