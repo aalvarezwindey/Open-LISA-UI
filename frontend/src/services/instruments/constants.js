@@ -4,6 +4,7 @@ export const URI = {
   DETECTED_PHYSICAL_ADDRESSES: '/physical-addresses/detected',
   INSTRUMENT_BY_ID: '/instruments/:instrumentId',
   INSTRUMENT_COMMANDS: '/instruments/:instrumentId/commands',
+  INSTRUMENT_NEW_COMMAND: '/instruments/:instrumentId/commands',
   CONNECTION_PROTOCOL: '/settings/connection-protocol',
   CHECK_SERVER_CONNECTION: '/settings/connection-protocol/health-check',
   FILES: '/files',

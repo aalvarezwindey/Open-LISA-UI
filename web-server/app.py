@@ -127,15 +127,29 @@ def delete_instrument(instrument_id):
 @app.route("/instruments/<instrument_id>/commands", methods=['GET'])
 def get_instrument_commands(instrument_id):
     instrument_id = int(instrument_id)
-    with open('mock_data/commands.json') as f:
-        data = json.load(f)
-        match = next((c for c in data if str(
-            c["instrumentId"]) == str(instrument_id)), None)
+    try:
+        repo = InstrumentRepository()
+        commands = repo.get_instrument_commands(instrument_id=instrument_id)
+        return (jsonify(commands), 200)
+    except Exception as e:
+        traceback.print_exc()
+        logging.error('[get_instrument_commands] error {}'.format(e))
+        return errors.BAD_REQUEST(str(e))
 
-        if match:
-            return jsonify(match['commands'])
-        else:
-            return (jsonify([]), 200)
+
+@app.route("/instruments/<instrument_id>/commands", methods=['POST'])
+def create_instrument_command(instrument_id):
+    instrument_id = int(instrument_id)
+    new_command_payload = request.get_json()
+    new_command_payload["instrument_id"] = instrument_id
+    try:
+        repo = InstrumentRepository()
+        created_command = repo.create_instrument_command(new_command_payload)
+        return (jsonify(created_command), 201)
+    except Exception as e:
+        traceback.print_exc()
+        logging.error('[create_instrument_command] error {}'.format(e))
+        return errors.BAD_REQUEST(str(e))
 
 
 # Physical Addresses routes

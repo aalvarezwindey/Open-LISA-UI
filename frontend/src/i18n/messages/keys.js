@@ -115,4 +115,10 @@ export const MESSAGES_KEYS = {
     'command.form.return.field.description.placeholder',
   COMMAND_FORM_INVOCATION_EXAMPLE: 'command.form.invocation.example',
   COMMAND_FORM_SCPI_INVOCATION_EXAMPLE: 'command.form.scpi.invocation.example',
+  COMMAND_SCPI_CREATION_SUCCESS_FEEDBACK_TITLE: 'command.scpi.creation.success.feedback.title',
+  COMMAND_SCPI_CREATION_SUCCESS_FEEDBACK_DESCRIPTION:
+    'command.scpi.creation.success.feedback.description',
+  COMMAND_SCPI_CREATION_ERROR_FEEDBACK_TITLE: 'command.scpi.creation.error.feedback.title',
+  COMMAND_SCPI_CREATION_ERROR_FEEDBACK_DESCRIPTION:
+    'command.scpi.creation.error.feedback.description',
 };

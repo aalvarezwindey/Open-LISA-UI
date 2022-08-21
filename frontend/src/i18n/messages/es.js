@@ -107,4 +107,9 @@ export const es = {
   [MK.COMMAND_FORM_RETURN_FIELD_DESCRIPTION_PLACEHOLDER]: '¿Qué indica el valor de retorno?',
   [MK.COMMAND_FORM_INVOCATION_EXAMPLE]: 'Ejemplo de invocación:',
   [MK.COMMAND_FORM_SCPI_INVOCATION_EXAMPLE]: 'Instrucción que recibiría el instrumento:',
+  [MK.COMMAND_SCPI_CREATION_SUCCESS_FEEDBACK_TITLE]: 'Comando creado',
+  [MK.COMMAND_SCPI_CREATION_SUCCESS_FEEDBACK_DESCRIPTION]:
+    'Se agregó el comando {} al instrumento.',
+  [MK.COMMAND_SCPI_CREATION_ERROR_FEEDBACK_TITLE]: 'No se pudo crear el comando',
+  [MK.COMMAND_SCPI_CREATION_ERROR_FEEDBACK_DESCRIPTION]: 'Revisá los logs para más detalles',
 };
