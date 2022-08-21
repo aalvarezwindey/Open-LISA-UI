@@ -107,7 +107,10 @@ export default function InstrumentForm({ updateField, values, errors }) {
           <FormLabel htmlFor={INSTRUMENT_FIELD_NAMES.TYPE}>
             {formatMessage(MESSAGES_KEYS.INSTRUMENT_FORM_FIELD_TYPE_LABEL)}
           </FormLabel>
-          <Select onChange={(e) => updateField(INSTRUMENT_FIELD_NAMES.TYPE)(e.target.value)}>
+          <Select
+            onChange={(e) => updateField(INSTRUMENT_FIELD_NAMES.TYPE)(e.target.value)}
+            value={values[INSTRUMENT_FIELD_NAMES.TYPE]}
+          >
             <option value={INSTRUMENT_TYPES.SCPI}>SCPI</option>
             <option value={INSTRUMENT_TYPES.CLIB}>Librerías C/C++</option>
           </Select>
@@ -230,7 +233,7 @@ InstrumentForm.propTypes = {
     InstrumentFormFileds.reduce(
       (carry, field) => ({
         ...carry,
-        [field.name]: PropTypes.string.isRequired,
+        [field.name]: PropTypes.string,
       }),
       {},
     ),
