@@ -114,7 +114,7 @@ export default function InstrumentDetailPage() {
         onEditInstrument={openEditModal}
         onDeleteInstrument={openDeleteDialog}
       />
-      <InstrumentCommands instrumentId={instrumentId} />
+      <InstrumentCommands instrumentId={instrumentId} instrumentType={instrument.type} />
       <BasicModal
         title={formatMessage(MESSAGES_KEYS.INSTRUMENT_FORM_EDIT_TITLE)}
         onClose={handleCloseEditModal}
