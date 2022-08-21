@@ -19,7 +19,7 @@ class InstrumentRepository():
         for instrument in instruments:
             self.__add_image_to_instrument_dict(instrument, images_dict)
 
-        return self.__stringify_instruments_ids(instruments)
+        return self.__stringify_entities_ids(instruments)
 
     def get_by_id(self, id):
         conn_protocol = ConnectionProtocol()
@@ -28,7 +28,7 @@ class InstrumentRepository():
             instrument_id=id, response_format="PYTHON")
         images_dict = self.__get_instruments_images_dict()
         self.__add_image_to_instrument_dict(instrument, images_dict)
-        return self.__stringify_instrument_id(instrument)
+        return self.__stringify_entity_id(instrument)
 
     def create_instrument(self, new_instrument):
         conn_protocol = ConnectionProtocol()
@@ -41,7 +41,25 @@ class InstrumentRepository():
         self.__add_image(created_instrument["id"], new_image_file_name)
         created_instrument["image"] = new_image_url
         created_instrument["id"] = str(created_instrument["id"])
-        return self.__stringify_instrument_id(created_instrument)
+        return self.__stringify_entity_id(created_instrument)
+
+    def get_instrument_commands(self, instrument_id):
+        conn_protocol = ConnectionProtocol()
+        sdk = conn_protocol.get_open_lisa_SDK_instance_connected()
+        commands = sdk.get_instrument_commands(
+            instrument_id=instrument_id, response_format="PYTHON")
+
+        # transform commands structure
+        commands_list = []
+        for command_name in commands:
+            commands_list.append(commands[command_name])
+
+        return self.__stringify_entities_ids(commands_list)
+
+    def create_instrument_command(self, new_command_payload):
+        conn_protocol = ConnectionProtocol()
+        sdk = conn_protocol.get_open_lisa_SDK_instance_connected()
+        return sdk.create_instrument_command(new_command=new_command_payload)
 
     def update_instrument(self, id, payload):
         conn_protocol = ConnectionProtocol()
@@ -53,7 +71,7 @@ class InstrumentRepository():
             instrument_id=id, updated_instrument=payload, response_format="PYTHON")
         self.__update_instrument_image(id, new_image_file_name)
         updated_instrument["image"] = new_image_url
-        return self.__stringify_instrument_id(updated_instrument)
+        return self.__stringify_entity_id(updated_instrument)
 
     def delete_instrument(self, id):
         conn_protocol = ConnectionProtocol()
@@ -61,7 +79,7 @@ class InstrumentRepository():
         deleted_instrument = sdk.delete_instrument(
             instrument_id=id, response_format="PYTHON")
         self.__delete_instrument_image(id)
-        return self.__stringify_instrument_id(deleted_instrument)
+        return self.__stringify_entity_id(deleted_instrument)
 
     def __update_instrument_image(self, instrument_id, image_file_name):
         self._images_DB.updateByQuery(
@@ -91,9 +109,9 @@ class InstrumentRepository():
         })
 
     # This functions are necessary because the big int gets rounded when sent over the network to the browser
-    def __stringify_instruments_ids(self, instruments):
-        return [self.__stringify_instrument_id(i) for i in instruments]
+    def __stringify_entities_ids(self, entities):
+        return [self.__stringify_entity_id(i) for i in entities]
 
-    def __stringify_instrument_id(self, instrument):
-        instrument["id"] = str(instrument["id"])
-        return instrument
+    def __stringify_entity_id(self, entity):
+        entity["id"] = str(entity["id"])
+        return entity
