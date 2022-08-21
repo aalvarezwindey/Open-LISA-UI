@@ -90,8 +90,14 @@ export const en = {
     'The command name will be the syntax used through the SDK, can not have white spaces',
   [MK.COMMAND_FORM_NAME_FIELD_ERROR]: 'Command name is required and can not have white spaces.',
   [MK.COMMAND_FORM_INVOCATION_FIELD_LABEL]: 'Command',
+  [MK.COMMAND_FORM_INVOCATION_FIELD_LABEL_CLIB]: 'Library function',
+  [MK.COMMAND_FORM_LIB_FILE_NAME_FIELD_ERROR]:
+    'The library associated with the command is mandatory.',
   [MK.COMMAND_FORM_INVOCATION_FIELD_HELP_TEXT_SCPI]:
     'It is the SCPI command indicated by the fabricant. Use {} to indicate parameters in the command.',
+  [MK.COMMAND_FORM_INVOCATION_FIELD_HELP_TEXT_CLIB]:
+    'It is the C/C++ library fuction that will be invoked with this command.',
+  [MK.COMMAND_FORM_LIB_FILE_NAME_FIELD_LABEL]: 'Library',
   [MK.COMMAND_FORM_INVOCATION_FIELD_ERROR]: 'Command to be invoked is required.',
   [MK.COMMAND_FORM_DESCRIPTION_FIELD_LABEL]: 'Description',
   [MK.COMMAND_FORM_DESCRIPTION_FIELD_PLACEHOLDER]: 'What does this command do?',
@@ -107,6 +113,7 @@ export const en = {
     'Indicate what the return value represents',
   [MK.COMMAND_FORM_INVOCATION_EXAMPLE]: 'Invocation example:',
   [MK.COMMAND_FORM_SCPI_INVOCATION_EXAMPLE]: 'Instruction that the instrument would receive:',
+  [MK.COMMAND_FORM_CLIB_INVOCATION_EXAMPLE]: 'C/C++ library function call:',
   [MK.COMMAND_SCPI_CREATION_SUCCESS_FEEDBACK_TITLE]: 'Command created',
   [MK.COMMAND_SCPI_CREATION_SUCCESS_FEEDBACK_DESCRIPTION]:
     'Command {} was added to the instrument.',

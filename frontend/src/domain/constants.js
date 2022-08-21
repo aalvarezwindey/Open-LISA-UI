@@ -15,12 +15,20 @@ export const INSTRUMENT_TYPES = {
   CLIB: 'CLIB',
 };
 
-export const SCPI_COMMAND_FIELD_NAMES = {
+export const COMMON_COMMAND_FIELD_NAMES = {
   NAME: 'name',
   COMMAND: 'command',
   DESCRIPTION: 'description',
   PARAMS: 'params',
   RETURN: 'return',
+};
+export const SCPI_COMMAND_FIELD_NAMES = {
+  ...COMMON_COMMAND_FIELD_NAMES,
+};
+
+export const CLIB_COMMAND_FIELD_NAMES = {
+  ...COMMON_COMMAND_FIELD_NAMES,
+  LIB_FILE_NAME: 'lib_file_name',
 };
 
 export const NEW_DIRECTORY_FIELD_NAMES = {

@@ -1,18 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Box, Heading, useBoolean, useDisclosure } from '@chakra-ui/react';
-import BasicModal from '../../../../components/BasicModal/BasicModal';
+import { Box, Heading, useDisclosure } from '@chakra-ui/react';
 import NewButton from '../../../../components/Buttons/NewButton/NewButton';
-import SCPICommandForm, {
-  SCPICommandFormFileds,
-} from '../../../../domain/components/CommandForm/SCPICommandForm/SCPICommandForm';
-import { INSTRUMENT_TYPES, SCPI_COMMAND_FIELD_NAMES } from '../../../../domain/constants';
-import useForm from '../../../../hooks/useForm';
+import CommandFormModal from '../../../../domain/components/CommandForm/CommandFormModal';
 import useInstrumentCommands from '../../../../hooks/useInstrumentCommands';
-import useNotifier from '../../../../hooks/useNotifier';
 import { useFormatMessage } from '../../../../i18n/hooks/useFormatMessage';
 import { MESSAGES_KEYS } from '../../../../i18n/messages/keys';
-import { logger } from '../../../../logger';
 import createInstrumentCommand from '../../../../services/instruments/createInstrumentCommand';
 import CommandsTable from './components/CommandsTable';
 
@@ -20,51 +13,17 @@ function InstrumentCommands({ instrumentId, instrumentType }) {
   const formatMessage = useFormatMessage();
   const { data: commands, isLoading, refetch } = useInstrumentCommands(instrumentId);
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const [submittingNewCommand, { on: submittingOn, off: submittingOff }] = useBoolean(false);
-  const { notifyError, notifySuccess } = useNotifier();
-
-  const { isValid, reset, displayErrors, ...newCommandFormProps } = useForm({
-    fields: SCPICommandFormFileds,
-  });
 
   if (isLoading) {
     return null;
   }
 
-  const handleCreateCommand = async () => {
-    const { values: formValues } = newCommandFormProps;
-    if (!isValid) {
-      displayErrors(formValues);
-      return;
-    }
-
-    try {
-      submittingOn();
-      await createInstrumentCommand(instrumentId, {
-        ...formValues,
-        type: instrumentType,
-        instrument_id: instrumentId,
-        metadata: null, // TODO: send clib here
-      });
-      await refetch();
-      submittingOff();
-      reset();
-      onClose();
-      notifySuccess(
-        formatMessage(MESSAGES_KEYS.COMMAND_SCPI_CREATION_SUCCESS_FEEDBACK_TITLE),
-        formatMessage(
-          MESSAGES_KEYS.COMMAND_SCPI_CREATION_SUCCESS_FEEDBACK_DESCRIPTION,
-          formValues[SCPI_COMMAND_FIELD_NAMES.NAME],
-        ),
-      );
-    } catch (err) {
-      submittingOff();
-      notifyError(
-        formatMessage(MESSAGES_KEYS.COMMAND_SCPI_CREATION_ERROR_FEEDBACK_TITLE),
-        formatMessage(MESSAGES_KEYS.COMMAND_SCPI_CREATION_ERROR_FEEDBACK_DESCRIPTION),
-      );
-      logger.error('[CREATE_COMMAND]', err);
-    }
+  const handleNewCommandFormSubmit = async (newCommandPayload) => {
+    await createInstrumentCommand(instrumentId, {
+      ...newCommandPayload,
+      instrument_id: instrumentId,
+    });
+    await refetch();
   };
 
   return (
@@ -76,26 +35,12 @@ function InstrumentCommands({ instrumentId, instrumentType }) {
         </NewButton>
       </Box>
       <CommandsTable commands={commands} />
-      <BasicModal
-        title={formatMessage(MESSAGES_KEYS.COMMAND_FORM_TITLE)}
-        onClose={onClose}
+      <CommandFormModal
+        instrumentType={instrumentType}
         isOpen={isOpen}
-        primaryAction={{
-          label: formatMessage(MESSAGES_KEYS.COMMAND_FORM_CONFIRM_LABEL),
-          onAction: handleCreateCommand,
-          loading: submittingNewCommand,
-        }}
-        secondaryAction={{
-          label: formatMessage(MESSAGES_KEYS.COMMAND_FORM_CANCEL_LABEL),
-          onAction: onClose,
-        }}
-      >
-        {instrumentType === INSTRUMENT_TYPES.SCPI ? (
-          <SCPICommandForm {...newCommandFormProps} />
-        ) : (
-          <h1>TODO: implement CLIB form</h1>
-        )}
-      </BasicModal>
+        onClose={onClose}
+        onFormSubmit={handleNewCommandFormSubmit}
+      />
     </Box>
   );
 }

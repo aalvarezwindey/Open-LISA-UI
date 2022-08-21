@@ -91,9 +91,14 @@ export const es = {
     'El nombre del comando va a ser la sintaxis utilizada desde la SDK, no debe contener espacios en blanco',
   [MK.COMMAND_FORM_NAME_FIELD_ERROR]:
     'El nombre del comando es requerido y no debe contener espacios',
+  [MK.COMMAND_FORM_LIB_FILE_NAME_FIELD_ERROR]: 'La librería asociada al comando es obligatoria',
   [MK.COMMAND_FORM_INVOCATION_FIELD_LABEL]: 'Comando',
+  [MK.COMMAND_FORM_INVOCATION_FIELD_LABEL_CLIB]: 'Función de la librería',
   [MK.COMMAND_FORM_INVOCATION_FIELD_HELP_TEXT_SCPI]:
     'Es el comando que indica el fabricante del instrumento. Usá {} para indicar parámetros en el comando.',
+  [MK.COMMAND_FORM_INVOCATION_FIELD_HELP_TEXT_CLIB]:
+    'Es la función de la librería C/C++ que debe será invocada con este comando.',
+  [MK.COMMAND_FORM_LIB_FILE_NAME_FIELD_LABEL]: 'Librería',
   [MK.COMMAND_FORM_INVOCATION_FIELD_ERROR]: 'El comando a invocar es requerido',
   [MK.COMMAND_FORM_DESCRIPTION_FIELD_LABEL]: 'Descripción',
   [MK.COMMAND_FORM_DESCRIPTION_FIELD_PLACEHOLDER]: '¿Qué hace este comando?',
@@ -107,6 +112,7 @@ export const es = {
   [MK.COMMAND_FORM_RETURN_FIELD_DESCRIPTION_PLACEHOLDER]: '¿Qué indica el valor de retorno?',
   [MK.COMMAND_FORM_INVOCATION_EXAMPLE]: 'Ejemplo de invocación:',
   [MK.COMMAND_FORM_SCPI_INVOCATION_EXAMPLE]: 'Instrucción que recibiría el instrumento:',
+  [MK.COMMAND_FORM_CLIB_INVOCATION_EXAMPLE]: 'Invocación en la librería C/C++:',
   [MK.COMMAND_SCPI_CREATION_SUCCESS_FEEDBACK_TITLE]: 'Comando creado',
   [MK.COMMAND_SCPI_CREATION_SUCCESS_FEEDBACK_DESCRIPTION]:
     'Se agregó el comando {} al instrumento.',

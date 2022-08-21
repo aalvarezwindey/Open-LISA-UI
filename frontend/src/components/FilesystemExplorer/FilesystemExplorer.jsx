@@ -11,7 +11,7 @@ const FILESYSTEM_ROW_TYPES = {
 
 const FilesytemIcon = ({ src, alt }) => <Image src={src} alt={alt} w={10} h={10} p={1} />;
 
-const FilesystemRowContainer = ({ children, deep, ...rest }) => (
+const FilesystemRowContainer = ({ children, deep, selected, ...rest }) => (
   <Box
     ml={deep * DEEP_MARGIN_FACTOR}
     pb={1}
@@ -20,8 +20,9 @@ const FilesystemRowContainer = ({ children, deep, ...rest }) => (
     alignItems="center"
     justifyContent="space-between"
     _hover={{
-      backgroundColor: 'gray.200',
+      backgroundColor: selected ? 'gray.400' : 'gray.200',
     }}
+    backgroundColor={selected ? 'gray.400' : 'unset'}
     {...rest}
   >
     {children}
@@ -72,8 +73,11 @@ const DirectoryRow = ({
   directoryActions,
   rootDirectoriesAreDeletable,
   fileActions,
+  onFileSelected,
+  selected,
+  initiallyOpen = false,
 }) => {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(initiallyOpen);
   const [hover, setHover] = useState(false);
 
   const directoryChildrenParentPath = `${parentPath}${name}/`;
@@ -127,20 +131,24 @@ const DirectoryRow = ({
           parentPath={directoryChildrenParentPath}
           fileActions={fileActions}
           directoryActions={directoryActions}
+          onFileSelected={onFileSelected}
+          selected={selected}
         />
       </Collapse>
     </>
   );
 };
 
-const FileRow = ({ name, deep, parentPath, fileActions }) => {
+const FileRow = ({ name, deep, parentPath, fileActions, onFileSelected, selected }) => {
   const [hover, setHover] = useState(false);
+  const fileFullPath = parentPath + name;
   return (
     <FilesystemRowContainer
       deep={deep}
-      onClick={() => alert(parentPath + name)}
+      onClick={() => onFileSelected(fileFullPath)}
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
+      selected={selected === fileFullPath}
     >
       <FilesystemRowDescription>
         <FilesytemIcon src="/images/filesystem/file.png" alt={`${name} file`} />
@@ -149,8 +157,8 @@ const FileRow = ({ name, deep, parentPath, fileActions }) => {
       <FilesystemRowActions rowHovered={hover}>
         {fileActions?.map((fileAction, index) => (
           <FilesystemRowAction
-            key={`${parentPath + name}_${index}`}
-            onClick={() => fileAction.onClick(parentPath + name)}
+            key={`${fileFullPath}_${index}`}
+            onClick={() => fileAction.onClick(fileFullPath)}
           >
             {fileAction.component}
           </FilesystemRowAction>
@@ -169,6 +177,9 @@ const FilesystemRow = ({
   directoryActions,
   rootDirectoriesAreDeletable,
   fileActions,
+  initiallyOpen,
+  selected,
+  onFileSelected,
 }) => {
   return type === FILESYSTEM_ROW_TYPES.DIR ? (
     <DirectoryRow
@@ -179,9 +190,19 @@ const FilesystemRow = ({
       directoryActions={directoryActions}
       rootDirectoriesAreDeletable={rootDirectoriesAreDeletable}
       fileActions={fileActions}
+      initiallyOpen={initiallyOpen}
+      selected={selected}
+      onFileSelected={onFileSelected}
     />
   ) : (
-    <FileRow name={name} deep={deep} parentPath={parentPath} fileActions={fileActions} />
+    <FileRow
+      name={name}
+      deep={deep}
+      parentPath={parentPath}
+      fileActions={fileActions}
+      selected={selected}
+      onFileSelected={onFileSelected}
+    />
   );
 };
 export default function FilesystemExplorer({
@@ -191,8 +212,13 @@ export default function FilesystemExplorer({
   rootDirectoriesAreDeletable = true,
   deep = 0,
   parentPath = '',
+  initiallyOpen = false,
+  selected = '',
+  onFileSelected,
 }) {
   if (!directoryTree?.length) return null;
+
+  const onFileSelectedHandler = onFileSelected ? onFileSelected : () => {};
 
   return directoryTree.map(({ name, type, children }) => (
     <FilesystemRow
@@ -205,6 +231,9 @@ export default function FilesystemExplorer({
       directoryActions={directoryActions}
       rootDirectoriesAreDeletable={rootDirectoriesAreDeletable}
       fileActions={fileActions}
+      initiallyOpen={initiallyOpen}
+      selected={selected}
+      onFileSelected={onFileSelectedHandler}
     />
   ));
 }
@@ -221,4 +250,7 @@ FilesystemExplorer.propTypes = {
       children: PropTypes.array,
     }),
   ),
+  initiallyOpen: PropTypes.bool,
+  selected: PropTypes.string,
+  onFileSelected: PropTypes.func,
 };
