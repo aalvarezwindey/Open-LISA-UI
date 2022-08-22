@@ -26,10 +26,10 @@ function DestructiveDialog({ isOpen, onCancel, onDelete, title, description, loa
           <AlertDialogBody>{description}</AlertDialogBody>
 
           <AlertDialogFooter>
-            <Button ref={cancelRef} onClick={onCancel} loading={loading}>
+            <Button ref={cancelRef} onClick={onCancel} isLoading={loading}>
               {formatMessage(MESSAGES_KEYS.INSTRUMENT_DETAIL_DESTRUCTIVE_MODAL_CANCEL_LABEL)}
             </Button>
-            <Button colorScheme="red" onClick={onDelete} ml={3} loading={loading}>
+            <Button colorScheme="red" onClick={onDelete} ml={3} isLoading={loading}>
               {formatMessage(MESSAGES_KEYS.INSTRUMENT_DETAIL_DESTRUCTIVE_MODAL_CONFIRM_LABEL)}
             </Button>
           </AlertDialogFooter>
