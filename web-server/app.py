@@ -152,6 +152,20 @@ def create_instrument_command(instrument_id):
         return errors.BAD_REQUEST(str(e))
 
 
+@app.route("/instruments/<instrument_id>/commands/<command_id>", methods=['DELETE'])
+def delete_instrument_command(instrument_id, command_id):
+    instrument_id = int(instrument_id)
+    command_id = int(command_id)
+    try:
+        repo = InstrumentRepository()
+        repo.delete_instrument_command(instrument_id, command_id)
+        return jsonify('', 200)
+    except Exception as e:
+        traceback.print_exc()
+        logging.error('[delete_instrument_command] error {}'.format(e))
+        return errors.BAD_REQUEST(str(e))
+
+
 # Physical Addresses routes
 @ app.route("/physical-addresses/detected", methods=['GET'])
 def get_detected_physical_addresses():
