@@ -119,4 +119,11 @@ export const en = {
     'Command {} was added to the instrument.',
   [MK.COMMAND_SCPI_CREATION_ERROR_FEEDBACK_TITLE]: 'Command creation error',
   [MK.COMMAND_SCPI_CREATION_ERROR_FEEDBACK_DESCRIPTION]: 'Check the logs for more details.',
+  [MK.COMMAND_DELETE_MODAL_TITLE]: 'Delete command',
+  [MK.COMMAND_DELETE_MODAL_DESCRIPTION]: 'Are you sure about deletting this command?',
+  [MK.COMMAND_DELETE_SUCCESS_FEEDBACK_TITLE]: 'Command deleted',
+  [MK.COMMAND_DELETE_SUCCESS_FEEDBACK_DESCRIPTION]: 'The command was deleted successfully',
+  [MK.COMMAND_DELETE_ERROR_FEEDBACK_TITLE]: 'Error deleting the command',
+  [MK.COMMAND_DELETE_ERROR_FEEDBACK_DESCRIPTION]:
+    'Command could not be deleted, check logs for more details.',
 };

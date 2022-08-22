@@ -126,4 +126,10 @@ export const MESSAGES_KEYS = {
   COMMAND_SCPI_CREATION_ERROR_FEEDBACK_TITLE: 'command.scpi.creation.error.feedback.title',
   COMMAND_SCPI_CREATION_ERROR_FEEDBACK_DESCRIPTION:
     'command.scpi.creation.error.feedback.description',
+  COMMAND_DELETE_MODAL_TITLE: 'command.delete.modal.title',
+  COMMAND_DELETE_MODAL_DESCRIPTION: 'command.delete.modal.description',
+  COMMAND_DELETE_SUCCESS_FEEDBACK_TITLE: 'command.delete.success.feedback.title',
+  COMMAND_DELETE_SUCCESS_FEEDBACK_DESCRIPTION: 'command.delete.success.feedback.description',
+  COMMAND_DELETE_ERROR_FEEDBACK_TITLE: 'command.delete.error.feedback.title',
+  COMMAND_DELETE_ERROR_FEEDBACK_DESCRIPTION: 'command.delete.error.feedback.description',
 };
