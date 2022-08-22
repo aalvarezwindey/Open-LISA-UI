@@ -1,10 +1,61 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { Code, Table, TableContainer, Tbody, Td, Th, Thead, Tr } from '@chakra-ui/react';
+import { DeleteIcon } from '@chakra-ui/icons';
+import {
+  Code,
+  IconButton,
+  Table,
+  TableContainer,
+  Tbody,
+  Td,
+  Th,
+  Thead,
+  Tr,
+} from '@chakra-ui/react';
 import { useFormatMessage } from '../../../../../i18n/hooks/useFormatMessage';
 import { MESSAGES_KEYS } from '../../../../../i18n/messages/keys';
 
-function CommandsTable({ commands }) {
+const CommandTableRow = ({ id, name, invocation, description, onCommandDelete }) => {
+  const [hover, setHover] = useState(false);
+
+  return (
+    <Tr
+      key={name}
+      onMouseEnter={() => setHover(true)}
+      onMouseLeave={() => setHover(false)}
+      _hover={{
+        backgroundColor: 'gray.200',
+      }}
+      h="90px"
+    >
+      <Td>
+        <Code>{name}</Code>
+      </Td>
+      <Td>
+        <Code>{invocation}</Code>
+      </Td>
+      <Td textOverflow="ellipsis" overflow="hidden" maxWidth="300px" title={description}>
+        {description}
+      </Td>
+      {hover ? (
+        <Td>
+          <IconButton
+            _hover={{
+              backgroundColor: 'gray.400',
+            }}
+            onClick={() => onCommandDelete(id)}
+            size="lg"
+            variant="ghost"
+            icon={<DeleteIcon />}
+            color="red.500"
+          />
+        </Td>
+      ) : null}
+    </Tr>
+  );
+};
+
+function CommandsTable({ commands, onCommandDelete }) {
   const formatMessage = useFormatMessage();
   return (
     <TableContainer mt={4} maxW="100vw">
@@ -21,24 +72,16 @@ function CommandsTable({ commands }) {
           </Tr>
         </Thead>
         <Tbody>
-          {commands.map((command) => {
+          {commands.map(({ id, name, command, description }) => {
             return (
-              <Tr key={command.name}>
-                <Td>
-                  <Code>{command.name}</Code>
-                </Td>
-                <Td>
-                  <Code>{command.command}</Code>
-                </Td>
-                <Td
-                  textOverflow="ellipsis"
-                  overflow="hidden"
-                  maxWidth="300px"
-                  title={command.description}
-                >
-                  {command.description}
-                </Td>
-              </Tr>
+              <CommandTableRow
+                key={id}
+                id={id}
+                name={name}
+                invocation={command}
+                description={description}
+                onCommandDelete={onCommandDelete}
+              />
             );
           })}
         </Tbody>
@@ -48,6 +91,7 @@ function CommandsTable({ commands }) {
 }
 
 CommandsTable.propTypes = {
+  onCommandDelete: PropTypes.func.isRequired,
   commands: PropTypes.arrayOf(
     PropTypes.shape({
       name: PropTypes.string.isRequired,

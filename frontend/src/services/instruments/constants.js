@@ -5,6 +5,7 @@ export const URI = {
   INSTRUMENT_BY_ID: '/instruments/:instrumentId',
   INSTRUMENT_COMMANDS: '/instruments/:instrumentId/commands',
   INSTRUMENT_NEW_COMMAND: '/instruments/:instrumentId/commands',
+  DELETE_INSTRUMENT_COMMAND: '/instruments/:instrumentId/commands/:commandId',
   CONNECTION_PROTOCOL: '/settings/connection-protocol',
   CHECK_SERVER_CONNECTION: '/settings/connection-protocol/health-check',
   FILES: '/files',
