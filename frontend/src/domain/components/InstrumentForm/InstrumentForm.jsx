@@ -70,6 +70,11 @@ export default function InstrumentForm({ updateField, values, errors }) {
   if (loadingDetectedPhysicalAddresses || loadingInstrumentImages || !detectedPhysicalAddresses)
     return null;
 
+  const noPhysicalAddressesDetected = detectedPhysicalAddresses.length === 0;
+  const physicalAddressInputIsReadOnly =
+    values[INSTRUMENT_FIELD_NAMES.DETECTED_PHYSICAL_ADDRESS] !== OTHER_PHYSICAL_ADDRESS_VALUE &&
+    !noPhysicalAddressesDetected;
+
   return (
     <form>
       <VStack spacing={6} align="start">
@@ -116,61 +121,65 @@ export default function InstrumentForm({ updateField, values, errors }) {
           </Select>
         </FormControl>
 
-        <FormControl
-          as="fieldset"
-          isInvalid={Boolean(errors[INSTRUMENT_FIELD_NAMES.DETECTED_PHYSICAL_ADDRESS])}
-          disabled={disablePhysicalAddressField}
-        >
-          <FormLabel
-            as="legend"
-            htmlFor={INSTRUMENT_FIELD_NAMES.DETECTED_PHYSICAL_ADDRESS}
-            _disabled={disablePhysicalAddressField}
+        {noPhysicalAddressesDetected ? null : (
+          <FormControl
+            as="fieldset"
+            isInvalid={Boolean(errors[INSTRUMENT_FIELD_NAMES.DETECTED_PHYSICAL_ADDRESS])}
+            disabled={disablePhysicalAddressField}
           >
-            {formatMessage(MESSAGES_KEYS.INSTRUMENT_FORM_FIELD_DETECTED_PHSYICAL_ADDRESS_LABEL)}
-          </FormLabel>
-          <RadioGroup
-            _disabled={disablePhysicalAddressField}
-            value={values[INSTRUMENT_FIELD_NAMES.DETECTED_PHYSICAL_ADDRESS]}
-            id={INSTRUMENT_FIELD_NAMES.DETECTED_PHYSICAL_ADDRESS}
-            onChange={(value) => {
-              updateField(INSTRUMENT_FIELD_NAMES.DETECTED_PHYSICAL_ADDRESS)(value);
-              if (value !== OTHER_PHYSICAL_ADDRESS_VALUE) {
-                updateField(INSTRUMENT_FIELD_NAMES.PHYSICAL_ADDRESS)(value);
-              } else {
-                updateField(INSTRUMENT_FIELD_NAMES.PHYSICAL_ADDRESS)('');
-                physicalAddressInput.current.focus();
-              }
-            }}
-          >
-            <VStack spacing={2} align="start">
-              {[...detectedPhysicalAddresses, OTHER_PHYSICAL_ADDRESS].map(
-                (physicalAddress, index) => (
-                  <Radio
-                    key={physicalAddress.value}
-                    value={physicalAddress.value}
-                    _selected={physicalAddress.value === currentPhysicalAddress}
-                  >
-                    {index === detectedPhysicalAddresses.length ? (
-                      physicalAddress.label(formatMessage)
-                    ) : (
-                      <Code>{physicalAddress.label}</Code>
-                    )}
-                  </Radio>
-                ),
+            <FormLabel
+              as="legend"
+              htmlFor={INSTRUMENT_FIELD_NAMES.DETECTED_PHYSICAL_ADDRESS}
+              _disabled={disablePhysicalAddressField}
+            >
+              {formatMessage(MESSAGES_KEYS.INSTRUMENT_FORM_FIELD_DETECTED_PHSYICAL_ADDRESS_LABEL)}
+            </FormLabel>
+            <RadioGroup
+              _disabled={disablePhysicalAddressField}
+              value={values[INSTRUMENT_FIELD_NAMES.DETECTED_PHYSICAL_ADDRESS]}
+              id={INSTRUMENT_FIELD_NAMES.DETECTED_PHYSICAL_ADDRESS}
+              onChange={(value) => {
+                updateField(INSTRUMENT_FIELD_NAMES.DETECTED_PHYSICAL_ADDRESS)(value);
+                if (value !== OTHER_PHYSICAL_ADDRESS_VALUE) {
+                  updateField(INSTRUMENT_FIELD_NAMES.PHYSICAL_ADDRESS)(value);
+                } else {
+                  updateField(INSTRUMENT_FIELD_NAMES.PHYSICAL_ADDRESS)('');
+                  physicalAddressInput.current.focus();
+                }
+              }}
+            >
+              <VStack spacing={2} align="start">
+                {[...detectedPhysicalAddresses, OTHER_PHYSICAL_ADDRESS].map(
+                  (physicalAddress, index) => (
+                    <Radio
+                      key={physicalAddress.value}
+                      value={physicalAddress.value}
+                      _selected={physicalAddress.value === currentPhysicalAddress}
+                    >
+                      {index === detectedPhysicalAddresses.length ? (
+                        physicalAddress.label(formatMessage)
+                      ) : (
+                        <Code>{physicalAddress.label}</Code>
+                      )}
+                    </Radio>
+                  ),
+                )}
+              </VStack>
+            </RadioGroup>
+            <FormHelperText>
+              {disablePhysicalAddressField ? (
+                <>
+                  <InfoIcon />{' '}
+                  {formatMessage(
+                    MESSAGES_KEYS.INSTRUMENT_FORM_FIELD_PHYSICAL_ADDRESS_HELP_FOR_CLIB,
+                  )}
+                </>
+              ) : (
+                ''
               )}
-            </VStack>
-          </RadioGroup>
-          <FormHelperText>
-            {disablePhysicalAddressField ? (
-              <>
-                <InfoIcon />{' '}
-                {formatMessage(MESSAGES_KEYS.INSTRUMENT_FORM_FIELD_PHYSICAL_ADDRESS_HELP_FOR_CLIB)}
-              </>
-            ) : (
-              ''
-            )}
-          </FormHelperText>
-        </FormControl>
+            </FormHelperText>
+          </FormControl>
+        )}
 
         <FormControl
           isInvalid={Boolean(errors[INSTRUMENT_FIELD_NAMES.PHYSICAL_ADDRESS])}
@@ -186,10 +195,7 @@ export default function InstrumentForm({ updateField, values, errors }) {
             disabled={disablePhysicalAddressField}
             ref={physicalAddressInput}
             type="text"
-            readOnly={
-              values[INSTRUMENT_FIELD_NAMES.DETECTED_PHYSICAL_ADDRESS] !==
-              OTHER_PHYSICAL_ADDRESS_VALUE
-            }
+            readOnly={physicalAddressInputIsReadOnly}
             placeholder={formatMessage(
               MESSAGES_KEYS.INSTRUMENT_FORM_FIELD_PHYSICAL_ADDRESS_PLACEHOLDER,
             )}

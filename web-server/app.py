@@ -6,10 +6,10 @@ import traceback
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 from app.domain.settings import ConnectionProtocol
-from app.domain.filesystem.filemanager import FileManager, VALID_ROOT_FOLDERS
+from app.domain.filesystem.filemanager import FileManager
 from app.domain.repositories.instruments_repository import InstrumentRepository
 from app.config.config import load_config
-from app.http import errors, mock_responses
+from app.http import errors
 
 env = os.environ["ENV"] if "ENV" in os.environ else "dev"
 load_config(env)

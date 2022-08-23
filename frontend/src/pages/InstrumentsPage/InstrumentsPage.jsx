@@ -49,11 +49,11 @@ export default function InstrumentsPage() {
     }
   };
 
-  if (showLoadingFeedback) {
+  if (showLoadingFeedback || isLoading) {
     return null;
   }
 
-  const emptyInstruments = instruments.length === 0;
+  const emptyInstruments = !instruments || instruments?.length === 0;
 
   return (
     <PageBody>
