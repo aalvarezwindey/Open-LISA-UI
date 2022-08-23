@@ -5,11 +5,14 @@ export const en = {
 
   [MK.INSTRUMENTS_PAGE_CARD_VIEW_MORE_BUTTON_LABEL]: 'View more',
   [MK.INSTRUMENTS_PAGE_CARD_NEW_INSTRUMENT_BUTTON_LABEL]: 'New instrument',
+  [MK.INSTRUMENTS_PAGE_NO_INSTRUMENTS_MESSAGE]:
+    'Welcome to Open LISA, register your first instrument',
 
   [MK.INSTRUMENT_DETAIL_DELETE_INSTRUMENT_BUTTON_LABEL]: 'Delete instrument',
   [MK.INSTRUMENT_DETAIL_EDIT_INSTRUMENT_BUTTON_LABEL]: 'Edit instrument',
   [MK.INSTRUMENT_DETAIL_NEW_COMMAND_BUTTON_LABEL]: 'New command',
   [MK.INSTRUMENT_DETAIL_COMMANDS_TITLE]: 'Commands',
+  [MK.INSTRUMENT_DETAIL_NO_COMMANDS_TITLE]: 'This instrument has no commands already',
   [MK.INSTRUMENT_DETAIL_DELETE_INSTRUMENT_MODAL_TITLE]: 'Delete instrument',
   [MK.INSTRUMENT_DETAIL_DELETE_INSTRUMENT_MODAL_DESCRIPTION]:
     'Do you confirm that you want to delete {} instrument?',
