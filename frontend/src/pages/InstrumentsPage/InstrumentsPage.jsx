@@ -15,6 +15,7 @@ import { MESSAGES_KEYS } from '../../i18n/messages/keys';
 import { logger } from '../../logger';
 import createInstrument from '../../services/instruments/createInstrument';
 import { objectKeysCamelCaseToUnderscore } from '../../utils/object/camelCaseToUnderscore';
+import NoInstruments from './components/NoInstruments';
 
 export default function InstrumentsPage() {
   const { data: instruments, refetch, isLoading } = useInstruments();
@@ -52,12 +53,20 @@ export default function InstrumentsPage() {
     return null;
   }
 
+  const emptyInstruments = instruments.length === 0;
+
   return (
     <PageBody>
-      <InstrumentsList instruments={instruments || []} />
-      <NewButton position="fixed" bottom={6} right={6} onClick={onOpen}>
-        {formatMessage(MESSAGES_KEYS.INSTRUMENTS_PAGE_CARD_NEW_INSTRUMENT_BUTTON_LABEL)}
-      </NewButton>
+      {emptyInstruments ? (
+        <NoInstruments onNewInstrument={onOpen} />
+      ) : (
+        <>
+          <InstrumentsList instruments={instruments} />
+          <NewButton position="fixed" bottom={6} right={6} onClick={onOpen}>
+            {formatMessage(MESSAGES_KEYS.INSTRUMENTS_PAGE_CARD_NEW_INSTRUMENT_BUTTON_LABEL)}
+          </NewButton>
+        </>
+      )}
       <BasicModal
         title={formatMessage(MESSAGES_KEYS.INSTRUMENT_FORM_NEW_TITLE)}
         onClose={onClose}
