@@ -61,9 +61,10 @@ class InstrumentRepository():
         sdk = conn_protocol.get_open_lisa_SDK_instance_connected()
         return sdk.create_instrument_command(new_command=new_command_payload)
 
-    def delete_instrument_command(self, instrument_id, command_id):
-        pass
-        # TODO
+    def delete_instrument_command(self, command_id):
+        conn_protocol = ConnectionProtocol()
+        sdk = conn_protocol.get_open_lisa_SDK_instance_connected()
+        sdk.delete_instrument_command(command_id)
 
     def update_instrument(self, id, payload):
         conn_protocol = ConnectionProtocol()

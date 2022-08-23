@@ -154,11 +154,10 @@ def create_instrument_command(instrument_id):
 
 @app.route("/instruments/<instrument_id>/commands/<command_id>", methods=['DELETE'])
 def delete_instrument_command(instrument_id, command_id):
-    instrument_id = int(instrument_id)
     command_id = int(command_id)
     try:
         repo = InstrumentRepository()
-        repo.delete_instrument_command(instrument_id, command_id)
+        repo.delete_instrument_command(command_id)
         return jsonify('', 200)
     except Exception as e:
         traceback.print_exc()
