@@ -37,7 +37,7 @@ export default function FilesystemSettings() {
   const [deleting, setDeleting] = useState(false);
   const {
     loading: loadingDirectories,
-    error: directoriesError, // TODO: handle error
+    error: directoriesError,
     directories,
     refetch,
   } = useServerDirectories();
