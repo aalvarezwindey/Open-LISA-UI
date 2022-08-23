@@ -31,6 +31,8 @@ function InstrumentCommands({ instrumentId, instrumentType }) {
     return null;
   }
 
+  const emptyCommands = commands.length === 0;
+
   const handleNewCommandFormSubmit = async (newCommandPayload) => {
     await createInstrumentCommand(instrumentId, {
       ...newCommandPayload,
@@ -68,12 +70,18 @@ function InstrumentCommands({ instrumentId, instrumentType }) {
   return (
     <Box as="section" mt={16}>
       <Box w="100%" display="flex" justifyContent="space-between">
-        <Heading size="lg">{formatMessage(MESSAGES_KEYS.INSTRUMENT_DETAIL_COMMANDS_TITLE)}</Heading>
+        <Heading size="lg">
+          {emptyCommands
+            ? formatMessage(MESSAGES_KEYS.INSTRUMENT_DETAIL_NO_COMMANDS_TITLE)
+            : formatMessage(MESSAGES_KEYS.INSTRUMENT_DETAIL_COMMANDS_TITLE)}
+        </Heading>
         <NewButton onClick={onOpen}>
           {formatMessage(MESSAGES_KEYS.INSTRUMENT_DETAIL_NEW_COMMAND_BUTTON_LABEL)}
         </NewButton>
       </Box>
-      <CommandsTable commands={commands} onCommandDelete={handleCommandDelete} />
+      {emptyCommands ? null : (
+        <CommandsTable commands={commands} onCommandDelete={handleCommandDelete} />
+      )}
       <CommandFormModal
         instrumentType={instrumentType}
         isOpen={isOpen}
