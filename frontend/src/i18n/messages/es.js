@@ -118,4 +118,11 @@ export const es = {
     'Se agregó el comando {} al instrumento.',
   [MK.COMMAND_SCPI_CREATION_ERROR_FEEDBACK_TITLE]: 'No se pudo crear el comando',
   [MK.COMMAND_SCPI_CREATION_ERROR_FEEDBACK_DESCRIPTION]: 'Revisá los logs para más detalles',
+  [MK.COMMAND_DELETE_MODAL_TITLE]: 'Eliminar comando',
+  [MK.COMMAND_DELETE_MODAL_DESCRIPTION]: '¿Estás seguro que querés eliminar el comando?',
+  [MK.COMMAND_DELETE_SUCCESS_FEEDBACK_TITLE]: 'Comando eliminado',
+  [MK.COMMAND_DELETE_SUCCESS_FEEDBACK_DESCRIPTION]: 'El comando fue eliminado de manera exitosa',
+  [MK.COMMAND_DELETE_ERROR_FEEDBACK_TITLE]: 'Error al eliminar comando',
+  [MK.COMMAND_DELETE_ERROR_FEEDBACK_DESCRIPTION]:
+    'No se pudo eliminar el comando, revisá los logs para más detalles',
 };
