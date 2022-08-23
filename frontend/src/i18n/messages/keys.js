@@ -6,6 +6,7 @@ export const MESSAGES_KEYS = {
   INSTRUMENTS_PAGE_CARD_VIEW_MORE_BUTTON_LABEL: 'page.instruments.card.view.more.button.label',
   INSTRUMENTS_PAGE_CARD_NEW_INSTRUMENT_BUTTON_LABEL:
     'page.instruments.card.new.instrument.button.label',
+  INSTRUMENTS_PAGE_NO_INSTRUMENTS_MESSAGE: 'page.instruments.no.instruments.message',
 
   // Instrument detail page
   INSTRUMENT_DETAIL_DELETE_INSTRUMENT_BUTTON_LABEL:
@@ -14,6 +15,7 @@ export const MESSAGES_KEYS = {
     'page.instrument.detail.edit.instrument.button.label',
   INSTRUMENT_DETAIL_NEW_COMMAND_BUTTON_LABEL: 'page.instrument.detail.new.command.button.label',
   INSTRUMENT_DETAIL_COMMANDS_TITLE: 'page.instrument.detail.commands.title',
+  INSTRUMENT_DETAIL_NO_COMMANDS_TITLE: 'page.instrument.detail.no.commands.title',
   INSTRUMENT_DETAIL_DELETE_INSTRUMENT_MODAL_TITLE:
     'page.instrument.detail.delete.instrument.modal.title',
   INSTRUMENT_DETAIL_DELETE_INSTRUMENT_MODAL_DESCRIPTION:
@@ -91,6 +93,7 @@ export const MESSAGES_KEYS = {
   SETTINGS_FILESYSTEM_DIRECTORY_DELETE_SUCCESS: 'settings.page.filesystem.directory.delete.success',
   SETTINGS_FILESYSTEM_FILE_DELETE_SUCCESS: 'settings.page.filesystem.file.delete.success',
 
+  // Command form
   COMMAND_FORM_TITLE: 'command.form.title',
   COMMAND_FORM_CONFIRM_LABEL: 'command.form.confirm.label',
   COMMAND_FORM_CANCEL_LABEL: 'command.form.cancel.label',

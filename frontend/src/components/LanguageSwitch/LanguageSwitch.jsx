@@ -14,8 +14,8 @@ const Flag = ({ src, alt, onClick }) => {
     </>
   );
 };
-const ArgentinaFlag = (props) => <Flag src="images/ar.png" alt="ARG" {...props} />;
-const UsaFlag = (props) => <Flag src="images/us.png" alt="ENG" {...props} />;
+const ArgentinaFlag = (props) => <Flag src="/images/ar.png" alt="ARG" {...props} />;
+const UsaFlag = (props) => <Flag src="/images/us.png" alt="ENG" {...props} />;
 
 export default function LanguageSwitch() {
   const dispatch = useAppDispatch();
