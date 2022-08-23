@@ -28,8 +28,8 @@ class ConnectionProtocol:
         return self._configuration["configurations"]
 
     def check_connection(self):
+        # NOTE: if the SDK could be retrieved the connection was established
         sdk = self.get_open_lisa_SDK_instance_connected()
-        # TODO: do health check?
 
     def get_open_lisa_SDK_instance_connected(self, sdk_log_level="DEBUG") -> SDK:
         sdk = SDK(log_level=sdk_log_level)

@@ -289,7 +289,7 @@ def delete_directory():
             directory_path))
         time.sleep(2)
 
-        # TODO: delete file through SDK
+        # TODO: delete directory through SDK
 
         return ('', 200)
     except Exception as e:
