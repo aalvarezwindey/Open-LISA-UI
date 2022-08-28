@@ -1,4 +1,5 @@
 import os
+from pathlib import Path
 from ..settings import ConnectionProtocol
 
 ROOT_FOLDER_SANDBOX = 'sandbox'
@@ -19,6 +20,20 @@ class FileManager:
         sdk = conn_protocol.get_open_lisa_SDK_instance_connected()
         assert directory in VALID_ROOT_FOLDERS
         return sdk.get_directory_structure(remote_path=directory)
+
+    def create_directory(self, base_path, new_directory):
+        conn_protocol = ConnectionProtocol()
+        sdk = conn_protocol.get_open_lisa_SDK_instance_connected()
+        sdk.create_directory(
+            remote_path=base_path,
+            new_directory=new_directory
+        )
+
+    def delete_directory(self, directory_path):
+        conn_protocol = ConnectionProtocol()
+        sdk = conn_protocol.get_open_lisa_SDK_instance_connected(
+            sdk_log_level="ERROR")
+        sdk.delete_directory(remote_path=directory_path)
 
     def upload_file(self, file_target_path, file_data):
         conn_protocol = ConnectionProtocol()
