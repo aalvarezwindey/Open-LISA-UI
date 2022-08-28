@@ -34,6 +34,7 @@ export default function NewDirectoryDialog({ open, onNewDirectory, onClose }) {
     e.preventDefault();
     if (isValid) {
       onNewDirectory(values);
+      reset();
     } else {
       displayErrors(values);
       return;

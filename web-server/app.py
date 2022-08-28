@@ -267,12 +267,9 @@ def create_directory():
         payload = request.get_json()
         directory_base_path = payload["base_path"]
         new_directory_name = payload["new_directory_name"]
-        print("this will create {} folder".format(
-            directory_base_path + new_directory_name))
-        time.sleep(2)
-
-        # TODO: create directory through SDK
-
+        fm = FileManager()
+        fm.create_directory(base_path=directory_base_path,
+                            new_directory=new_directory_name)
         return ('', 200)
     except Exception as e:
         traceback.print_exc()
@@ -285,12 +282,8 @@ def create_directory():
 def delete_directory():
     try:
         directory_path = request.args.get('directory_path')
-        print("this will delete {} folder".format(
-            directory_path))
-        time.sleep(2)
-
-        # TODO: delete directory through SDK
-
+        fm = FileManager()
+        fm.delete_directory(directory_path=directory_path)
         return ('', 200)
     except Exception as e:
         traceback.print_exc()
