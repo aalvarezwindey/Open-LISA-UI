@@ -50,7 +50,7 @@ def create_instrument():
     try:
         repo = InstrumentRepository()
         created_instrument = repo.create_instrument(payload)
-        return jsonify(created_instrument, 201)
+        return (jsonify(created_instrument), 201)
     except Exception as e:
         traceback.print_exc()
         logging.error('[create_instrument] error {}'.format(e))
@@ -104,7 +104,7 @@ def update_instrument(instrument_id):
     try:
         repo = InstrumentRepository()
         updated_instrument = repo.update_instrument(instrument_id, payload)
-        return jsonify(updated_instrument, 200)
+        return (jsonify(updated_instrument), 200)
     except Exception as e:
         traceback.print_exc()
         logging.error('[update_instrument] error {}'.format(e))
@@ -117,7 +117,7 @@ def delete_instrument(instrument_id):
     try:
         repo = InstrumentRepository()
         deleted_instrument = repo.delete_instrument(instrument_id)
-        return jsonify(deleted_instrument, 200)
+        return (jsonify(deleted_instrument), 200)
     except Exception as e:
         traceback.print_exc()
         logging.error('[delete_instrument] error {}'.format(e))
@@ -158,7 +158,7 @@ def delete_instrument_command(instrument_id, command_id):
     try:
         repo = InstrumentRepository()
         repo.delete_instrument_command(command_id)
-        return jsonify('', 200)
+        return (jsonify(''), 200)
     except Exception as e:
         traceback.print_exc()
         logging.error('[delete_instrument_command] error {}'.format(e))
@@ -168,9 +168,15 @@ def delete_instrument_command(instrument_id, command_id):
 # Physical Addresses routes
 @ app.route("/physical-addresses/detected", methods=['GET'])
 def get_detected_physical_addresses():
-    with open('mock_data/detected_physical_addresses.json') as f:
-        data = json.load(f)
-        return jsonify(data)
+    try:
+        repo = InstrumentRepository()
+        result = repo.get_available_physical_addresses()
+        return (jsonify(result), 200)
+    except Exception as e:
+        traceback.print_exc()
+        logging.error('[get_detected_physical_addresses] error {}'.format(e))
+        return errors.BAD_REQUEST(str(e))
+
 
 # Settings routes
 
