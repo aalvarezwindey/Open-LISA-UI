@@ -30,6 +30,17 @@ class InstrumentRepository():
         self.__add_image_to_instrument_dict(instrument, images_dict)
         return self.__stringify_entity_id(instrument)
 
+    def get_available_physical_addresses(self):
+        conn_protocol = ConnectionProtocol()
+        sdk = conn_protocol.get_open_lisa_SDK_instance_connected()
+        detected = sdk.get_detected_physical_addresses(
+            response_format="PYTHON")
+        mapped = list(map(lambda from_server_detected: {
+            "label": from_server_detected["physical_address"],
+            "value": from_server_detected["physical_address"],
+        } | from_server_detected, detected))
+        return mapped
+
     def create_instrument(self, new_instrument):
         conn_protocol = ConnectionProtocol()
         sdk = conn_protocol.get_open_lisa_SDK_instance_connected()
