@@ -7,6 +7,9 @@ export const es = {
   [MK.INSTRUMENTS_PAGE_CARD_NEW_INSTRUMENT_BUTTON_LABEL]: 'Nuevo instrumento',
   [MK.INSTRUMENTS_PAGE_NO_INSTRUMENTS_MESSAGE]:
     'Bienvenido a Open LISA, registrá tu primer instrumento',
+  [MK.INSTRUMENTS_PAGE_NO_INSTRUMENTS_AND_SERVER_OFFLINE]:
+    'Parece que no estás conectado al servidor. Verificá la configuración del protocolo de comunicación.',
+  [MK.INSTRUMENTS_PAGE_NO_INSTRUMENTS_AND_SERVER_OFFLINE_BUTTON_LABEL]: 'Configurar conexión',
 
   [MK.INSTRUMENT_DETAIL_DELETE_INSTRUMENT_BUTTON_LABEL]: 'Eliminar instrumento',
   [MK.INSTRUMENT_DETAIL_EDIT_INSTRUMENT_BUTTON_LABEL]: 'Editar instrumento',

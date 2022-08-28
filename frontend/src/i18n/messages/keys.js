@@ -7,6 +7,10 @@ export const MESSAGES_KEYS = {
   INSTRUMENTS_PAGE_CARD_NEW_INSTRUMENT_BUTTON_LABEL:
     'page.instruments.card.new.instrument.button.label',
   INSTRUMENTS_PAGE_NO_INSTRUMENTS_MESSAGE: 'page.instruments.no.instruments.message',
+  INSTRUMENTS_PAGE_NO_INSTRUMENTS_AND_SERVER_OFFLINE:
+    'page.instruments.no.instruments.message.and.server.offline',
+  INSTRUMENTS_PAGE_NO_INSTRUMENTS_AND_SERVER_OFFLINE_BUTTON_LABEL:
+    'page.instruments.no.instruments.message.and.server.offline.button.label',
 
   // Instrument detail page
   INSTRUMENT_DETAIL_DELETE_INSTRUMENT_BUTTON_LABEL:

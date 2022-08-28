@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { Navigate, useNavigate, useParams } from 'react-router-dom';
 import { useBoolean, useDisclosure } from '@chakra-ui/react';
 import BasicModal from '../../components/BasicModal/BasicModal';
 import DestructiveDialog from '../../components/DestructiveDialog/DestructiveDialog';
@@ -17,12 +17,14 @@ import { logger } from '../../logger';
 import { ROUTES } from '../../routing/routes';
 import deleteInstrument from '../../services/instruments/deleteInstrument';
 import editInstrument from '../../services/instruments/editInstrument';
+import { useIsOpenLISAServerOnline } from '../../state/selectors/useIsOpenLISAServerOnline';
 import { objectKeysCamelCaseToUnderscore } from '../../utils/object/camelCaseToUnderscore';
 import InstrumentCommands from './components/InstrumentCommands/InstrumentCommands';
 import InstrumentDetail from './components/InstrumentDetail';
 
 export default function InstrumentDetailPage() {
   const formatMessage = useFormatMessage();
+  const isServerOnline = useIsOpenLISAServerOnline();
   const navigate = useNavigate();
   const { instrumentId } = useParams();
   const {
@@ -103,6 +105,10 @@ export default function InstrumentDetailPage() {
     setFormWithCurrentInstrumentValues();
     closeEditModal();
   };
+
+  if (isServerOnline === false) {
+    return <Navigate to={ROUTES.INSTRUMENTS} replace />;
+  }
 
   if (showLoadingFeedback || !instrument) {
     return null;
