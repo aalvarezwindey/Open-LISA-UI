@@ -27,7 +27,11 @@ class ConnectionProtocol:
     def get_configurations(self):
         return self._configuration["configurations"]
 
-    def check_connection(self):
+    def check_connection(self, configurations):
+        self._configuration["configurations"] = configurations
+        self._db.updateById(
+            pk=self._CONNECTION_PROTOCOL_SINGLETON_ID, new_data=self._configuration)
+        self.__refresh_in_memory_configuration()
         # NOTE: if the SDK could be retrieved the connection was established
         sdk = self.get_open_lisa_SDK_instance_connected()
 

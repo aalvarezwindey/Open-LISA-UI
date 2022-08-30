@@ -79,7 +79,10 @@ export default function CommunicationProtocolSettings() {
   const checkConnection = async () => {
     try {
       setCheckingConnection(true);
-      await checkServerConnection();
+      await checkServerConnection({
+        TCP: { ...TCPConfigurationFormProps.values },
+        SERIAL: { ...SerialcConfigurationFormProps.values },
+      });
       notifySuccess(
         formatMessage(MESSAGES_KEYS.SETTINGS_SUCCESSFUL_CHECK_CONNECTION_TITLE),
         formatMessage(MESSAGES_KEYS.SETTINGS_SUCCESSFUL_CHECK_CONNECTION_DESCRIPTION),
