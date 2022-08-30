@@ -2,6 +2,8 @@
 
 ## Run with docker
 
+Only works for Linux O.S. due to `network_mode` in `docker-compose.yaml` file.
+
 ```bash
 ./start-ui.sh
 ```

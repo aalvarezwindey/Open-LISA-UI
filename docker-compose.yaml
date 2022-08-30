@@ -3,6 +3,7 @@ services:
   open_lisa_frontend:
     container_name: open_lisa_frontend
     image: open_lisa_frontend
+    network_mode: host
     build:
       context: ./frontend
       dockerfile: Dockerfile
@@ -15,9 +16,11 @@ services:
   open_lisa_web_server:
     container_name: open_lisa_web_server
     image: open_lisa_web_server
+    network_mode: host
     ports:
       - "5000:5000"
     build:
       context: ./web-server
       dockerfile: Dockerfile
     entrypoint: python app.py
+
