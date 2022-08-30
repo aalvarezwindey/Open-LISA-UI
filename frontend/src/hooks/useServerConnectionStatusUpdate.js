@@ -3,7 +3,6 @@ import { logger } from '../logger';
 import checkServerConnection from '../services/instruments/checkServerConnection';
 import { updateOpenLISAServerConnectionStatus } from '../state/actions/updateOpenLISAServerConnectionStatus';
 import { useAppDispatch } from '../state/selectors/useAppDispatch';
-import { isOpenLISAServerUnavailableError } from '../utils/errors/isOpenLISAServerUnavailableError';
 
 export const useServerConnectionStatusUpdate = () => {
   const dispatch = useAppDispatch();
@@ -14,10 +13,7 @@ export const useServerConnectionStatusUpdate = () => {
         updateOpenLISAServerConnectionStatus(dispatch, true);
       } catch (err) {
         logger.error('[useServerConnectionStatusUpdate]', err);
-
-        if (isOpenLISAServerUnavailableError(err?.response)) {
-          updateOpenLISAServerConnectionStatus(dispatch, false);
-        }
+        updateOpenLISAServerConnectionStatus(dispatch, false);
       }
     };
     checkConnection();

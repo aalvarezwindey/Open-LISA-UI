@@ -11,7 +11,6 @@ import checkServerConnection from '../../../../services/instruments/checkServerC
 import updateConnectionProtocol from '../../../../services/instruments/updateConnectionProtocol';
 import { updateOpenLISAServerConnectionStatus } from '../../../../state/actions/updateOpenLISAServerConnectionStatus';
 import { useAppDispatch } from '../../../../state/selectors/useAppDispatch';
-import { isOpenLISAServerUnavailableError } from '../../../../utils/errors/isOpenLISAServerUnavailableError';
 import SerialConfigurationForm, {
   SERIAL_CONFIGURATION_FIELD_NAMES,
   SerialConfigurationFormFileds,
@@ -95,9 +94,7 @@ export default function CommunicationProtocolSettings() {
         formatMessage(MESSAGES_KEYS.ERROR_MESSAGE_CHECK_LOGS),
       );
 
-      if (isOpenLISAServerUnavailableError(err?.response)) {
-        updateOpenLISAServerConnectionStatus(dispatch, false);
-      }
+      updateOpenLISAServerConnectionStatus(dispatch, false);
     } finally {
       setCheckingConnection(false);
     }
