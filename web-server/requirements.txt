@@ -11,3 +11,6 @@ six==1.16.0
 toml==0.10.2
 Werkzeug==2.1.1
 zipp==3.8.0
+pysondb
+open-lisa-sdk
+python-dotenv

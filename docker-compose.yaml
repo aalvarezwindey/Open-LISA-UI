@@ -1,0 +1,23 @@
+version: '3'
+services:
+  open_lisa_frontend:
+    container_name: open_lisa_frontend
+    image: open_lisa_frontend
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    environment:
+      - ENV=production
+    ports:
+      - "3000:3000"
+    entrypoint: yarn start
+
+  open_lisa_web_server:
+    container_name: open_lisa_web_server
+    image: open_lisa_web_server
+    ports:
+      - "5000:5000"
+    build:
+      context: ./web-server
+      dockerfile: Dockerfile
+    entrypoint: python app.py
