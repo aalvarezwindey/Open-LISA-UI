@@ -1,2 +1,4 @@
 #!/bin/bash
-source bin/activate && python app.py
+source bin/activate
+pip install --no-cache-dir -r requirements.txt
+python app.py
