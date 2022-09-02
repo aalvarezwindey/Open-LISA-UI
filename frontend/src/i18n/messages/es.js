@@ -51,7 +51,7 @@ export const es = {
   [MK.SETTINGS_TCP_FORM_PORT_LABEL]: 'Puerto',
   [MK.SETTINGS_SERIAL_FORM_BAUDRATE_LABEL]: 'Baudrate',
   [MK.SETTINGS_SERIAL_FORM_PORT_LABEL]: 'Puerto serial',
-  [MK.SETTINGS_CHECK_CONNECTION_BUTTON_LABEL]: 'Probar conexión',
+  [MK.SETTINGS_CHECK_CONNECTION_BUTTON_LABEL]: 'Conectar con el servidor',
   [MK.SETTINGS_SUCCESSFUL_CHECK_CONNECTION_TITLE]: 'Conexión establecida',
   [MK.SETTINGS_SUCCESSFUL_CHECK_CONNECTION_DESCRIPTION]:
     'Se pudo detectar el servidor exitosamente con la configuración especificada',
@@ -59,7 +59,7 @@ export const es = {
   [MK.ERROR_MESSAGE_CHECK_LOGS]: 'Revisá los logs para más detalles',
   [MK.SETTINGS_CONNECTION_PROTCOL_TITLE]: 'Protocolo de comunicación',
   [MK.SETTINGS_CONNECTION_PROTCOL_DESCRIPTION]:
-    'Podés modificar el protocolo de comunicación con el servidor así como también los parámetros de cada modo. Usá el botón de "Probar conexión" para verificar que la configuración es correcta',
+    'Podés modificar el protocolo de comunicación con el servidor así como también los parámetros de cada modo. Usá el botón de "Conectar con el servidor" para verificar que la configuración es correcta',
   [MK.SETTINGS_FILESYSTEM_TITLE]: 'Archivos en el servidor',
   [MK.SETTINGS_FILESYSTEM_LOAD_ERROR]:
     'No se pudieron obtener las carpetas del servidor, verificá la conexión o revisá los logs para más detalles',

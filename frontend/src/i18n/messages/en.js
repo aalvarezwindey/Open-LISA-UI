@@ -51,7 +51,7 @@ export const en = {
   [MK.SETTINGS_TCP_FORM_PORT_LABEL]: 'Port',
   [MK.SETTINGS_SERIAL_FORM_BAUDRATE_LABEL]: 'Baudrate',
   [MK.SETTINGS_SERIAL_FORM_PORT_LABEL]: 'Serial port',
-  [MK.SETTINGS_CHECK_CONNECTION_BUTTON_LABEL]: 'Check connection',
+  [MK.SETTINGS_CHECK_CONNECTION_BUTTON_LABEL]: 'Connect',
   [MK.SETTINGS_SUCCESSFUL_CHECK_CONNECTION_TITLE]: 'Connection established',
   [MK.SETTINGS_SUCCESSFUL_CHECK_CONNECTION_DESCRIPTION]:
     'Server could be detected with the configuration specified',
@@ -59,7 +59,7 @@ export const en = {
   [MK.ERROR_MESSAGE_CHECK_LOGS]: 'Check logs for more details',
   [MK.SETTINGS_CONNECTION_PROTCOL_TITLE]: 'Communication protocol',
   [MK.SETTINGS_CONNECTION_PROTCOL_DESCRIPTION]:
-    'You can modify the communication protocol with the server as well as the parameters of each mode. Use the "Check connection" button to verify that the configuration is correct',
+    'You can modify the communication protocol with the server as well as the parameters of each mode. Use the "Connect" button to verify that the configuration is correct',
   [MK.SETTINGS_FILESYSTEM_TITLE]: 'Server files',
   [MK.SETTINGS_FILESYSTEM_LOAD_ERROR]:
     'Server folders could not be loaded, check the connection or logs for more details',

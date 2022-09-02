@@ -10,7 +10,7 @@ import { useIsOpenLISAServerOnline } from '../../../../state/selectors/useIsOpen
 const getButtonStatusLabel = (isServerOnline) => {
   switch (isServerOnline) {
     case true:
-      return 'ONLINE';
+      return 'CONNECTED';
     case false:
       return 'OFFLINE';
     default:
