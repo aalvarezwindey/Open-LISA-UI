@@ -1,7 +1,5 @@
 import logging
-import json
 import os
-import time
 import traceback
 from flask import Flask, jsonify, request
 from flask_cors import CORS
@@ -39,9 +37,15 @@ def error_handler(e):
 # Instruments routes
 @app.route("/instruments", methods=['GET'])
 def get_all_instruments():
-    repo = InstrumentRepository()
-    instruments = repo.get_all()
-    return (jsonify(instruments), 200)
+    try:
+        repo = InstrumentRepository()
+        instruments = repo.get_all()
+        return (jsonify(instruments), 200)
+    except Exception as e:
+        traceback.print_exc()
+        logging.error(
+            "[get_all_instruments] error {}".format(str(e)))
+        return errors.BAD_REQUEST(str(e))
 
 
 @app.route("/instruments", methods=['POST'])
