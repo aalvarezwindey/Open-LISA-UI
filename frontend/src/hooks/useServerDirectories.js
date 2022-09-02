@@ -26,7 +26,7 @@ const useServerDirectories = () => {
   const directoriesError = clibsDirError || databaseDirError || experimentsDirError;
   const directories = [
     { name: 'clibs', type: 'directory', children: clibsDir },
-    { name: 'databases', type: 'directory', children: databaseDir },
+    { name: 'database', type: 'directory', children: databaseDir },
     { name: 'sandbox', type: 'directory', children: experimentsDir },
   ];
 
