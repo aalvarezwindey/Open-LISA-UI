@@ -210,9 +210,11 @@ def update_connection_protocol():
 
 @app.route("/settings/connection-protocol/health-check", methods=['POST'])
 def connection_protocol_health_check():
+    args = request.args
+    update_connection = args.get("update") == "true"
     configurations = request.get_json()
     conn_protocol = ConnectionProtocol()
-    conn_protocol.check_connection(configurations)
+    conn_protocol.check_connection(configurations, update_connection)
     return ('', 200)
 
 

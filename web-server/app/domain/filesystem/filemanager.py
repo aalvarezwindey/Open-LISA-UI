@@ -31,8 +31,7 @@ class FileManager:
 
     def delete_directory(self, directory_path):
         conn_protocol = ConnectionProtocol()
-        sdk = conn_protocol.get_open_lisa_SDK_instance_connected(
-            sdk_log_level="ERROR")
+        sdk = conn_protocol.get_open_lisa_SDK_instance_connected()
         sdk.delete_directory(remote_path=directory_path)
 
     def upload_file(self, file_target_path, file_data):
