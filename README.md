@@ -4,6 +4,7 @@
 
 - Node v16.13 (we suggest using [nvm](https://github.com/nvm-sh/nvm))
 - Python 3
+- You need [Open LISA Server](https://github.com/aalvarezwindey/Open-LISA-Server) up and running (with SERIAL or TCP configuration)
 
 ## Run project
 
