@@ -1,16 +1,25 @@
 # Open-LISA-UI
 
-## Run with docker
+## Dependencies
 
-Only works for Linux O.S. due to `network_mode` in `docker-compose.yaml` file.
+- Node v16.13 (we suggest using [nvm](https://github.com/nvm-sh/nvm))
+- Python 3
 
-```bash
-./start-ui.sh
-```
-
-## Run without docker
+## Run project
 
 You need node installed (version specified at `frontend/.nvmrc`).
+
+### Web server
+
+Go to `web-server` folder and run
+
+```bash
+./start.sh
+```
+
+The web server will be running in http://localhost:5000
+
+### UI
 
 Go to `frontend` folder:
 
@@ -20,14 +29,30 @@ Go to `frontend` folder:
 yarn
 ```
 
+or
+
+```bash
+npm install
+```
+
 2. Start the UI
 
 ```bash
 yarn start
 ```
 
-In another therminal go to `web-server` folder and run
+or
 
 ```bash
-./start.sh
+npm run start
+```
+
+The UI will be running in http://localhost:3000, access it through your browser.
+
+## Run with docker (Linux only)
+
+Only works for Linux O.S. due to `network_mode` in `docker-compose.yaml` file.
+
+```bash
+./start-ui.sh
 ```
