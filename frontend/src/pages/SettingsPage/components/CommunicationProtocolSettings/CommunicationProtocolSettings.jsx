@@ -21,10 +21,10 @@ import TCPConfigurationForm, {
 } from './components/TCPConfigurationForm';
 
 const CONNECTION_PROTOCOLS = {
-  TCP: {
+  SERIAL: {
     index: 0,
   },
-  SERIAL: {
+  TCP: {
     index: 1,
   },
 };
@@ -118,16 +118,16 @@ export default function CommunicationProtocolSettings() {
       >
         <TabList>
           <Tab _selected={{ color: 'white', bg: 'blue.200' }} w="50%">
-            {formatMessage(MESSAGES_KEYS.SETTINGS_TCP_TAB)}
+            {formatMessage(MESSAGES_KEYS.SETTINGS_SERIAL_TAB)}
           </Tab>
           <Tab _selected={{ color: 'white', bg: 'blue.200' }} w="50%">
-            {formatMessage(MESSAGES_KEYS.SETTINGS_SERIAL_TAB)}
+            {formatMessage(MESSAGES_KEYS.SETTINGS_TCP_TAB)}
           </Tab>
         </TabList>
 
         <TabPanels>
           <TabPanel>
-            <TCPConfigurationForm {...TCPConfigurationFormProps} />
+            <SerialConfigurationForm {...SerialcConfigurationFormProps} />
             <Button
               mt={6}
               w="100%"
@@ -139,7 +139,7 @@ export default function CommunicationProtocolSettings() {
             </Button>
           </TabPanel>
           <TabPanel>
-            <SerialConfigurationForm {...SerialcConfigurationFormProps} />
+            <TCPConfigurationForm {...TCPConfigurationFormProps} />
             <Button
               mt={6}
               w="100%"
