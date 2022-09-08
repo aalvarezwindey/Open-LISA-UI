@@ -57,3 +57,7 @@ Only works for Linux O.S. due to `network_mode` in `docker-compose.yaml` file.
 ```bash
 ./start-ui.sh
 ```
+
+## Next steps
+
+Check the [MANUAL](https://github.com/aalvarezwindey/Open-LISA-UI/blob/main/MANUAL.md) and learn how to use Open LISA UI
