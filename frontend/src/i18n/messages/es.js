@@ -101,7 +101,7 @@ export const es = {
   [MK.COMMAND_FORM_INVOCATION_FIELD_LABEL]: 'Comando',
   [MK.COMMAND_FORM_INVOCATION_FIELD_LABEL_CLIB]: 'Función de la librería',
   [MK.COMMAND_FORM_INVOCATION_FIELD_HELP_TEXT_SCPI]:
-    'Es el comando que indica el fabricante del instrumento. Usá {} para indicar parámetros en el comando.',
+    'Es el comando que indica el fabricante del instrumento. Usá {} para indicar parámetros en el comando. Por ejemplo: CH{} VOLts {}',
   [MK.COMMAND_FORM_INVOCATION_FIELD_HELP_TEXT_CLIB]:
     'Es la función de la librería C/C++ que debe será invocada con este comando.',
   [MK.COMMAND_FORM_LIB_FILE_NAME_FIELD_LABEL]: 'Librería',

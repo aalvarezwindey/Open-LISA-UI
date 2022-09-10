@@ -100,7 +100,7 @@ export const en = {
   [MK.COMMAND_FORM_LIB_FILE_NAME_FIELD_ERROR]:
     'The library associated with the command is mandatory.',
   [MK.COMMAND_FORM_INVOCATION_FIELD_HELP_TEXT_SCPI]:
-    'It is the SCPI command indicated by the fabricant. Use {} to indicate parameters in the command.',
+    'It is the SCPI command indicated by the fabricant. Use {} to indicate parameters in the command. Example: CH{} VOLts {}',
   [MK.COMMAND_FORM_INVOCATION_FIELD_HELP_TEXT_CLIB]:
     'It is the C/C++ library fuction that will be invoked with this command.',
   [MK.COMMAND_FORM_LIB_FILE_NAME_FIELD_LABEL]: 'Library',
