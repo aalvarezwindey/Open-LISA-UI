@@ -1,21 +1,28 @@
 import React from 'react';
-import { Box, Image } from '@chakra-ui/react';
+import { Box, Image, Text } from '@chakra-ui/react';
 import { SUPPORTED_LANGUAGES } from '../../domain/constants';
 import { updateAppLanguage } from '../../state/actions/updateAppLanguage';
 import { useAppDispatch } from '../../state/selectors/useAppDispatch';
 import { useAppLanguage } from '../../state/selectors/useAppLanguage';
 
-const Flag = ({ src, alt, onClick }) => {
-  return (
-    <>
-      <Box onClick={onClick} p="10px" zIndex={1} cursor="pointer">
-        <Image src={src} alt={alt} w="36px" h="22px" border="1px solid black" />
-      </Box>
-    </>
-  );
-};
-const ArgentinaFlag = (props) => <Flag src="/images/ar.png" alt="ARG" {...props} />;
-const UsaFlag = (props) => <Flag src="/images/us.png" alt="ENG" {...props} />;
+const LanguageText = ({ children, onClick, selected }) => (
+  <Box onClick={onClick} p="10px" zIndex={1} cursor="pointer" textAlign="center">
+    <Text
+      fontWeight="bold"
+      fontSize="large"
+      letterSpacing="wider"
+      w="36px"
+      h="100%"
+      d="flex"
+      flexDir="column"
+      alignItems="center"
+      onClick={onClick}
+      color={selected ? 'black' : 'white'}
+    >
+      {children}
+    </Text>
+  </Box>
+);
 
 export default function LanguageSwitch() {
   const dispatch = useAppDispatch();
@@ -48,9 +55,12 @@ export default function LanguageSwitch() {
         left={language === 'es' ? '3px' : '59px'}
         transition="left 0.1s linear"
       ></Box>
-      <ArgentinaFlag onClick={toggleLanguage} />
-
-      <UsaFlag onClick={toggleLanguage} />
+      <LanguageText selected={language === 'es'} onClick={toggleLanguage}>
+        ES
+      </LanguageText>
+      <LanguageText selected={language === 'en'} onClick={toggleLanguage}>
+        EN
+      </LanguageText>
     </Box>
   );
 }
