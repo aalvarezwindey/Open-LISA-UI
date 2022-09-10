@@ -44,6 +44,8 @@ export const es = {
   [MK.INSTRUMENT_FORM_EDIT_TITLE]: 'Editar instrumento',
   [MK.INSTRUMENT_FORM_EDIT_CONFIRM_LABEL]: 'Confirmar',
   [MK.INSTRUMENT_FORM_EDIT_CANCEL_LABEL]: 'Cancelar',
+  [MK.INSTRUMENT_FORM_CREATION_ERROR_TITLE]: 'No se pudo crear el instrumento',
+  [MK.INSTRUMENT_FORM_CREATION_ERROR_DESCRIPTION]: 'Revise los logs para más detalles',
 
   [MK.SETTINGS_TCP_TAB]: 'Conexión TCP',
   [MK.SETTINGS_SERIAL_TAB]: 'Conexión Serial',

@@ -17,14 +17,18 @@ function InstrumentDetail({
 }) {
   const formatMessage = useFormatMessage();
   return (
-    <Flex h="50vh" direction="row">
+    <Flex maxW="100vw" direction="row">
       <Image
         src={image}
         alt={`${brand} - ${model}`}
         objectFit="contain"
-        h="100%"
         shadow="lg"
         mr={8}
+        maxW="40vw"
+        maxH="40vw"
+        height="auto"
+        minW="30vw"
+        minH="30vw"
       />
       <Flex direction="column">
         <Flex flexGrow={1} direction="column">
@@ -39,11 +43,11 @@ function InstrumentDetail({
           ) : null}
           {description ? <Text>{description}</Text> : null}
         </Flex>
-        <Flex>
+        <Flex flexWrap="wrap" gap={4}>
           <EditButton onClick={onEditInstrument}>
             {formatMessage(MESSAGES_KEYS.INSTRUMENT_DETAIL_EDIT_INSTRUMENT_BUTTON_LABEL)}
           </EditButton>
-          <DeleteButton ml={4} onClick={onDeleteInstrument}>
+          <DeleteButton onClick={onDeleteInstrument}>
             {formatMessage(MESSAGES_KEYS.INSTRUMENT_DETAIL_DELETE_INSTRUMENT_BUTTON_LABEL)}
           </DeleteButton>
         </Flex>

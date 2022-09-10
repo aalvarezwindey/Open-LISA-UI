@@ -53,6 +53,8 @@ export const MESSAGES_KEYS = {
   INSTRUMENT_FORM_EDIT_TITLE: 'instrument.form.edit.title',
   INSTRUMENT_FORM_EDIT_CONFIRM_LABEL: 'instrument.form.edit.confirm.label',
   INSTRUMENT_FORM_EDIT_CANCEL_LABEL: 'instrument.form.edit.cancel.label',
+  INSTRUMENT_FORM_CREATION_ERROR_TITLE: 'instrument.form.creation.error.title',
+  INSTRUMENT_FORM_CREATION_ERROR_DESCRIPTION: 'instrument.form.creation.error.title',
 
   // Settings page
   SETTINGS_TCP_TAB: 'settings.page.tcp.connection.tab.label',

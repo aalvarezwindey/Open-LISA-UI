@@ -1,4 +1,4 @@
-export const NONE_IMAGE_FILE_NAME = 'none.png';
+export const NONE_IMAGE_FILE_NAME = 'none.svg';
 
 export const INSTRUMENT_FIELD_NAMES = {
   BRAND: 'brand',

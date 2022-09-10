@@ -64,7 +64,7 @@ def create_instrument():
 @ app.route("/instruments/images", methods=['GET'])
 def get_all_instruments_images():
     images = []
-    noneFileName = "none.png"
+    noneFileName = "none.svg"
     fileNames = os.listdir("static")
 
     # put NONE image first

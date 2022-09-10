@@ -19,8 +19,9 @@ function InstrumentCard({ image, brand, model, onViewMore }) {
         h={[200]}
         w={[MAX_WIDTH]}
         mb={[4]}
+        padding={4}
         border="1px solid black"
-        borderRadius="full"
+        borderRadius={16}
         shadow="lg"
       />
       <Heading

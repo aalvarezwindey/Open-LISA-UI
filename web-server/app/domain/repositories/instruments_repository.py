@@ -7,7 +7,7 @@ class InstrumentRepository():
     def __init__(self):
         self._images_DB = db.getDb("app/data/instruments_images.json")
         self._static_files_base_url = os.environ["STATIC_FILES_URL"]
-        self._default_img_name = "none.png"
+        self._default_img_name = "none.svg"
         self._default_img_url = self._static_files_base_url + self._default_img_name
 
     def get_all(self):

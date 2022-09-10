@@ -10,6 +10,7 @@ import InstrumentsList from '../../domain/components/InstrumentsList/Instruments
 import useForm from '../../hooks/useForm';
 import { useGlobalLoadingFeedback } from '../../hooks/useGlobalLoadingFeedback';
 import useInstruments from '../../hooks/useInstruments';
+import useNotifier from '../../hooks/useNotifier';
 import { useFormatMessage } from '../../i18n/hooks/useFormatMessage';
 import { MESSAGES_KEYS } from '../../i18n/messages/keys';
 import { logger } from '../../logger';
@@ -21,6 +22,7 @@ export default function InstrumentsPage() {
   const { data: instruments, refetch, isLoading } = useInstruments();
   const showLoadingFeedback = useGlobalLoadingFeedback(isLoading);
   const formatMessage = useFormatMessage();
+  const { notifyError } = useNotifier();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [submittingNewInstrument, { on: submittingOn, off: submittingOff }] = useBoolean(false);
   const { isValid, reset, displayErrors, ...formProps } = useForm({
@@ -45,6 +47,10 @@ export default function InstrumentsPage() {
       onClose();
     } catch (err) {
       submittingOff();
+      notifyError(
+        MESSAGES_KEYS.INSTRUMENT_FORM_CREATION_ERROR_TITLE,
+        MESSAGES_KEYS.INSTRUMENT_FORM_CREATION_ERROR_DESCRIPTION,
+      );
       logger.error('[CREATE_INSTRUMENT]', err);
     }
   };
