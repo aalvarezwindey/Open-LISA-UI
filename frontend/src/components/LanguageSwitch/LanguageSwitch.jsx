@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Image, Text } from '@chakra-ui/react';
+import { Box, Text } from '@chakra-ui/react';
 import { SUPPORTED_LANGUAGES } from '../../domain/constants';
 import { updateAppLanguage } from '../../state/actions/updateAppLanguage';
 import { useAppDispatch } from '../../state/selectors/useAppDispatch';
