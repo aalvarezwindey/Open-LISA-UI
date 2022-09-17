@@ -1,4 +1,5 @@
 import React, { useRef } from 'react';
+import { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { InfoIcon } from '@chakra-ui/icons';
 import {
@@ -66,6 +67,11 @@ export default function InstrumentForm({ updateField, values, errors }) {
   const physicalAddressInput = useRef(null);
   const disablePhysicalAddressField = values[INSTRUMENT_FIELD_NAMES.TYPE] !== INSTRUMENT_TYPES.SCPI;
   const currentPhysicalAddress = values[INSTRUMENT_FIELD_NAMES.PHYSICAL_ADDRESS];
+  useEffect(() => {
+    if (disablePhysicalAddressField) {
+      updateField(INSTRUMENT_FIELD_NAMES.PHYSICAL_ADDRESS)('');
+    }
+  }, [updateField, disablePhysicalAddressField]);
 
   if (loadingDetectedPhysicalAddresses || loadingInstrumentImages || !detectedPhysicalAddresses)
     return null;

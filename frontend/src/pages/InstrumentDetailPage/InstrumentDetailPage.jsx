@@ -7,7 +7,7 @@ import PageBody from '../../components/Layout/PageBody/PageBody';
 import InstrumentForm, {
   InstrumentFormFileds,
 } from '../../domain/components/InstrumentForm/InstrumentForm';
-import { INSTRUMENT_FIELD_NAMES } from '../../domain/constants';
+import { INSTRUMENT_FIELD_NAMES, INSTRUMENT_TYPES } from '../../domain/constants';
 import useForm from '../../hooks/useForm';
 import { useGlobalLoadingFeedback } from '../../hooks/useGlobalLoadingFeedback';
 import useInstrumentDetail from '../../hooks/useInstrumentDetail';
@@ -78,6 +78,9 @@ export default function InstrumentDetailPage() {
       submittingOn();
       const formValuesSnaked = objectKeysCamelCaseToUnderscore(formValues);
       delete formValuesSnaked['detected_physical_address'];
+      if (formValuesSnaked.type === INSTRUMENT_TYPES.CLIB) {
+        formValuesSnaked['physical_address'] = null;
+      }
       await editInstrument(instrumentId, formValuesSnaked);
       await refetchInstrumentDetail();
       submittingOff();
