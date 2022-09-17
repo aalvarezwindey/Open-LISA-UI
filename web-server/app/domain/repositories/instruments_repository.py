@@ -110,7 +110,7 @@ class InstrumentRepository():
         return {img["instrument_id"]: img for img in images_list}
 
     def __add_image_to_instrument_dict(self, instrument, images_dict):
-        instrument_id = instrument["id"]
+        instrument_id = int(instrument["id"])
         if instrument_id in images_dict:
             instrument["image"] = self._static_files_base_url + \
                 images_dict[instrument_id]["image_file_name"]
@@ -120,7 +120,7 @@ class InstrumentRepository():
 
     def __add_image(self, instrument_id, img_file_name):
         self._images_DB.add({
-            "instrument_id": instrument_id,
+            "instrument_id": int(instrument_id),
             "image_file_name": img_file_name
         })
 
