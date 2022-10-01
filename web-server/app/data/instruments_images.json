@@ -1,1 +1,154 @@
-{"data": [{"instrument_id": 2, "image_file_name": "none.png", "id": 228436757929198700}, {"instrument_id": 284896639667707029, "image_file_name": "multimeter.png", "id": 208709990292326694}, {"instrument_id": 292973185934644472, "image_file_name": "multimeter.png", "id": 303947364333139074}, {"instrument_id": 274136625771765717, "image_file_name": "camera.png", "id": 142547282284640510}, {"instrument_id": 235008528861429682, "image_file_name": "functions_generator.png", "id": 669082413028875384}, {"instrument_id": 171503622302968561, "image_file_name": "multimeter.png", "id": 320755796551955976}, {"instrument_id": 255652983695016896, "image_file_name": "functions_generator.png", "id": 148599554644018456}, {"instrument_id": 300937096329098576, "image_file_name": "functions_generator.png", "id": 278326519539426756}, {"instrument_id": 273192875655031717, "image_file_name": "daq.png", "id": 282514415784129858}, {"instrument_id": 119320520532438119, "image_file_name": "multimeter.png", "id": 188325720959512736}, {"instrument_id": 1, "image_file_name": "none.png", "id": 314018312353910042}, {"instrument_id": 460660201517446912, "image_file_name": "power_supply.png", "id": 105800133354695759}]}
+{
+   "data": [
+      {
+         "instrument_id": 284896639667707029,
+         "image_file_name": "multimeter.png",
+         "id": 208709990292326694
+      },
+      {
+         "instrument_id": 292973185934644472,
+         "image_file_name": "multimeter.png",
+         "id": 303947364333139074
+      },
+      {
+         "instrument_id": 274136625771765717,
+         "image_file_name": "camera.png",
+         "id": 142547282284640510
+      },
+      {
+         "instrument_id": 235008528861429682,
+         "image_file_name": "functions_generator.png",
+         "id": 669082413028875384
+      },
+      {
+         "instrument_id": 171503622302968561,
+         "image_file_name": "multimeter.png",
+         "id": 320755796551955976
+      },
+      {
+         "instrument_id": 255652983695016896,
+         "image_file_name": "functions_generator.png",
+         "id": 148599554644018456
+      },
+      {
+         "instrument_id": 300937096329098576,
+         "image_file_name": "functions_generator.png",
+         "id": 278326519539426756
+      },
+      {
+         "instrument_id": 273192875655031717,
+         "image_file_name": "daq.png",
+         "id": 282514415784129858
+      },
+      {
+         "instrument_id": 119320520532438119,
+         "image_file_name": "multimeter.png",
+         "id": 188325720959512736
+      },
+      {
+         "instrument_id": 460660201517446912,
+         "image_file_name": "power_supply.png",
+         "id": 105800133354695759
+      },
+      {
+         "instrument_id": 578137264785452685,
+         "image_file_name": "oscilloscope.jpeg",
+         "id": 169474455740554685
+      },
+      {
+         "instrument_id": 143184095840809601,
+         "image_file_name": "none.svg",
+         "id": 277876646519966777
+      },
+      {
+         "instrument_id": 542690414384833154,
+         "image_file_name": "power_supply.jpeg",
+         "id": 261723187138453063
+      },
+      {
+         "instrument_id": 567048233095472579,
+         "image_file_name": "oscilloscope.jpeg",
+         "id": 109837660583086780
+      },
+      {
+         "instrument_id": 248567036952685274,
+         "image_file_name": "oscilloscope.jpeg",
+         "id": 659726911222135189
+      },
+      {
+         "instrument_id": 313021749972841018,
+         "image_file_name": "functions_generator.png",
+         "id": 313938448289095841
+      },
+      {
+         "instrument_id": 286415916982519140,
+         "image_file_name": "camera.png",
+         "id": 976162170514563116
+      },
+      {
+         "instrument_id": 282471083228406169,
+         "image_file_name": "multimeter.png",
+         "id": 606278540306157585
+      },
+      {
+         "instrument_id": "1",
+         "image_file_name": "none.svg",
+         "id": 302066792678117070
+      },
+      {
+         "instrument_id": "2",
+         "image_file_name": "none.svg",
+         "id": 424605558316947553
+      },
+      {
+         "instrument_id": "539622837600969124",
+         "image_file_name": "power_supply.jpeg",
+         "id": 182249206337245968
+      },
+      {
+         "instrument_id": "104874356493205475",
+         "image_file_name": "camera.png",
+         "id": 328078608430242698
+      },
+      {
+         "instrument_id": "130747739083704660",
+         "image_file_name": "camera.png",
+         "id": 216608657964511981
+      },
+      {
+         "instrument_id": 240049237513259560,
+         "image_file_name": "camera.png",
+         "id": 286041445174953480
+      },
+      {
+         "instrument_id": 233259748450852432,
+         "image_file_name": "camera.png",
+         "id": 324319827885596597
+      },
+      {
+         "instrument_id": 1,
+         "image_file_name": "oscilloscope.jpeg",
+         "id": 307990415621049495
+      },
+      {
+         "instrument_id": 2,
+         "image_file_name": "camera.png",
+         "id": 140193038080057931
+      },
+      {
+         "instrument_id": 241205155940709045,
+         "image_file_name": "oscilloscope.jpeg",
+         "id": 232063280101515301
+      },
+      {
+         "instrument_id": 330355862202759620,
+         "image_file_name": "camera.png",
+         "id": 745086952918414256
+      },
+      {
+         "instrument_id": 632526185291862807,
+         "image_file_name": "power_supply.jpeg",
+         "id": 242742204758693160
+      }
+   ]
+}

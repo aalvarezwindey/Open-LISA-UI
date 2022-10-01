@@ -2,15 +2,15 @@
    "data": [
       {
          "id": 1,
-         "current_protocol": "SERIAL",
+         "current_protocol": "TCP",
          "configurations": {
             "TCP": {
-               "host": "127.0.0.1",
+               "host": "10.186.223.80",
                "port": 8080
             },
             "SERIAL": {
                "baudrate": 921600,
-               "port": "COM3"
+               "port": "/dev/tty.usbserial-144210"
             }
          }
       }
