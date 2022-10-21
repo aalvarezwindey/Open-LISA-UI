@@ -5,7 +5,7 @@ This repository is part of [Open LISA project](https://github.com/open-lisa):
 * [Open LISA SDK](https://github.com/open-lisa/Open-LISA-SDK)
 * [Open LISA UI](https://github.com/open-lisa/Open-LISA-UI)
 
-This UI provides an interface to administrate an [Open LISA Server](https://github.com/aalvarezwindey/Open-LISA-Server).
+This UI provides an interface to administrate an [Open LISA Server](https://github.com/open-lisa/Open-LISA-Server).
 
 ## Dependencies
 
