@@ -1,9 +1,9 @@
 # Open-LISA-UI
 
-This repository is part of Open LISA project:
-* Open LISA Server
-* Open LISA SDK
-* Open LISA UI
+This repository is part of [Open LISA project](https://github.com/open-lisa):
+* [Open LISA Server](https://github.com/open-lisa/Open-LISA-Server)
+* [Open LISA SDK](https://github.com/open-lisa/Open-LISA-SDK)
+* [Open LISA UI](https://github.com/open-lisa/Open-LISA-UI)
 
 This UI provides an interface to administrate an [Open LISA Server](https://github.com/aalvarezwindey/Open-LISA-Server).
 
@@ -11,7 +11,7 @@ This UI provides an interface to administrate an [Open LISA Server](https://gith
 
 - Node v16.13 (we suggest using [nvm](https://github.com/nvm-sh/nvm))
 - Python 3
-- You need [Open LISA Server](https://github.com/aalvarezwindey/Open-LISA-Server) up and running (with SERIAL or TCP configuration)
+- You need [Open LISA Server](https://github.com/open-lisa/Open-LISA-Server) up and running (with SERIAL or TCP configuration)
 
 ## Run project
 
