@@ -1,5 +1,12 @@
 # Open-LISA-UI
 
+This repository is part of Open LISA project:
+* Open LISA Server
+* Open LISA SDK
+* Open LISA UI
+
+This UI provides an interface to administrate an [Open LISA Server](https://github.com/aalvarezwindey/Open-LISA-Server).
+
 ## Dependencies
 
 - Node v16.13 (we suggest using [nvm](https://github.com/nvm-sh/nvm))
@@ -58,6 +65,6 @@ Only works for Linux O.S. due to `network_mode` in `docker-compose.yaml` file.
 ./start-ui.sh
 ```
 
-## Next steps
+## Manual
 
-Check the [MANUAL](https://github.com/aalvarezwindey/Open-LISA-UI/blob/main/MANUAL.md) and learn how to use Open LISA UI
+Check the [MANUAL](./docs/MANUAL.md) and learn how to use Open LISA UI
