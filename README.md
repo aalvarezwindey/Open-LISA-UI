@@ -67,4 +67,4 @@ Only works for Linux O.S. due to `network_mode` in `docker-compose.yaml` file.
 
 ## Manual
 
-Check the [MANUAL](./docs/MANUAL.md) and learn how to use Open LISA UI
+Check the [MANUAL](https://github.com/open-lisa/Open-LISA-UI/tree/main/docs/manual) and learn how to use Open LISA UI
